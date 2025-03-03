@@ -1,0 +1,35 @@
+.shopNowSection {
+  background-color: green;
+  width: fit-content;
+  margin: 0 auto;
+  .shopNowCards {
+    position: relative;
+    display: flex;
+    gap: 3rem;
+    div {
+      background-color: #827877;
+      width: 512px;
+      height: 300px;
+      border-radius: 10px;
+      position: relative;
+      img {
+        display: block;
+        object-fit: cover;
+        width: 270px;
+        position: absolute;
+        top: 1rem;
+      }
+      p {
+        width: 25rem;
+        text-align: center;
+        position: absolute;
+        top: 10rem;
+        left: 49%;
+        font-size: 2.8rem;
+      }
+      button {
+        position: absolute;
+      }
+    }
+  }
+}
