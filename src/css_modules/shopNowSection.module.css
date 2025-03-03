@@ -5,8 +5,17 @@
     position: relative;
     display: flex;
     gap: 3rem;
+
     div {
-      background-color: #827877;
+      &:nth-of-type(1) {
+        background-color: #827877;
+      }
+      &:nth-of-type(2) {
+        background-color: #b1bce0;
+      }
+      &:nth-of-type(3) {
+        background-color: #b4df84;
+      }
       width: 512px;
       height: 300px;
       border-radius: 10px;
@@ -14,9 +23,11 @@
       img {
         display: block;
         object-fit: cover;
-        width: 270px;
+        width: 200px;
+        width: 200px;
         position: absolute;
-        top: 1rem;
+        top: 4rem;
+        left: 3rem;
       }
       p {
         width: 25rem;
@@ -31,7 +42,20 @@
       button {
         position: absolute;
         bottom: 20%;
-        right: 20%;
+        right: 13%;
+        color: white;
+        width: 15rem;
+        height: 5rem;
+        background-color: var(--navTop);
+        border-radius: 5px;
+        border: none;
+        transition: all 200ms;
+        cursor: pointer;
+        font-size: 2rem;
+        &:hover {
+          background-color: var(--buttonHover);
+          color: white;
+        }
       }
     }
   }

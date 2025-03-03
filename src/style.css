@@ -4,6 +4,8 @@
 :root {
   font-size: 62.5%;
   font-family: "Manrope", serif;
+  --navTop: #f53e32;
+  --buttonHover: #7e1811;
   * {
     box-sizing: border-box;
   }
