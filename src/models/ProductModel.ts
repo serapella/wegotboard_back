@@ -2,50 +2,54 @@ import mongoose from "mongoose";
 
 const ProductSchema = new mongoose.Schema(
   {
-    Category: {
+    language: {
+      type: String,
+      default: "english",
+    },
+    category: {
       type: String,
       required: true,
       trim: true,
     },
-    Price: {
+    price: {
       type: Number,
       required: true,
       trim: true,
     },
-    Name: {
+    name: {
       type: String,
       required: true,
       trim: true,
     },
-    Images: {
+    images: {
       type: Array,
       required: true,
       trim: true,
     },
-    Description: {
+    description: {
       type: String,
       required: true,
       trim: true,
     },
-    PlayerCount: {
+    playerCount: {
       type: Number,
       required: true,
       trim: true,
     },
-    Difficulty: {
+    difficulty: {
       type: String,
       Enum: ["Easy", "Medium", "Hard"],
       required: true,
       trim: true,
     },
-    AgeRating: {
+    ageRating: {
       type: Number,
       minValue: 0,
       maxValue: 18,
       nullable: true,
       trim: true,
     },
-    UserRating: {
+    userRating: {
       type: Array,
       nullable: true,
       trim: true,
