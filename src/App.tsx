@@ -1,6 +1,7 @@
+import DealsOfTheDay from "./components/DealsOfTheDay";
 import "./style.css";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return <DealsOfTheDay />;
 };
 export default App;
