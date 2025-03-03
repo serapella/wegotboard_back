@@ -45,6 +45,33 @@ const ProductSchema = new mongoose.Schema(
       nullable: true,
       trim: true,
     },
+    UserRating: {
+      type: Array,
+      nullable: true,
+      trim: true,
+    },
+    measurements: {
+      width: {
+        type: Number,
+        nullable: true,
+        trim: true,
+      },
+      height: {
+        type: Number,
+        nullable: true,
+        trim: true,
+      },
+      depth: {
+        type: Number,
+        nullable: true,
+        trim: true,
+      },
+      weight: {
+        type: Number,
+        nullable: true,
+        trim: true,
+      },
+    },
   },
   {
     timestamps: true,
