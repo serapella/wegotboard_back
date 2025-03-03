@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
+    favorites: {
+      type: Array,
+      required: true,
+    },
     name: {
       first: { type: String, required: true, trim: true },
       last: { type: String, required: true, trim: true },
