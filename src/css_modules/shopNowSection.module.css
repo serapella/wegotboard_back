@@ -41,7 +41,7 @@
       }
       button {
         position: absolute;
-        bottom: 20%;
+        bottom: 18%;
         right: 13%;
         color: white;
         width: 15rem;
@@ -51,7 +51,7 @@
         border: none;
         transition: all 200ms;
         cursor: pointer;
-        font-size: 2rem;
+        font-size: 1.8rem;
         &:hover {
           background-color: var(--buttonHover);
           color: white;
