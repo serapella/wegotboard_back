@@ -9,8 +9,16 @@ const ShopNowSection = () => {
           <p>Hunt Monsters together with your party at home!</p>
           <button>Shop Now</button>
         </div>
-        <div>shopnow1</div>
-        <div>shopnow1</div>
+        <div>
+          <img src="../public/mh_bg.png" alt="monster hunter boargame" />
+          <p>Hunt Monsters together with your party at home!</p>
+          <button>Shop Now</button>
+        </div>
+        <div>
+          <img src="../public/mh_bg.png" alt="monster hunter boargame" />
+          <p>Hunt Monsters together with your party at home!</p>
+          <button>Shop Now</button>
+        </div>
       </div>
     </section>
   );
