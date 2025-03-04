@@ -15,30 +15,29 @@ const HeaderMainNav = () => {
             <a href="#">Home</a>
           </li>
           <li>
-            <a href="#">
-              {" "}
-              Category <img src="../icons_temp/arrow_down.svg" alt="" />
-            </a>
+            <select name="category" id="category">
+              <option value="">Category</option>
+            </select>
           </li>
           <li>
-            <a href="#">
-              Products <img src="../icons_temp/arrow_down.svg" alt="" />
-            </a>
+            <select name="product" id="product">
+              <option value="">Products</option>
+            </select>
           </li>
           <li>
-            <a href="#">
-              Pages <img src="../icons_temp/arrow_down.svg" alt="" />
-            </a>
+            <select name="pages" id="pages">
+              <option value="">Pages</option>
+            </select>
           </li>
           <li>
-            <a href="#">
-              Blog <img src="../icons_temp/arrow_down.svg" alt="" />
-            </a>
+            <select name="blog" id="blog">
+              <option value="">Blog</option>
+            </select>
           </li>
           <li>
-            <a href="#">
-              Elements <img src="../icons_temp/arrow_down.svg" alt="" />
-            </a>
+            <select name="elements" id="elements">
+              <option value="">Elements</option>
+            </select>
           </li>
         </ul>
         <div className={styles.phone}>

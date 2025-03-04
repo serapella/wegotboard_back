@@ -38,6 +38,10 @@ header {
       gap: 4rem;
 
       li {
+        select {
+          font-family: Poppins, sans-serif;
+          border: none;
+        }
         a {
           text-decoration: none;
           color: black;
