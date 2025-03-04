@@ -13,10 +13,9 @@ const HeaderUserNav = () => {
       </a>
       <div className={styles.search}>
         <input type="text" placeholder="Search for items..." />
-        <input type="dropdown" placeholder="All Categories" />
-        <i>
-          <IoIosArrowDown />
-        </i>
+        <select name="dropdown" id="dropdown">
+          <option value="">All Categories</option>
+        </select>
 
         <button>
           <i>

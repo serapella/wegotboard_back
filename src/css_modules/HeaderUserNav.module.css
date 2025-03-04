@@ -28,19 +28,19 @@ div.userNav {
     input {
       border: 1px solid #64b496;
       height: 4.5rem;
-      &:nth-of-type(1) {
-        width: 40rem;
-        border-radius: 5px 0 0 5px;
-      }
-      &:nth-of-type(2) {
-        width: 13rem;
+      width: 40rem;
+      border-radius: 5px 0 0 5px;
+    }
+    select {
+      border: 1px solid #64b496;
+      height: 4.5rem;
+      width: 13rem;
+      cursor: pointer;
+      option {
+        text-align: center;
       }
     }
-    > i {
-      position: absolute;
-      right: 6rem;
-      top: 40%;
-    }
+
     button {
       background-color: #f53e32;
       color: white;
