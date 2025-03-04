@@ -1,6 +1,7 @@
 import "./style.css";
+import HeaderMainNav from "./components/HeaderMainNav";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return <HeaderMainNav />;
 };
 export default App;
