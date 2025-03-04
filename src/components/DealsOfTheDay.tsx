@@ -1,5 +1,11 @@
 import styles from "../css_modules/dealsOfTheDay.module.css";
-import { BsStarFill, BsStar, BsStarHalf, BsChevronRight } from "react-icons/bs";
+import {
+  BsStarFill,
+  BsStar,
+  BsStarHalf,
+  BsChevronRight,
+  BsCart3,
+} from "react-icons/bs";
 
 const DealsOfTheDay = () => {
   return (
@@ -28,13 +34,15 @@ const DealsOfTheDay = () => {
               </i>
               <p>(4.0)</p>
               <p>
-                By <span>NestFood</span>
+                By <span>De Spelfanaat</span>
               </p>
               <div className={styles.deals_item_bottom}>
                 <h4>$32.85</h4>
                 <p>$33.8</p>
                 <button>
-                  <img src="../icons_temp/cart.svg" alt="" />
+                  <span>
+                    <BsCart3 />
+                  </span>
                   Add
                 </button>
               </div>
@@ -59,7 +67,9 @@ const DealsOfTheDay = () => {
                 <h4>$32.85</h4>
                 <p>$33.8</p>
                 <button>
-                  <img src="../icons_temp/cart.svg" alt="" />
+                  <span>
+                    <BsCart3 />
+                  </span>
                   Add
                 </button>
               </div>
@@ -84,7 +94,9 @@ const DealsOfTheDay = () => {
                 <h4>$32.85</h4>
                 <p>$33.8</p>
                 <button>
-                  <img src="../icons_temp/cart.svg" alt="" />
+                  <span>
+                    <BsCart3 />
+                  </span>
                   Add
                 </button>
               </div>

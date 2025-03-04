@@ -125,6 +125,14 @@
             background-color: #f53e32;
             color: #ffffff;
             padding: 1rem 2rem;
+            cursor: pointer;
+            transition: all 200ms;
+            span {
+              margin-right: 0.3rem;
+            }
+            &:hover {
+              background-color: var(--buttonHover);
+            }
           }
         }
       }
