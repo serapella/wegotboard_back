@@ -1,5 +1,5 @@
 import styles from "../css_modules/dealsOfTheDay.module.css";
-import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
+import { BsStarFill, BsStar, BsStarHalf, BsChevronRight } from "react-icons/bs";
 
 const DealsOfTheDay = () => {
   return (
@@ -9,7 +9,9 @@ const DealsOfTheDay = () => {
           <h2>Deals of the day</h2>
           <a href="">
             All Deals
-            <img src="../icons_temp/arrow_right.svg" alt="" />
+            <span className={styles.iconDeals}>
+              <BsChevronRight />
+            </span>
           </a>
         </div>
         <div className={styles.deals_grid}>
