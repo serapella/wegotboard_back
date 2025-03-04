@@ -14,7 +14,7 @@ const DealsOfTheDay = () => {
         </div>
         <div className={styles.deals_grid}>
           <div className={styles.deals_item}>
-            <img src="" alt="" />
+            <img src="../deeprock.jpg" alt="" />
             <div className={styles.deals_item_text}>
               <h5>Seeds of Change Organic Quinoa, Brown, & Red Rice</h5>
               <i className={styles.ratingIcon}>
