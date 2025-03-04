@@ -1,6 +1,10 @@
-import "./style.css";
+import GreatWords from "./components/GreatWords";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return (
+    <>
+      <GreatWords />
+    </>
+  );
 };
 export default App;
