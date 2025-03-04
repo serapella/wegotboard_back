@@ -1,6 +1,7 @@
+import HeaderUserNav from "./components/HeaderUserNav";
 import "./style.css";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return <HeaderUserNav />;
 };
 export default App;
