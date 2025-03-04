@@ -16,7 +16,7 @@ const DealsOfTheDay = () => {
           <div className={styles.deals_item}>
             <img src="../deeprock.jpg" alt="" />
             <div className={styles.deals_item_text}>
-              <h5>Seeds of Change Organic Quinoa, Brown, & Red Rice</h5>
+              <h5>Deep Rock Galactic Boardgame</h5>
               <i className={styles.ratingIcon}>
                 <BsStarFill />
                 <BsStarFill />
@@ -39,9 +39,9 @@ const DealsOfTheDay = () => {
             </div>
           </div>
           <div className={styles.deals_item}>
-            <img src="" alt="" />
+            <img src="../greenhell.jpg" alt="" />
             <div className={styles.deals_item_text}>
-              <h5>Seeds of Change Organic Quinoa, Brown, & Red Rice</h5>
+              <h5>Green Hell Boardgame</h5>
               <i className={styles.ratingIcon}>
                 <BsStarFill />
                 <BsStarFill />
@@ -64,9 +64,9 @@ const DealsOfTheDay = () => {
             </div>
           </div>
           <div className={styles.deals_item}>
-            <img src="" alt="" />
+            <img src="../rivenstone.jpg" alt="" />
             <div className={styles.deals_item_text}>
-              <h5>Seeds of Change Organic Quinoa, Brown, & Red Rice</h5>
+              <h5>Rivenstone Boardgame</h5>
               <i className={styles.ratingIcon}>
                 <BsStarFill />
                 <BsStarFill />
