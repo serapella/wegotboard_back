@@ -13,7 +13,7 @@ const DealsOfTheDay = () => {
       <section className={styles.deals}>
         <div className={styles.deals_header}>
           <h2>Deals of the day</h2>
-          <a href="">
+          <a href="" className={styles.linkAllDeals}>
             All Deals
             <span className={styles.iconDeals}>
               <BsChevronRight />

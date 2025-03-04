@@ -27,6 +27,9 @@
         line-height: 2.4rem;
         color: #7e7e7e;
         text-decoration: none;
+        &:hover {
+          color: var(--tagHover);
+        }
         span.iconDeals {
           position: absolute;
           top: 0.8rem;
@@ -72,6 +75,7 @@
             font-size: 1.6rem;
             line-height: 1.92rem;
             color: #253d4e;
+            margin-bottom: 1rem;
           }
           p {
             &:nth-of-type(1) {
