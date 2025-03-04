@@ -1,8 +1,9 @@
 import styles from "../css_modules/dealsOfTheDay.module.css";
+import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 
 const DealsOfTheDay = () => {
   return (
-    <>
+    <div className={styles.dealsOfTheDay}>
       <section className={styles.deals}>
         <div className={styles.deals_header}>
           <h2>Deals of the day</h2>
@@ -16,7 +17,13 @@ const DealsOfTheDay = () => {
             <img src="" alt="" />
             <div className={styles.deals_item_text}>
               <h5>Seeds of Change Organic Quinoa, Brown, & Red Rice</h5>
-              <img src="../icons_temp/product-rating.svg" alt="rating" />
+              <i className={styles.ratingIcon}>
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarHalf />
+                <BsStar />
+              </i>
               <p>(4.0)</p>
               <p>
                 By <span>NestFood</span>
@@ -35,7 +42,13 @@ const DealsOfTheDay = () => {
             <img src="" alt="" />
             <div className={styles.deals_item_text}>
               <h5>Seeds of Change Organic Quinoa, Brown, & Red Rice</h5>
-              <img src="../icons_temp/product-rating.svg" alt="rating" />
+              <i className={styles.ratingIcon}>
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarHalf />
+                <BsStar />
+              </i>
               <p>(4.0)</p>
               <p>
                 By <span>NestFood</span>
@@ -54,7 +67,13 @@ const DealsOfTheDay = () => {
             <img src="" alt="" />
             <div className={styles.deals_item_text}>
               <h5>Seeds of Change Organic Quinoa, Brown, & Red Rice</h5>
-              <img src="../icons_temp/product-rating.svg" alt="rating" />
+              <i className={styles.ratingIcon}>
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarFill />
+                <BsStarHalf />
+                <BsStar />
+              </i>
               <p>(4.0)</p>
               <p>
                 By <span>NestFood</span>
@@ -71,7 +90,7 @@ const DealsOfTheDay = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 export default DealsOfTheDay;
