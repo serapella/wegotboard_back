@@ -1,8 +1,5 @@
-.deals_item_text {
-  position: absolute;
+.popular_item_text {
   height: 19.238rem;
-  top: 24.517rem;
-  left: 2.65rem;
   border-radius: 1rem;
   background-color: #ffffff;
   padding: 2.7rem 3.1rem 2.7rem 3.1rem;
@@ -44,7 +41,7 @@
     }
   }
 }
-.deals_item_bottom {
+.popular_item_bottom {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
