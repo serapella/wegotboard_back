@@ -1,7 +1,7 @@
-import PopularProducts from "./components/PopularProducts";
+// import PopularProducts from "./components/PopularProducts";
 import "./style.css";
 
 const App = () => {
-  return <PopularProducts />;
+  // return <PopularProducts />;
 };
 export default App;
