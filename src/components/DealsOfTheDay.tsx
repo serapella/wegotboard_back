@@ -61,7 +61,7 @@ const DealsOfTheDay = () => {
               </i>
               <p>(4.0)</p>
               <p>
-                By <span>NestFood</span>
+                By <span>BoardGameGeek</span>
               </p>
               <div className={styles.deals_item_bottom}>
                 <h4>$32.85</h4>
@@ -88,7 +88,7 @@ const DealsOfTheDay = () => {
               </i>
               <p>(4.0)</p>
               <p>
-                By <span>NestFood</span>
+                By <span>GamesWorkshop</span>
               </p>
               <div className={styles.deals_item_bottom}>
                 <h4>$32.85</h4>
