@@ -1,7 +1,7 @@
 import "./style.css";
-import HeaderMainNav from "./components/HeaderMainNav";
+// import HeaderMainNav from "./components/HeaderMainNav";
 
 const App = () => {
-  return <HeaderMainNav />;
+  // return <HeaderMainNav />;
 };
 export default App;
