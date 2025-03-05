@@ -1,6 +1,11 @@
 import "./style.css";
+import NewsSection from "./components/NewsSection";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return (
+    <div>
+      <NewsSection />
+    </div>
+  );
 };
 export default App;
