@@ -1,0 +1,13 @@
+.popular_item {
+  border-radius: 1.5rem;
+  border: 1px solid #ececec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > img {
+    width: 24.6rem;
+    height: 24.6rem;
+    border-radius: 1.5rem;
+    margin-top: 2.5rem;
+  }
+}
