@@ -6,15 +6,13 @@
   flex-direction: column;
   justify-content: center;
   .popular_nav {
-    left: 0;
-    right: 0;
     margin: 0 auto;
     margin-bottom: 4.4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #253d4e;
-    width: 156.4rem;
+    width: 82%;
     > h2 {
       font-family: Quicksand;
       font-weight: 700;
