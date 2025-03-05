@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import { setReviews } from "../store/reviewSlice";
-import styles from "../css_modules/GreatWords.module.css";
+import styles from "../css_modules/greatwords.module.css";
 
 const GreatWords: React.FC = () => {
   const reviews = useSelector((state: RootState) => state.reviews.reviews);
@@ -43,7 +43,7 @@ const GreatWords: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <section>
+    <section className={styles.people}>
       <h2>Great Words From People</h2>
       <p>
         Our clients share their experiences and success stories after working
@@ -52,10 +52,10 @@ const GreatWords: React.FC = () => {
       <div className={styles.people_grid}>
         {reviews.map((review) => (
           <div key={review.id} className={styles.people_item}>
-            <div className={styles.img_container}>
+            <div className={styles["img-container"]}>
               <img src={review.image} alt={review.name} />
             </div>
-            <div className={styles.people_text_container}>
+            <div className={styles["people-text-container"]}>
               <h6>{review.role}</h6>
               <h5>{review.name}</h5>
               <p>"{review.quote}"</p>
