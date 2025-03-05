@@ -1,10 +1,4 @@
-import GreatWords from "./components/GreatWords";
-
 const App = () => {
-  return (
-    <>
-      <GreatWords />
-    </>
-  );
+  return <></>;
 };
 export default App;
