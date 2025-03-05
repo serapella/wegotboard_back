@@ -1,7 +1,7 @@
-// import ProductGrid from "./components/ProductGrid";
+import PopularProducts from "./components/PopularProducts";
 import "./style.css";
 
 const App = () => {
-  // return <ProductGrid />;
+  return <PopularProducts />;
 };
 export default App;

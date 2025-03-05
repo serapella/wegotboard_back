@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@100;400;500;700&family=Quicksand:wght@300..700&display=swap");
+
+.popular_products {
+  margin-top: 8.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .popular_nav {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-bottom: 4.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #253d4e;
+    width: 156.4rem;
+    > h2 {
+      font-family: Quicksand;
+      font-weight: 700;
+      font-size: 3.2rem;
+      line-height: 3.84rem;
+    }
+    ul {
+      display: flex;
+      gap: 2rem;
+      li {
+        font-family: Quicksand;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+      }
+    }
+  }
+}
