@@ -1,6 +1,7 @@
+import ProductCardInfo from "./components/ProductCardInfo";
 import "./style.css";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return <ProductCardInfo />;
 };
 export default App;
