@@ -1,7 +1,7 @@
-import ProductCard from "./components/ProductCard";
+// import ProductGrid from "./components/ProductGrid";
 import "./style.css";
 
 const App = () => {
-  return <ProductCard />;
+  // return <ProductGrid />;
 };
 export default App;
