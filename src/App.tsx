@@ -1,8 +1,18 @@
-import HeaderUserNav from "./components/HeaderUserNav";
 import "./style.css";
-import HeaderMainNav from "./components/HeaderMainNav";
+import { Route, Routes } from "react-router";
+import Layout from "./components/Layout";
 
 const App = () => {
-  return <HeaderMainNav />;
+  return (
+    <>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/products" element={<h1>Products</h1>} />
+          <Route path="/categories" element={<h1>Categories</h1>} />
+        </Routes>
+      </Layout>
+    </>
+  );
 };
 export default App;

@@ -4,13 +4,15 @@ import { FiSearch } from "react-icons/fi";
 import { RxPerson } from "react-icons/rx";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
+import WeGotBoardLogo from "../images/WeGotBoard_.png";
+import { Link } from "react-router";
 
 const HeaderUserNav = () => {
   return (
     <div className={styles.userNav}>
-      <a href="#">
-        <img src="../images/WeGotBoard_.png" alt="logo" />
-      </a>
+      <Link to="/">
+        <img src={WeGotBoardLogo} alt="logo" />
+      </Link>
       <div className={styles.search}>
         <input type="text" placeholder="Search for items..." />
         <select name="dropdown" id="dropdown">
