@@ -1,13 +1,32 @@
 import styles from "../css_module/shopNowSlider.module.css";
 import { Fade } from "react-slideshow-image";
+import { useState } from "react";
 import "react-slideshow-image/dist/styles.css";
 
-const slideImages = ["../slide1.jpeg", "../slide2.jpg"];
+const slideImages = ["../slide2.jpg", "../slide1.jpg"];
 
 const ShopNowSlider = () => {
+  const [activeSlide, setActiveSlide] = useState<number>(0);
+  const changeSlide = (index: number) => {
+    setActiveSlide(index);
+  };
+  const handleSlideChange = (index: number) => {
+    setActiveSlide(index);
+  };
+  const handlePreviousSlide = () => {
+    setActiveSlide((prev) => (prev === 0 ? slideImages.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev === slideImages.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <section className={styles.slideContainer}>
-      <Fade>
+      <Fade
+        defaultIndex={activeSlide}
+        onChange={(index) => setActiveSlide(index)}
+      >
         <div className={styles.eachFade}>
           <img src={slideImages[0]} alt="Slide 1" />
         </div>
@@ -15,9 +34,15 @@ const ShopNowSlider = () => {
           <img src={slideImages[1]} alt="Slide 2" />
         </div>
       </Fade>
-      <div className={styles.radioButtons}>
-        <input type="radio" htmlFor="shopNowSlide" id="slide1" />
-        <input type="radio" htmlFor="shopNowSlide" id="slide2" />
+      <div className={styles.navigationButtons}>
+        <button
+          className={styles.radioButtons}
+          onClick={handlePreviousSlide}
+        ></button>
+        <button
+          className={styles.radioButtons}
+          onClick={handleNextSlide}
+        ></button>
       </div>
     </section>
   );

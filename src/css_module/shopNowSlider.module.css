@@ -13,11 +13,22 @@
       height: 100%;
     }
   }
-  .radioButtons {
-    input {
-      width: 2rem;
-      height: 2rem;
-      background-color: grey;
+  .navigationButtons {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    .radioButtons {
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: darkslategrey;
+      cursor: pointer;
+      border-radius: 50%;
+      appearance: none;
+      transition: background-color 0.4s ease;
+      border: none;
+      &:checked {
+        background-color: lightseagreen;
+      }
     }
   }
 }
