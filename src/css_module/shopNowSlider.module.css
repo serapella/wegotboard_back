@@ -1,9 +1,25 @@
-.slider {
+.slide-container {
+  width: 100%;
+  height: 83rem;
+  overflow: hidden;
+}
+
+.each-fade {
+  height: 100%;
+}
+
+.each-fade img {
+  display: block;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
+/* .slider {
   display: inline;
   height: 85rem;
   .slide1 {
     background-color: lightcoral;
-    background-image: url("/src/images/slider1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -117,4 +133,4 @@
       }
     }
   }
-}
+} */
