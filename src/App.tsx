@@ -1,7 +1,7 @@
-import KeyBenefitsSection from "./components/KeyBenefitsSection";
+// import KeyBenefitsSection from "./components/KeyBenefitsSection";
 import "./style.css";
 
 const App = () => {
-  return;
+  // return <KeyBenefitsSection />;
 };
 export default App;
