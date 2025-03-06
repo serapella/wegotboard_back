@@ -15,7 +15,7 @@ const ShopNowSlider = () => {
           <div className={styles.eachFade}>
             <img src={slideImages[0]} />
             <span className={styles.sliderContent}>
-              <div className={styles.textContent}>
+              <div className={styles.textContent1}>
                 <h3>
                   Keep up to date <br />
                   with our latest <br />
@@ -34,7 +34,21 @@ const ShopNowSlider = () => {
           <div className={styles.eachFade}>
             <img src={slideImages[1]} />
             <span className={styles.sliderContent}>
-              <p>SHOP NOW</p>
+              <div className={styles.textContent2}>
+                <div>
+                  <h3>
+                    <span>100%</span> Fantastic Memories
+                  </h3>
+                </div>
+                <h1>
+                  The best way to spend your time
+                  <br />
+                  with friends at home.
+                </h1>
+              </div>
+              <div className={styles.shopNow}>
+                <button>Shop now</button>
+              </div>
             </span>
           </div>
         </Fade>
@@ -54,7 +68,7 @@ export default ShopNowSlider;
 //       <p>
 //         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
 //       </p>
-//       <button>Shop now</button>
+//
 //     </div>
 //   </div>
 //   <div className={styles.slide2}>
