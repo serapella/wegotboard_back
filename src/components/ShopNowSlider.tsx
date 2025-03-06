@@ -8,47 +8,36 @@ const slideImages = ["../slide2.jpg", "../slide1.jpg"];
 const ShopNowSlider = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
 
-  const nextSlide = () => {
-    setActiveSlide((prev) => (prev === slideImages.length - 1 ? 0 : prev + 1));
-  };
-
   return (
     <section className={styles.slideContainer}>
-      <Fade
-        defaultIndex={activeSlide}
-        onChange={(index) => setActiveSlide(index)}
-      >
-        <div className={styles.eachFade}>
-          <img src={slideImages[0]} alt="Slide 1" />
-          {/* <div className={styles.slide1_content}>
-            <h3>
-              <span>100%</span> Fantastic Memories //{" "}
-            </h3>
-            <h1>The best way to spend your time.</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam
-            </p>
-            <button>Shop now</button>
-          </div> */}
-        </div>
-        <div className={styles.eachFade}>
-          <img src={slideImages[1]} alt="Slide 2" />
-        </div>
-      </Fade>
-      <div className={styles.navigationButtons}>
-        <button
-          className={`${styles.radioButtons} ${
-            activeSlide === 0 ? styles.active : ""
-          }`}
-          onClick={nextSlide}
-        ></button>
-        <button
-          className={`${styles.radioButtons} ${
-            activeSlide === 1 ? styles.active : ""
-          }`}
-          onClick={nextSlide}
-        ></button>
+      <div>
+        <Fade infinite={true} canSwipe={true} pauseOnHover={true}>
+          <div className={styles.eachFade}>
+            <img src={slideImages[0]} />
+            <span className={styles.sliderContent}>
+              <div className={styles.textContent}>
+                <h3>
+                  Keep up to date <br />
+                  with our latest <br />
+                  releases!
+                </h3>
+              </div>
+              <div className={styles.subscribe}>
+                <input
+                  type="email"
+                  placeholder="Please enter your email address..."
+                />
+                <button>Subscribe</button>
+              </div>
+            </span>
+          </div>
+          <div className={styles.eachFade}>
+            <img src={slideImages[1]} />
+            <span className={styles.sliderContent}>
+              <p>SHOP NOW</p>
+            </span>
+          </div>
+        </Fade>
       </div>
     </section>
   );
