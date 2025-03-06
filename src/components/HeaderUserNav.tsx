@@ -1,9 +1,5 @@
 import styles from "../css_modules/HeaderUserNav.module.css";
-import { IoIosArrowDown } from "react-icons/io";
-import { FiSearch } from "react-icons/fi";
-import { RxPerson } from "react-icons/rx";
-import { AiOutlineHeart } from "react-icons/ai";
-import { RiShoppingCartLine } from "react-icons/ri";
+import { BsSearch, BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
 
 const HeaderUserNav = () => {
   return (
@@ -14,12 +10,15 @@ const HeaderUserNav = () => {
       <div className={styles.search}>
         <input type="text" placeholder="Search for items..." />
         <select name="dropdown" id="dropdown">
-          <option value="">All Categories</option>
+          <option value="default">All Categories</option>
+          <option value="default">Boardgames</option>
+          <option value="default">Cardgames</option>
+          <option value="default">Dicegames</option>
         </select>
 
         <button>
           <i>
-            <FiSearch />
+            <BsSearch />
           </i>
         </button>
       </div>
@@ -27,7 +26,7 @@ const HeaderUserNav = () => {
         <li>
           <a href="#">
             <i>
-              <RxPerson />
+              <BsPerson />
             </i>
             Account
           </a>
@@ -36,7 +35,7 @@ const HeaderUserNav = () => {
           <a href="#">
             <i>
               {" "}
-              <AiOutlineHeart />
+              <BsHeart />
             </i>
             Wishlist
           </a>
@@ -45,7 +44,7 @@ const HeaderUserNav = () => {
           <a href="#">
             <i>
               {" "}
-              <RiShoppingCartLine />
+              <BsCart3 />
             </i>
             Cart
           </a>
