@@ -1,6 +1,7 @@
+// import Pagination from "./components/Pagination";
 import "./style.css";
 
 const App = () => {
-  return <div>React is working!</div>;
+  // return <Pagination />;
 };
 export default App;
