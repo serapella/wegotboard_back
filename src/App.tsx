@@ -1,7 +1,7 @@
 import "./style.css";
-import shopNowSlider from "./components/ShopNowSlider";
+import ShopNowSlider from "./components/ShopNowSlider";
 
 const App = () => {
-  return <shopNowSlider />;
+  return <ShopNowSlider />;
 };
 export default App;
