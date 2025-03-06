@@ -44,48 +44,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    .slide1_content {
-      padding: 27.2rem 0 27.2rem 31rem;
-      width: 50%;
-      h3 {
-        font-weight: 700;
-        font-size: 2rem;
-        letter-spacing: 0.48px;
-        span {
-          color: red;
-          text-decoration: underline;
-        }
-      }
-      h1 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 900;
-        font-size: 5.5rem;
-        line-height: 6.8rem;
-        letter-spacing: 0.48px;
-        margin: 3rem 0;
-      }
-      p {
-        font-family: Poppins;
-        font-weight: 400;
-        font-size: 1.5rem;
-        line-height: 2.6rem;
-        color: rgba(122, 122, 122, 1);
-        letter-spacing: 0.48px;
-      }
-      button {
-        background-color: #f53e32;
-        color: white;
-        width: 11.8rem;
-        height: 4rem;
-        border-radius: 0.5rem;
-        border: 1px solid #f53e32;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 700;
-        font-size: 1.4rem;
-        line-height: 1.68rem;
-        margin: 3rem 0;
-      }
-    }
+    
   }
   .slide2 {
     background-color: lightgreen;

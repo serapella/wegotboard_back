@@ -20,6 +20,17 @@ const ShopNowSlider = () => {
       >
         <div className={styles.eachFade}>
           <img src={slideImages[0]} alt="Slide 1" />
+          {/* <div className={styles.slide1_content}>
+            <h3>
+              <span>100%</span> Fantastic Memories //{" "}
+            </h3>
+            <h1>The best way to spend your time.</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Laboriosam
+            </p>
+            <button>Shop now</button>
+          </div> */}
         </div>
         <div className={styles.eachFade}>
           <img src={slideImages[1]} alt="Slide 2" />
