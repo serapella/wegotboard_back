@@ -1,6 +1,7 @@
 import "./style.css";
+// import SortBy from "./components/SortBy";
 
 const App = () => {
-  return <div>React is working!</div>;
+  // return <SortBy />;
 };
 export default App;
