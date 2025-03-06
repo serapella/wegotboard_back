@@ -18,17 +18,20 @@
     justify-content: center;
     gap: 0.4rem;
     .radioButtons {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.8rem;
+      height: 1.8rem;
       background-color: darkslategrey;
       cursor: pointer;
       border-radius: 50%;
       appearance: none;
       transition: background-color 0.4s ease;
       border: none;
-      &:checked {
-        background-color: lightseagreen;
+      &:hover {
+        background-color: rgb(84, 143, 143);
       }
+    }
+    .active {
+      background-color: lightseagreen;
     }
   }
 }

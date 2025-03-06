@@ -7,12 +7,7 @@ const slideImages = ["../slide2.jpg", "../slide1.jpg"];
 
 const ShopNowSlider = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
-  const changeSlide = (index: number) => {
-    setActiveSlide(index);
-  };
-  const handleSlideChange = (index: number) => {
-    setActiveSlide(index);
-  };
+
   const handlePreviousSlide = () => {
     setActiveSlide((prev) => (prev === 0 ? slideImages.length - 1 : prev - 1));
   };
@@ -36,11 +31,15 @@ const ShopNowSlider = () => {
       </Fade>
       <div className={styles.navigationButtons}>
         <button
-          className={styles.radioButtons}
+          className={`${styles.radioButtons} ${
+            activeSlide === 0 ? styles.active : ""
+          }`}
           onClick={handlePreviousSlide}
         ></button>
         <button
-          className={styles.radioButtons}
+          className={`${styles.radioButtons} ${
+            activeSlide === 1 ? styles.active : ""
+          }`}
           onClick={handleNextSlide}
         ></button>
       </div>
