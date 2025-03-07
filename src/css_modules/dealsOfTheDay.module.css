@@ -8,7 +8,7 @@
     max-width: 1200px;
     display: flex;
     flex-direction: column;
-    background-color: lightblue;
+    /* background-color: lightblue; */
     .deals_header {
       display: flex;
       justify-content: space-between;
@@ -17,14 +17,13 @@
         font-weight: 700;
         font-size: 3.2rem;
         line-height: 3.84rem;
-        color: #253d4e;
+        color: var(--walvis);
       }
       a {
-        font-family: Lato;
         font-weight: 400;
         font-size: 1.6rem;
         line-height: 2.4rem;
-        color: #7e7e7e;
+        color: var(--amountItemsFiltered);
         text-decoration: none;
         > img {
           padding-left: 0.8rem;
@@ -45,7 +44,7 @@
           width: 37.85rem;
           height: 33.517rem;
           border-radius: 1.5rem;
-          border: solid 1px black;
+          /* border: solid 1px black; */
         }
         .deals_item_text {
           position: absolute;
@@ -57,7 +56,7 @@
           box-shadow: 5px 5px 15px 0px #0000000d;
           padding: 2.7rem 3.1rem 2.7rem 3.1rem;
           .ratingIcon {
-            color: orange;
+            color: var(--orange);
             margin-right: 1rem;
           }
           h5 {
@@ -66,29 +65,26 @@
             font-weight: 700;
             font-size: 1.6rem;
             line-height: 1.92rem;
-            color: #253d4e;
+            color: var(--walvis);
           }
           p {
             &:nth-of-type(1) {
               display: inline;
-              font-family: Lato;
               font-weight: 400;
               font-size: 1.4rem;
               line-height: 2.4rem;
-              color: #b6b6b6;
+              color: var(--amountItemsFiltered);
             }
             &:nth-of-type(2) {
-              font-family: Lato;
               font-weight: 400;
               font-size: 1.4rem;
-              color: #b6b6b6;
+              color: var(--amountItemsFiltered);
               margin: 0.9rem 0;
               span {
-                font-family: Lato;
                 font-weight: 400;
                 font-size: 1.4rem;
                 line-height: 2.4rem;
-                color: #3bb77e;
+                color: var(--borderButtonGreen);
               }
             }
           }
@@ -102,7 +98,7 @@
             font-weight: 700;
             font-size: 1.8rem;
             line-height: 2.4rem;
-            color: #3bb77e;
+            color: var(--borderButtonGreen);
             padding-right: 1.1rem;
           }
           > p {
@@ -111,13 +107,13 @@
             font-size: 1.4rem;
             line-height: 2.4rem;
             text-decoration: line-through;
-            color: #adadad;
+            color: var(--amountItemsFiltered);
             padding-right: 6.9rem;
           }
           > button {
             border-radius: 0.4rem;
             border: none;
-            background-color: #f53e32;
+            background-color: var(--navTop);
             color: #ffffff;
             padding: 1rem 2rem;
           }
