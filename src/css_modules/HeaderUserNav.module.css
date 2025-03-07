@@ -25,9 +25,7 @@ div.userNav {
       height: 4.5rem;
       width: 13rem;
       cursor: pointer;
-      option {
-        text-align: center;
-      }
+      padding-left: 1rem;
     }
 
     button {
