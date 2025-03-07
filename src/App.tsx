@@ -1,7 +1,8 @@
-// import PopularProducts from "./components/PopularProducts";
 import "./style.css";
+// import ProductCard from "./components/ProductCard";
+import PopularProducts from "./components/PopularProducts";
 
 const App = () => {
-  // return <PopularProducts />;
+  return <PopularProducts />;
 };
 export default App;
