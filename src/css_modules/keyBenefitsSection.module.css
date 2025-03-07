@@ -4,7 +4,7 @@
   .benefitsCard {
     width: 32.1rem;
     height: 10.7rem;
-    background-color: var(--benefitCard);
+    background-color: var(--filter);
     border-radius: 1rem;
     display: flex;
     justify-content: space-evenly;
@@ -20,7 +20,7 @@
       }
       h4 {
         font-size: 1.6rem;
-        color: var(--descriptionFont);
+        color: var(--amountItemsFiltered);
       }
     }
   }
