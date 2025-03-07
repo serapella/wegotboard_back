@@ -34,9 +34,13 @@ const ProductTabs = () => {
     fetchProductData();
   }, []);
 
+  //bij toevoegen van api, ondertsaande code replacen met code dat in comment staat:
   if (loading) {
     return <div>Loading...</div>;
   }
+  //   if (!productData) {
+  //     return <div>Loading...</div>;
+  //   }
 
   return (
     <div className={styles["product-tabs"]}>
