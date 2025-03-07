@@ -4,6 +4,7 @@
   border: 1px solid var(--cardBorder);
   border-radius: 0.5rem;
   padding: 2rem;
+  font-family: inherit;
 
   .tab-buttons {
     display: flex;
