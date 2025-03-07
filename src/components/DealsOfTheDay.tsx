@@ -1,5 +1,11 @@
 import styles from "../css_modules/dealsOfTheDay.module.css";
-import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
+import {
+  BsStarFill,
+  BsStar,
+  BsStarHalf,
+  BsChevronRight,
+  BsCart3,
+} from "react-icons/bs";
 
 const DealsOfTheDay = () => {
   return (
@@ -7,9 +13,11 @@ const DealsOfTheDay = () => {
       <section className={styles.deals}>
         <div className={styles.deals_header}>
           <h2>Deals of the day</h2>
-          <a href="">
+          <a href="" className={styles.linkAllDeals}>
             All Deals
-            <img src="../icons_temp/arrow_right.svg" alt="" />
+            <span className={styles.iconDeals}>
+              <BsChevronRight />
+            </span>
           </a>
         </div>
         <div className={styles.deals_grid}>
@@ -26,13 +34,15 @@ const DealsOfTheDay = () => {
               </i>
               <p>(4.0)</p>
               <p>
-                By <span>NestFood</span>
+                By <span>De Spelfanaat</span>
               </p>
               <div className={styles.deals_item_bottom}>
                 <h4>$32.85</h4>
                 <p>$33.8</p>
                 <button>
-                  <img src="../icons_temp/cart.svg" alt="" />
+                  <span>
+                    <BsCart3 />
+                  </span>
                   Add
                 </button>
               </div>
@@ -51,13 +61,15 @@ const DealsOfTheDay = () => {
               </i>
               <p>(4.0)</p>
               <p>
-                By <span>NestFood</span>
+                By <span>BoardGameGeek</span>
               </p>
               <div className={styles.deals_item_bottom}>
                 <h4>$32.85</h4>
                 <p>$33.8</p>
                 <button>
-                  <img src="../icons_temp/cart.svg" alt="" />
+                  <span>
+                    <BsCart3 />
+                  </span>
                   Add
                 </button>
               </div>
@@ -76,13 +88,15 @@ const DealsOfTheDay = () => {
               </i>
               <p>(4.0)</p>
               <p>
-                By <span>NestFood</span>
+                By <span>GamesWorkshop</span>
               </p>
               <div className={styles.deals_item_bottom}>
                 <h4>$32.85</h4>
                 <p>$33.8</p>
                 <button>
-                  <img src="../icons_temp/cart.svg" alt="" />
+                  <span>
+                    <BsCart3 />
+                  </span>
                   Add
                 </button>
               </div>

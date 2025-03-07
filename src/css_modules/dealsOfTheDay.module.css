@@ -12,7 +12,9 @@
     .deals_header {
       display: flex;
       justify-content: space-between;
-      > h2 {
+      align-items: center;
+      position: relative;
+      h2 {
         font-family: Quicksand;
         font-weight: 700;
         font-size: 3.2rem;
@@ -25,8 +27,14 @@
         line-height: 2.4rem;
         color: var(--amountItemsFiltered);
         text-decoration: none;
-        > img {
-          padding-left: 0.8rem;
+        &:hover {
+          color: var(--tagHover);
+        }
+        span.iconDeals {
+          position: absolute;
+          top: 0.8rem;
+          font-size: 1.3rem;
+          padding-left: 0.3rem;
         }
       }
     }
@@ -41,6 +49,7 @@
         > img {
           display: block;
           object-fit: cover;
+          object-position: 90%;
           width: 37.85rem;
           height: 33.517rem;
           border-radius: 1.5rem;
@@ -116,6 +125,14 @@
             background-color: var(--navTop);
             color: #ffffff;
             padding: 1rem 2rem;
+            cursor: pointer;
+            transition: all 200ms;
+            span {
+              margin-right: 0.3rem;
+            }
+            &:hover {
+              background-color: var(--buttonHover);
+            }
           }
         }
       }
