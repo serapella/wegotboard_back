@@ -1,6 +1,7 @@
 import "./style.css";
+// import ShopNowSection from "./components/ShopNowSection";
 
 const App = () => {
-  return <></>;
+  return <>{/* <ShopNowSection /> */}</>;
 };
 export default App;
