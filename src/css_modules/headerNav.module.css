@@ -1,14 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;500&display=swap");
-
-:root {
-  font-family: Poppins, sans-serif;
-  font-size: 62.5%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 header {
   background-color: #ffffff;
   nav {
@@ -22,7 +11,7 @@ header {
     div.menuIcon {
       a {
         text-decoration: none;
-        color: black;
+        color: var(--black-like);
         border: 1px solid rgba(233, 233, 233, 1);
         height: 3.5rem;
         width: 3.5rem;
@@ -39,12 +28,11 @@ header {
 
       li {
         select {
-          font-family: Poppins, sans-serif;
           border: none;
         }
         a {
           text-decoration: none;
-          color: black;
+          color: var(--black-like);
         }
       }
     }
@@ -52,7 +40,7 @@ header {
       height: 2rem;
       a {
         text-decoration: none;
-        color: black;
+        color: var(--black-like);
       }
     }
   }
