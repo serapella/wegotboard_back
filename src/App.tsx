@@ -1,6 +1,8 @@
+import ProductTabs from "./components/ProductTabs"; // default import
 import "./style.css";
 
-const App = () => {
-  return <div>React is working!</div>;
-};
+function App() {
+  return <ProductTabs />;
+}
+
 export default App;
