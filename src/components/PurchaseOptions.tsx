@@ -1,4 +1,5 @@
 import styles from "../css_modules/purchaseOptions.module.css";
+import Counter from "./Counter";
 
 const PurchaseOptions = () => {
   return (
@@ -50,8 +51,9 @@ const PurchaseOptions = () => {
               <input type="number" value="1" min="1" />
             </div>
             <div className={styles.qtyBtnContainer}>
-              <button className={styles.qtyBtnPlus}>+</button>
-              <button className={styles.qtyBtnMinus}>-</button>
+              <Counter />
+              {/* <button className={styles.qtyBtnPlus}>+</button>
+              <button className={styles.qtyBtnMinus}>-</button> */}
             </div>
           </div>
           <button className={styles.addToCart}>Add To Cart</button>

@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
+import counterReducer from "./counterSlice";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import cartReducer from "./cartSlice";
@@ -12,6 +13,7 @@ const persistConfig = {
 
 //ADD NEW REDUCERS / APIS HERE
 const rootReducer = combineReducers({
+  counterSlice: counterReducer,
   cartSlice: cartReducer,
 });
 //this persist the shopping cart in localStorage in the browser
