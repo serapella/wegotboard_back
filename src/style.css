@@ -19,3 +19,6 @@
   --walvis: #253d4e;
   --orange: #ffa500;
 }
+body {
+  font-size: 2rem;
+}

@@ -1,0 +1,181 @@
+.productInfo {
+  width: 495px;
+  height: 592.25px;
+
+  .gameCategory {
+    color: var(--navTop);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    color: var(--black-like);
+    letter-spacing: 0.3rem;
+  }
+  p {
+    font-size: 1.4rem;
+    color: var(--amountItemsFiltered);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--cardBorder);
+    padding-bottom: 2rem;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.1rem;
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .stars {
+      color: orange;
+      font-size: 1.8rem;
+    }
+
+    span {
+      color: var(--amountItemsFiltered);
+      font-size: 1.4rem;
+    }
+  }
+  .productDetails {
+    padding: 2rem 0;
+    border-radius: 0.5rem;
+
+    .detailRow {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+
+      .label {
+        width: 10rem;
+        font-weight: 700;
+        align-items: center;
+      }
+
+      .value {
+        color: var(--amountItemsFiltered);
+        &::before {
+          content: ":";
+          margin: 0 1rem;
+          color: var(--black-like);
+          font-size: 1.4rem;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  .priceSection {
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    .discountPrice {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--navTop);
+    }
+
+    .originalPrice {
+      font-size: 1.3rem;
+      text-decoration: line-through;
+      color: var(--amountItemsFiltered);
+    }
+  }
+}
+.purchaseOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  .addToCartSection {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .qtyInput input {
+      width: 4rem;
+      height: 4rem;
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.4rem;
+      border: 1px solid var(--cardBorder);
+      border-radius: 0.5rem;
+    }
+    .qtyBtnContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .qtyBtn {
+      width: 1.8rem;
+      height: 1.8rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      transition: all 0.3s ease;
+      border-radius: 0.3rem;
+      background-color: white;
+      border: 1px solid var(--cardBorder);
+    }
+
+    .qtyBtn:hover {
+      background-color: var(--amountItemsFiltered);
+    }
+  }
+}
+.addToCart {
+  flex: 1;
+  background: var(--navTop);
+  color: white;
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: var(--buttonHover);
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+
+  button {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid var(--cardBorder);
+    background-color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--tagHover);
+      border-color: var(--tagHover);
+      /* wishlist enview icons toevoegen hier: */
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+}

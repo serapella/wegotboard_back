@@ -1,6 +1,7 @@
 import "./style.css";
+import PurchaseOptions from "./components/PurchaseOptions";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return <PurchaseOptions />;
 };
 export default App;
