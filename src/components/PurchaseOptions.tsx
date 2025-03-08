@@ -46,16 +46,10 @@ const PurchaseOptions = () => {
       </div>
       <div className={styles.purchaseOptions}>
         <div className={styles.addToCartSection}>
-          <div className={styles.quantity}>
-            <div className={styles.qtyInput}>
-              <input type="number" value="1" min="1" />
-            </div>
-            <div className={styles.qtyBtnContainer}>
-              <Counter />
-              {/* <button className={styles.qtyBtnPlus}>+</button>
+          <Counter />
+          {/* <button className={styles.qtyBtnPlus}>+</button>
               <button className={styles.qtyBtnMinus}>-</button> */}
-            </div>
-          </div>
+
           <button className={styles.addToCart}>Add To Cart</button>
           <div className={styles.actionButtons}>
             <button className={styles.wishlist}>
