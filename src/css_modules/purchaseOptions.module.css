@@ -2,12 +2,8 @@
   max-width: 99rem;
   margin: 0 auto;
   display: flex;
+  gap: 3rem;
   .productContent {
-    grid-area: content;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-
     .productGallery .mainImage {
       display: flex;
       justify-content: center;
