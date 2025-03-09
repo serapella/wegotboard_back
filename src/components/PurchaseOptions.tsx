@@ -1,4 +1,5 @@
 import styles from "../css_modules/purchaseOptions.module.css";
+import { BsHeart, BsEye } from "react-icons/bs";
 import Counter from "./Counter";
 
 const PurchaseOptions = () => {
@@ -86,10 +87,10 @@ const PurchaseOptions = () => {
             <button className={styles.addToCart}>Add To Cart</button>
             <div className={styles.actionButtons}>
               <button className={styles.wishlist}>
-                <img src="./wishlist.svg" alt="Wishlist" />
+                <BsHeart />
               </button>
               <button className={styles.zoom}>
-                <img src="./vieuw.svg" alt="Quick View" />
+                <BsEye />
               </button>
             </div>
           </div>

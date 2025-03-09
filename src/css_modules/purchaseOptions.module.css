@@ -59,13 +59,11 @@
   .productInfo {
     width: 495px;
     height: 592.25px;
-
     .gameCategory {
       color: var(--navTop);
       font-size: 1.4rem;
       margin-bottom: 0.5rem;
     }
-
     h1 {
       font-size: 2rem;
       font-weight: 600;
@@ -188,9 +186,9 @@
           background-color: white;
           border: 1px solid var(--cardBorder);
         }
-
         .qtyBtn:hover {
           background-color: var(--amountItemsFiltered);
+          color: white;
         }
       }
     }
@@ -212,7 +210,6 @@
     .actionButtons {
       display: flex;
       gap: 1rem;
-
       button {
         width: 4rem;
         height: 4rem;
@@ -224,10 +221,11 @@
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-
+        font-size: 2rem;
         &:hover {
           background-color: var(--tagHover);
           border-color: var(--tagHover);
+          color: white;
           /* wishlist enview icons toevoegen hier: */
           img {
             filter: brightness(0) invert(1);
