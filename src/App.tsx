@@ -1,6 +1,7 @@
 import "./style.css";
+import Footer from "./components/Footer";
 
 const App = () => {
-  return <div>React is working!</div>;
+  return <Footer />;
 };
 export default App;
