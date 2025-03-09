@@ -1,5 +1,5 @@
 import styles from "../css_modules/HeaderUserNav.module.css";
-import { BsSearch, BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
+import { BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
 import SearchBar from "./SearchBar";
 
 import WeGotBoardLogo from "../images/WeGotBoard_.png";
