@@ -2,6 +2,6 @@ import "./style.css";
 import Footer from "./components/Footer";
 
 const App = () => {
-  return <Footer />;
+  return <></>;
 };
 export default App;
