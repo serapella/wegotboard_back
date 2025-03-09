@@ -4,7 +4,7 @@ import { RootState } from "../store/index";
 const counterSlice = createSlice({
   name: "counter",
   initialState: {
-    value: 0,
+    value: 1,
   },
   reducers: {
     increment: (state) => {

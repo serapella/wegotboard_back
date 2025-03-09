@@ -22,7 +22,7 @@ const Counter = () => {
         className={styles.qtyInput}
         type="number"
         value={val}
-        min={1}
+        defaultValue="1"
         onChange={handleInputChange}
       />
       <div className={styles.qtyBtnContainer}>
