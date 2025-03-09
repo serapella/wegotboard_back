@@ -1,27 +1,15 @@
 import styles from "../css_modules/HeaderUserNav.module.css";
 import { BsSearch, BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
+import SearchBar from "./SearchBar";
+import logo from "../images/WeGotBoard_.png";
 
 const HeaderUserNav = () => {
   return (
     <div className={styles.userNav}>
       <a href="#">
-        <img src="../images/WeGotBoard_.png" alt="logo" />
+        <img src={logo} alt="logo" />
       </a>
-      <div className={styles.search}>
-        <input type="text" placeholder="Search for items..." />
-        <select name="dropdown" id="dropdown">
-          <option value="default">All Categories</option>
-          <option value="default">Boardgames</option>
-          <option value="default">Cardgames</option>
-          <option value="default">Dicegames</option>
-        </select>
-
-        <button>
-          <i>
-            <BsSearch />
-          </i>
-        </button>
-      </div>
+      <SearchBar />
       <ul>
         <li>
           <a href="#">
