@@ -1,9 +1,7 @@
 import styles from "../css_modules/HeaderUserNav.module.css";
-import { IoIosArrowDown } from "react-icons/io";
-import { FiSearch } from "react-icons/fi";
-import { RxPerson } from "react-icons/rx";
-import { AiOutlineHeart } from "react-icons/ai";
-import { RiShoppingCartLine } from "react-icons/ri";
+import { BsSearch, BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
+import SearchBar from "./SearchBar";
+
 import WeGotBoardLogo from "../images/WeGotBoard_.png";
 import { Link } from "react-router";
 
@@ -13,23 +11,12 @@ const HeaderUserNav = () => {
       <Link to="/">
         <img src={WeGotBoardLogo} alt="logo" />
       </Link>
-      <div className={styles.search}>
-        <input type="text" placeholder="Search for items..." />
-        <select name="dropdown" id="dropdown">
-          <option value="">All Categories</option>
-        </select>
-
-        <button>
-          <i>
-            <FiSearch />
-          </i>
-        </button>
-      </div>
+      <SearchBar />
       <ul>
         <li>
           <a href="#">
             <i>
-              <RxPerson />
+              <BsPerson />
             </i>
             Account
           </a>
@@ -38,7 +25,7 @@ const HeaderUserNav = () => {
           <a href="#">
             <i>
               {" "}
-              <AiOutlineHeart />
+              <BsHeart />
             </i>
             Wishlist
           </a>
@@ -47,7 +34,7 @@ const HeaderUserNav = () => {
           <a href="#">
             <i>
               {" "}
-              <RiShoppingCartLine />
+              <BsCart3 />
             </i>
             Cart
           </a>

@@ -29,16 +29,6 @@ const HeaderMainNav = () => {
               <option value="">Pages</option>
             </select>
           </li>
-          <li>
-            <select name="blog" id="blog">
-              <option value="">Blog</option>
-            </select>
-          </li>
-          <li>
-            <select name="elements" id="elements">
-              <option value="">Elements</option>
-            </select>
-          </li>
         </ul>
         <div className={styles.phone}>
           <a href="tel:+1234567890">

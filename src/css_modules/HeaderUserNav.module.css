@@ -11,35 +11,7 @@ div.userNav {
       height: 6.2rem;
     }
   }
-  div.search {
-    height: 4.5rem;
-    position: relative;
-    input {
-      border: 1px solid var(--borderButtonGreen);
-      height: 4.5rem;
-      width: 40rem;
-      border-radius: 5px 0 0 5px;
-    }
-    select {
-      border: 1px solid var(--borderButtonGreen);
-      height: 4.5rem;
-      width: 13rem;
-      cursor: pointer;
-      option {
-        text-align: center;
-      }
-    }
 
-    button {
-      background-color: var(--navTop);
-      color: white;
-      border: none;
-      width: 4.5rem;
-      height: 4.5rem;
-      border-radius: 0 5px 5px 0;
-      cursor: pointer;
-    }
-  }
   ul {
     display: flex;
     gap: 3rem;
