@@ -12,8 +12,9 @@ const Counter = () => {
   const dispatch = useDispatch();
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    if (value === "" || !isNaN(Number(value))) {
-      dispatch(setValue(Number(value) || 0));
+    const numValue = Number(value);
+    if (value === "" || !isNaN(numValue)) {
+      dispatch(setValue(Math.max(numValue, 1)));
     }
   };
   return (
@@ -22,14 +23,20 @@ const Counter = () => {
         className={styles.qtyInput}
         type="number"
         value={val}
-        defaultValue="1"
         onChange={handleInputChange}
       />
       <div className={styles.qtyBtnContainer}>
         <button className={styles.qtyBtn} onClick={() => dispatch(increment())}>
           +
         </button>
-        <button className={styles.qtyBtn} onClick={() => dispatch(decrement())}>
+        <button
+          className={styles.qtyBtn}
+          onClick={() => {
+            if (val > 1) {
+              dispatch(decrement());
+            }
+          }}
+        >
           -
         </button>
       </div>
