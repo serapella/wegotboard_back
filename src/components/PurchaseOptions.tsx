@@ -9,11 +9,10 @@ const PurchaseOptions = () => {
       <div className={styles.productContent}>
         <div className={styles.productGallery}>
           <div className={styles.mainImage}>
-            <img
-              src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
-              alt="Luxury Chess Set"
+            <Modal
+              imgSrc="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
+              imgAlt="Luxury Chess Set"
             />
-            <Modal />
           </div>
           <div className={styles.thumbnailImages}>
             <img
