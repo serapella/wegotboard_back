@@ -156,14 +156,19 @@
           align-items: center;
           gap: 0.5rem;
         }
-        .qtyInput input {
+        .qtyInput {
           width: 4rem;
           height: 4rem;
           text-align: center;
-          padding: 2rem;
-          font-size: 1.4rem;
+          padding: 0.5rem;
+          font-size: 1.5rem;
           border: 1px solid var(--cardBorder);
           border-radius: 0.5rem;
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
         }
         .qtyBtnContainer {
           display: flex;

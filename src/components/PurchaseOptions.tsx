@@ -83,7 +83,6 @@ const PurchaseOptions = () => {
             <Counter />
             {/* <button className={styles.qtyBtnPlus}>+</button>
               <button className={styles.qtyBtnMinus}>-</button> */}
-
             <button className={styles.addToCart}>Add To Cart</button>
             <div className={styles.actionButtons}>
               <button className={styles.wishlist}>
