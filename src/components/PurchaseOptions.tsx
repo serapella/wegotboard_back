@@ -1,6 +1,7 @@
 import styles from "../css_modules/purchaseOptions.module.css";
 import { BsHeart, BsEye } from "react-icons/bs";
 import Counter from "./Counter";
+import Modal from "./Modal";
 
 const PurchaseOptions = () => {
   return (
@@ -12,6 +13,7 @@ const PurchaseOptions = () => {
               src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
               alt="Luxury Chess Set"
             />
+            <Modal />
           </div>
           <div className={styles.thumbnailImages}>
             <img
