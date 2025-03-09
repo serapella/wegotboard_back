@@ -59,6 +59,7 @@
   .productInfo {
     width: 495px;
     height: 592.25px;
+    margin: 0 auto;
     .gameCategory {
       color: var(--navTop);
       font-size: 1.4rem;
@@ -82,18 +83,15 @@
       letter-spacing: 0.1rem;
       word-spacing: 0.1rem;
     }
-
     .rating {
       display: flex;
       align-items: center;
       gap: 1rem;
       margin-bottom: 2rem;
-
       .stars {
         color: orange;
         font-size: 1.8rem;
       }
-
       span {
         color: var(--amountItemsFiltered);
         font-size: 1.4rem;
@@ -146,9 +144,9 @@
       }
     }
     .purchaseOptions {
-      display: flex;
+      /* display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.5rem; */
       .addToCartSection {
         display: flex;
         align-items: center;
@@ -233,5 +231,11 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .productOverview {
+    flex-direction: column;
   }
 }

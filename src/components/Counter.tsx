@@ -9,12 +9,10 @@ const Counter = () => {
   return (
     <div className={styles.quantity}>
       <input className={styles.qtyInput} type="number" value={val} min="1" />
-      <button className={styles.qtyBtn} onClick={() => dispatch(increment())}>
-        +
-      </button>
-      <button className={styles.qtyBtn} onClick={() => dispatch(decrement())}>
-        -
-      </button>
+      <div className={styles.qtyBtn}>
+        <button onClick={() => dispatch(increment())}>+</button>
+        <button onClick={() => dispatch(decrement())}>-</button>
+      </div>
     </div>
   );
 };
