@@ -7,9 +7,14 @@ const App = () => {
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
-          <Route path="/products" element={<h1>Products</h1>} />
-          <Route path="/categories" element={<h1>Categories</h1>} />
+          <Route path="/" element={<></>} />
+          <Route path="/products" element={<></>} />
+          <Route path="/categories" element={<></>} />
+          <Route path="/user/login" element={<></>} />
+          <Route path="/user/register" element={<></>} />
+          <Route path="/user/logout" element={<></>} />
+          <Route path="/user/wishlist" element={<></>} />
+          <Route path="/cart" element={<></>} />
         </Routes>
       </Layout>
     </>
