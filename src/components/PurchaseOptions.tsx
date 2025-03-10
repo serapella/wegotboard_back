@@ -20,7 +20,7 @@ const PurchaseOptions = () => {
       <div className={styles.productContent}>
         <div className={styles.productGallery}>
           <div className={styles.mainImage}>
-            <Modal imgSrc={mainImage} imgAlt="Luxury Chess Set" />
+            <Modal imgSrc={mainImage} imgAlt="needs to be changed" />
           </div>
           <div className={styles.thumbnailImages}>
             {imageList.map((img, index) => (
