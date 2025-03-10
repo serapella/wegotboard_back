@@ -5,8 +5,10 @@ interface ModalProps {
   imgSrc: string;
   imgAlt: string;
 }
+
 const Modal: React.FC<ModalProps> = ({ imgSrc, imgAlt }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -14,6 +16,7 @@ const Modal: React.FC<ModalProps> = ({ imgSrc, imgAlt }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <>
       <img
@@ -22,19 +25,23 @@ const Modal: React.FC<ModalProps> = ({ imgSrc, imgAlt }) => {
         onClick={openModal}
         className={styles.thumbnail}
       />
+
       {isModalOpen && (
         <div className={styles.modal} onClick={closeModal}>
-          <span className={styles.close}>&times;</span>
-          <img
-            className={styles.modalContent}
-            src={imgSrc}
-            alt={imgAlt}
-            id="img01"
-          />
-          <div id="caption">{imgAlt}</div>
+          <div
+            className={styles.modalContentWrapper}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className={styles.close} onClick={closeModal}>
+              &times;
+            </span>
+            <img className={styles.modalContent} src={imgSrc} alt={imgAlt} />
+            <div id="caption">{imgAlt}</div>
+          </div>
         </div>
       )}
     </>
   );
 };
+
 export default Modal;
