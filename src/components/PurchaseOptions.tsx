@@ -1,25 +1,39 @@
 import styles from "../css_modules/purchaseOptions.module.css";
 import { BsHeart, BsEye } from "react-icons/bs";
 import Counter from "./Counter";
+import { useState } from "react";
 import Modal from "./Modal";
 
+const imageList = [
+  "https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop",
+  "../Gloomhaven.jpg",
+  "../HeroQuest.jpg",
+  "../mh_bg.png",
+  "../talisman.jpg",
+  "../terraria_bg.png",
+];
+
 const PurchaseOptions = () => {
+  const [mainImage, setMainImage] = useState(imageList[0]);
   return (
     <div className={styles.productOverview}>
       <div className={styles.productContent}>
         <div className={styles.productGallery}>
           <div className={styles.mainImage}>
-            <Modal
-              imgSrc="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
-              imgAlt="Luxury Chess Set"
-            />
+            <Modal imgSrc={mainImage} imgAlt="Luxury Chess Set" />
           </div>
           <div className={styles.thumbnailImages}>
-            <img src="../Gloomhaven.jpg" alt="Gloomhaven" />
-            <img src="../HeroQuest.jpg" alt="HeroQuest" />
-            <img src="../mh_bg.png" alt="Monster Hunter" />
-            <img src="../talisman.jpg" alt="Talisman" />
-            <img src="../terraria_bg.png" alt="Terraria" />
+            {imageList.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Thumbnail ${index}`}
+                className={`${styles.thumbnail} ${
+                  mainImage === img ? styles.active : ""
+                }`}
+                onClick={() => setMainImage(img)}
+              />
+            ))}
           </div>
         </div>
       </div>
