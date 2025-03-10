@@ -15,26 +15,11 @@ const PurchaseOptions = () => {
             />
           </div>
           <div className={styles.thumbnailImages}>
-            <img
-              src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
-              alt="Chess Set"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
-              alt="Chess Set"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
-              alt="Chess Set"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
-              alt="Chess Set"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop"
-              alt="Chess Set"
-            />
+            <img src="../Gloomhaven.jpg" alt="Gloomhaven" />
+            <img src="../HeroQuest.jpg" alt="HeroQuest" />
+            <img src="../mh_bg.png" alt="Monster Hunter" />
+            <img src="../talisman.jpg" alt="Talisman" />
+            <img src="../terraria_bg.png" alt="Terraria" />
           </div>
         </div>
       </div>
@@ -82,8 +67,6 @@ const PurchaseOptions = () => {
         <div className={styles.purchaseOptions}>
           <div className={styles.addToCartSection}>
             <Counter />
-            {/* <button className={styles.qtyBtnPlus}>+</button>
-              <button className={styles.qtyBtnMinus}>-</button> */}
             <button className={styles.addToCart}>Add To Cart</button>
             <div className={styles.actionButtons}>
               <button className={styles.wishlist}>
