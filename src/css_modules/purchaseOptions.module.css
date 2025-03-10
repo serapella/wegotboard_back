@@ -27,9 +27,6 @@
         margin: 0 auto;
         transition: all 500ms;
         cursor: pointer;
-        &:hover {
-          opacity: 0.7;
-        }
         img {
           width: 100%;
           height: auto;
