@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Product } from "../models/ProductModel";
-import { Error as MongooseError, ObjectId, Types } from "mongoose";
+import { Error as MongooseError, ObjectId, SortOrder, Types } from "mongoose";
 import { type ProductFilter } from "../utils/types";
 import { Category } from "../models/CategoryModel";
 const { ValidationError } = MongooseError;
@@ -21,6 +21,8 @@ export const getProducts = async (req: Request, res: Response) => {
       limit,
       tags,
       categories,
+      sort,
+      order,
     } = req.query;
 
     const filters = {} as ProductFilter;
@@ -52,9 +54,15 @@ export const getProducts = async (req: Request, res: Response) => {
     if (difficulty)
       filters.difficulty = difficulty as ProductFilter["difficulty"];
     if (ageMin)
-      filters.age = { ...filters.age, $gte: parseInt(ageMin as string) };
+      filters.ageRating = {
+        ...filters.ageRating,
+        $gte: parseInt(ageMin as string),
+      };
     if (ageMax)
-      filters.age = { ...filters.age, $lte: parseInt(ageMax as string) };
+      filters.ageRating = {
+        ...filters.ageRating,
+        $lte: parseInt(ageMax as string),
+      };
     if (tags) filters.tags = { $in: (tags as string).split(",") };
 
     const productsQuery = Product.find(filters)
@@ -67,6 +75,13 @@ export const getProducts = async (req: Request, res: Response) => {
           parseInt(page as string) * parseInt(limit as string)
         );
       productsQuery.limit(parseInt(limit as string));
+    }
+
+    if (sort) {
+      let sorted = [sort, "asc"] as [string, SortOrder];
+      if (order) sorted[1] = order as SortOrder;
+
+      productsQuery.sort([sorted]);
     }
 
     const products = await productsQuery.exec();

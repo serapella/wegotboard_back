@@ -4,6 +4,6 @@ export type ProductFilter = {
   price?: object;
   playerCount?: object;
   difficulty?: ["easy", "medium", "hard"];
-  age?: object;
+  ageRating?: object;
   tags?: object;
 };
