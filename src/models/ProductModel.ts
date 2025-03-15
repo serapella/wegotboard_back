@@ -11,9 +11,19 @@ const ProductSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    tags: {
+      type: Array,
+      nullable: true,
+      trim: true,
+    },
     price: {
       type: Number,
       required: true,
+      trim: true,
+    },
+    discount: {
+      type: Number,
+      nullable: true,
       trim: true,
     },
     name: {
@@ -82,4 +92,4 @@ const ProductSchema = new mongoose.Schema(
   }
 );
 
-export const Todo = mongoose.model("Product", ProductSchema);
+export const Product = mongoose.model("Product", ProductSchema);
