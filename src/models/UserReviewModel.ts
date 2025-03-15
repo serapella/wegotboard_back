@@ -22,4 +22,4 @@ const UserReviewSchema = new mongoose.Schema({
   },
 });
 
-export const Todo = mongoose.model("UserReview", UserReviewSchema);
+export const UserReview = mongoose.model("UserReview", UserReviewSchema);

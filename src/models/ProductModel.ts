@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { Tag } from "./TagModel";
+import { Category } from "./CategoryModel";
 
 const ProductSchema = new mongoose.Schema(
   {
@@ -6,8 +8,16 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       default: "english",
     },
+    tags: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: Tag,
+        trim: true,
+      },
+    ],
     category: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: Category,
       required: true,
       trim: true,
     },
@@ -38,7 +48,7 @@ const ProductSchema = new mongoose.Schema(
     },
     difficulty: {
       type: String,
-      Enum: ["Easy", "Medium", "Hard"],
+      Enum: ["easy", "medium", "hard"],
       required: true,
       trim: true,
     },
@@ -82,4 +92,4 @@ const ProductSchema = new mongoose.Schema(
   }
 );
 
-export const Todo = mongoose.model("Product", ProductSchema);
+export const Product = mongoose.model("Product", ProductSchema);
