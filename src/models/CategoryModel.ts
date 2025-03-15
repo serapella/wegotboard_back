@@ -8,4 +8,4 @@ const CategorySchema = new mongoose.Schema({
   },
 });
 
-export const Todo = mongoose.model("Category", CategorySchema);
+export const Category = mongoose.model("Category", CategorySchema);
