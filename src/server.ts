@@ -6,6 +6,7 @@ import { notFound } from "./controllers/notFoundController";
 import productRoutes from "./routes/productRoutes";
 import { helloMiddleware } from "./middleware/exampleMiddleware";
 import mongoose from "mongoose";
+import userRoutes from "./routes/userRoutes";
 
 // Variables
 const app = express();
@@ -17,11 +18,14 @@ app.use(express.json());
 
 // Routes
 app.use("/p", productRoutes);
+app.use("", userRoutes);
 app.all("*", notFound);
 
 // Database connection
 try {
-  await mongoose.connect(process.env.MONGO_URI!);
+  await mongoose.connect(
+    "mongodb+srv://admin:PR2Tc3qmhHEzpSO3@wegotboard-01.rr0nz.mongodb.net/wegotboard?retryWrites=true&w=majority&appName=WeGotBoard-01"
+  );
   console.log("Database connection OK");
 } catch (err) {
   console.error(err);
