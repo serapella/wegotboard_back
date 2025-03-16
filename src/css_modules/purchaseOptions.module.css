@@ -47,7 +47,6 @@
         img {
           width: 8.5rem;
           height: 8.5rem;
-          /* object-fit: contain; */
           object-fit: cover;
           border: 1px solid var(--cardBorder);
           border-radius: 0.5rem;
@@ -148,9 +147,6 @@
       }
     }
     .purchaseOptions {
-      /* display: flex;
-      flex-direction: column;
-      gap: 1.5rem; */
       .addToCartSection {
         display: flex;
         align-items: center;
@@ -233,14 +229,52 @@
           background-color: var(--tagHover);
           border-color: var(--tagHover);
           color: white;
-          /* wishlist enview icons toevoegen hier: */
           img {
             filter: brightness(0) invert(1);
           }
         }
       }
+      .liked {
+        color: var(--navTop);
+        border-color: var(--navTop);
+        &:hover {
+          background-color: var(--buttonHover);
+          color: white;
+        }
+      }
     }
   }
+}
+
+:global(.Toastify__toast) {
+  font-size: 1.4rem;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  color: var(--black-like);
+  background-color: white;
+  border: 1px solid var(--cardBorder);
+}
+:global(.Toastify__toast--success) {
+  border-color: var(--navTop);
+}
+
+:global(.Toastify__toast--error) {
+  border-color: var(--navTop);
+}
+
+:global(.Toastify__progress-bar) {
+  background: var(--buttonHover);
+  transition: width 1s ease;
+}
+
+:global(.Toastify__close-button) {
+  color: var(--amountItemsFiltered);
+  opacity: 1;
+  padding: 0.5rem;
+}
+
+:global(.Toastify__close-button:hover) {
+  color: var(--black-like);
 }
 
 @media (max-width: 900px) {

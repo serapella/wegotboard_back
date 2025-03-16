@@ -1,8 +1,11 @@
 import styles from "../css_modules/purchaseOptions.module.css";
-import { BsHeart, BsEye } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { BsShare } from "react-icons/bs";
 import Counter from "./Counter";
 import { useState } from "react";
 import Modal from "./Modal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const imageList = [
   "https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop",
@@ -10,11 +13,53 @@ const imageList = [
   "../HeroQuest.jpg",
   "../mh_bg.png",
   "../talisman.jpg",
-  "../terraria_bg.png",
 ];
 
 const PurchaseOptions = () => {
   const [mainImage, setMainImage] = useState(imageList[0]);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleShare = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success("Link copied to clipboard!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        style: {
+          fontSize: "1.4rem",
+          fontWeight: 600,
+          color: "var(--black-like)",
+          background: "var(--cardBackground)",
+          border: "1px solid var(--cardBorder)",
+          borderRadius: "0.5rem",
+          padding: "1.2rem",
+        },
+      });
+    } catch (err) {
+      toast.error("Failed to copy link. Please try again.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        style: {
+          fontSize: "1.4rem",
+          fontWeight: 600,
+          color: "var(--errorText)",
+          background: "var(--errorBackground)",
+          border: "1px solid var(--errorBorder)",
+          borderRadius: "0.5rem",
+          padding: "1.2rem",
+        },
+      });
+    }
+  };
+
   return (
     <div className={styles.productOverview}>
       <div className={styles.productContent}>
@@ -83,17 +128,22 @@ const PurchaseOptions = () => {
             <Counter />
             <button className={styles.addToCart}>Add To Cart</button>
             <div className={styles.actionButtons}>
-              <button className={styles.wishlist}>
-                <BsHeart />
+              <button
+                className={`${styles.wishlist} ${isLiked ? styles.liked : ""}`}
+                onClick={() => setIsLiked(!isLiked)}
+              >
+                {isLiked ? <BsHeartFill /> : <BsHeart />}
               </button>
-              <button className={styles.zoom}>
-                <BsEye />
+              <button className={styles.zoom} onClick={handleShare}>
+                <BsShare />
               </button>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
+
 export default PurchaseOptions;
