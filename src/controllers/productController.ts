@@ -10,11 +10,11 @@ export const getProducts = async (req: Request, res: Response) => {
     const { category } = req.params;
     const {
       language,
-      priceMin,
       priceMax,
       playerMin,
       playerMax,
       difficulty,
+      duration,
       ageMin,
       ageMax,
       page,
@@ -37,22 +37,20 @@ export const getProducts = async (req: Request, res: Response) => {
       });
       filters.category = { $in: cats.map((c) => c._id.toString()) };
     }
-    if (priceMin)
-      filters.price = { ...filters.price, $gte: parseInt(priceMin as string) };
-    if (priceMax)
-      filters.price = { ...filters.price, $lte: parseInt(priceMax as string) };
+    if (priceMax) filters.price = { $lte: parseInt(priceMax as string) };
     if (playerMin)
       filters.playerCount = {
         ...filters.playerCount,
-        $gte: parseInt(playerMin as string),
+        min: { $gte: parseInt(playerMin as string) },
       };
     if (playerMax)
       filters.playerCount = {
         ...filters.playerCount,
-        $lte: parseInt(playerMax as string),
+        max: { $lte: parseInt(playerMin as string) },
       };
     if (difficulty)
       filters.difficulty = difficulty as ProductFilter["difficulty"];
+    if (duration) filters.duration = duration as ProductFilter["duration"];
     if (ageMin)
       filters.ageRating = {
         ...filters.ageRating,

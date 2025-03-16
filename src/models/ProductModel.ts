@@ -47,13 +47,26 @@ const ProductSchema = new mongoose.Schema(
       trim: true,
     },
     playerCount: {
-      type: Number,
-      required: true,
-      trim: true,
+      min: {
+        type: Number,
+        nullable: true,
+        trim: true,
+      },
+      max: {
+        type: Number,
+        required: true,
+        trim: true,
+      },
     },
     difficulty: {
       type: String,
       Enum: ["easy", "medium", "hard"],
+      required: true,
+      trim: true,
+    },
+    duration: {
+      type: String,
+      Enum: ["short", "medium", "long"],
       required: true,
       trim: true,
     },
