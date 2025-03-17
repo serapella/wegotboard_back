@@ -7,6 +7,7 @@ import productRoutes from "./routes/productRoutes";
 import { helloMiddleware } from "./middleware/exampleMiddleware";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes";
+import userReviewRoutes from "./routes/userReviewRoutes";
 
 // Variables
 const app = express();
@@ -18,7 +19,8 @@ app.use(express.json());
 
 // Routes
 app.use("/p", productRoutes);
-app.use("", userRoutes);
+app.use("/u", userRoutes);
+app.use("/r", userReviewRoutes);
 app.all("*", notFound);
 
 // Database connection
@@ -36,3 +38,6 @@ try {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}! 🚀`);
 });
+
+// Export
+export default app;
