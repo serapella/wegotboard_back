@@ -39,15 +39,10 @@ export const getProducts = async (req: Request, res: Response) => {
     }
     if (priceMax) filters.price = { $lte: parseInt(priceMax as string) };
     if (playerMin)
-      filters.playerCount = {
-        ...filters.playerCount,
-        min: { $gte: parseInt(playerMin as string) },
-      };
+      filters["playerCount.min"] = { $gte: parseInt(playerMin as string) };
     if (playerMax)
-      filters.playerCount = {
-        ...filters.playerCount,
-        max: { $lte: parseInt(playerMin as string) },
-      };
+      filters["playerCount.max"] = { $lte: parseInt(playerMax as string) };
+
     if (difficulty)
       filters.difficulty = difficulty as ProductFilter["difficulty"];
     if (duration) filters.duration = duration as ProductFilter["duration"];
