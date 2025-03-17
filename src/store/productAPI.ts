@@ -10,6 +10,7 @@ const productAPI = createApi({
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], ProductQuery>({
       query: ({
+        products = "products",
         page = 0,
         limit = 15,
         sort = undefined,
@@ -23,7 +24,7 @@ const productAPI = createApi({
         duration = undefined,
       }) => {
         return {
-          url: "/products",
+          url: `/${products}`,
           method: "GET",
           params: {
             page,
@@ -40,6 +41,10 @@ const productAPI = createApi({
           },
         };
       },
+      providesTags: ["Product"],
+    }),
+    getProductById: builder.query<Product, string>({
+      query: (id) => `/products/${id}`,
       providesTags: ["Product"],
     }),
   }),

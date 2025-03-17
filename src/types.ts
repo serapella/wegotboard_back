@@ -1,4 +1,5 @@
 export interface ProductQuery {
+  products?: string;
   page?: number;
   limit?: number;
   sort?: string;
