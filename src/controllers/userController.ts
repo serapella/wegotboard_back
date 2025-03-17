@@ -24,8 +24,15 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, phoneNumber, isSubscribed, location } =
-      req.body;
+    const {
+      name,
+      email,
+      password,
+      phoneNumber,
+      isAdmin,
+      isSubscribed,
+      location,
+    } = req.body;
 
     if (!name || !email || !password) {
       res.status(400).json({
@@ -41,6 +48,7 @@ export const createUser = async (req: Request, res: Response) => {
       email,
       password: hash,
       phoneNumber,
+      isAdmin,
       isSubscribed,
       location,
     });
