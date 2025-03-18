@@ -23,3 +23,6 @@
   --orange: #ffa500;
   --greenSubmit: #3bb77e;
 }
+body {
+  font-size: 2rem;
+}

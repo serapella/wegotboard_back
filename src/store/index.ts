@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
+import counterReducer from "./counterSlice";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import cartReducer from "./cartSlice";
@@ -13,6 +14,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
   [productAPI.reducerPath]: productAPI.reducer,
