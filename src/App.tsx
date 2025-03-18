@@ -5,7 +5,7 @@ import { Filter } from "./components/Filter";
 const App = () => {
   return (
     <>
-      {/* <Layout>
+      <Layout>
         <Routes>
           <Route path="/" element={<></>} />
           <Route path="/products" element={<></>} />
@@ -16,9 +16,7 @@ const App = () => {
           <Route path="/user/wishlist" element={<></>} />
           <Route path="/cart" element={<></>} />
         </Routes>
-      </Layout> */}
-
-      <Filter />
+      </Layout>
     </>
   );
 };
