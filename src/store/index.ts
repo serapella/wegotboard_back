@@ -9,20 +9,19 @@ import filterReducer from "./filterSlice";
 const persistConfig = {
   key: "wgb_root",
   storage,
-  whitelist: ["cartSlice"],
+  whitelist: ["reviews"],
 };
 
-//ADD NEW REDUCERS / APIS HERE
 const rootReducer = combineReducers({
   cartSlice: cartReducer,
   filter: filterReducer,
   [productAPI.reducerPath]: productAPI.reducer,
 });
-//this persist the shopping cart in localStorage in the browser
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const weGotBoard = configureStore({
-  reducer: persistedReducer, //add new reducers/APIs to combineReducer instead
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -30,6 +29,7 @@ const weGotBoard = configureStore({
       },
     }).concat(logger, productAPI.middleware),
 });
+
 export default weGotBoard;
 export type RootState = ReturnType<typeof weGotBoard.getState>;
 export type AppDispatch = typeof weGotBoard.dispatch;
