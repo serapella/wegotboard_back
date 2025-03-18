@@ -9,7 +9,7 @@ import filterReducer from "./filterSlice";
 const persistConfig = {
   key: "wgb_root",
   storage,
-  whitelist: ["reviews"],
+  whitelist: ["cartSlice"],
 };
 
 const rootReducer = combineReducers({
