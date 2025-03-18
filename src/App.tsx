@@ -1,11 +1,11 @@
 import "./style.css";
 import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
-
+import { Filter } from "./components/Filter";
 const App = () => {
   return (
     <>
-      <Layout>
+      {/* <Layout>
         <Routes>
           <Route path="/" element={<></>} />
           <Route path="/products" element={<></>} />
@@ -16,7 +16,9 @@ const App = () => {
           <Route path="/user/wishlist" element={<></>} />
           <Route path="/cart" element={<></>} />
         </Routes>
-      </Layout>
+      </Layout> */}
+
+      <Filter />
     </>
   );
 };

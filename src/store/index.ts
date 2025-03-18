@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import cartReducer from "./cartSlice";
 import productAPI from "./productAPI";
+import filterReducer from "./filterSlice";
 
 const persistConfig = {
   key: "wgb_root",
@@ -14,6 +15,7 @@ const persistConfig = {
 //ADD NEW REDUCERS / APIS HERE
 const rootReducer = combineReducers({
   cartSlice: cartReducer,
+  filter: filterReducer,
   [productAPI.reducerPath]: productAPI.reducer,
 });
 //this persist the shopping cart in localStorage in the browser
