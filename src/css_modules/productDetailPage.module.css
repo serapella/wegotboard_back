@@ -10,7 +10,7 @@
 
 .mainContent {
   display: grid;
-  grid-template-columns: 1fr 30rem;
+  grid-template-columns: 30rem 1fr;
   gap: 4rem;
   margin-bottom: 6rem;
 }
