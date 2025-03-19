@@ -1,0 +1,40 @@
+.productDetailPage {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.productContent {
+  margin-bottom: 6rem;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 30rem;
+  gap: 4rem;
+  margin-bottom: 6rem;
+}
+
+.popularSection {
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 1200px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .productDetailPage {
+    padding: 2rem 1rem;
+  }
+
+  .productContent {
+    margin-bottom: 4rem;
+  }
+
+  .popularSection {
+    margin-bottom: 4rem;
+  }
+}
