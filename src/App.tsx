@@ -1,8 +1,8 @@
-import ProductTabs from "./components/ProductTabs"; // default import
-import "./style.css";
+// import ProductSidebar from "./components/ProductSidebar";
+// import "./style.css";
 
-function App() {
-  return <ProductTabs />;
-}
+// function App() {
+//   return <ProductSidebar />;
+// }
 
-export default App;
+// export default App;
