@@ -1,5 +1,6 @@
 import DealsOfTheDay from "../components/DealsOfTheDay";
 import GreatWords from "../components/GreatWords";
+import KeyBenefitsSection from "../components/KeyBenefitsSection";
 import NewsSection from "../components/NewsSection";
 import PopularProducts from "../components/PopularProducts";
 import ShopNowSection from "../components/ShopNowSection";
@@ -26,6 +27,9 @@ const LandingPage = () => {
       </div>
       <div>
         <NewsSection />
+      </div>
+      <div>
+        <KeyBenefitsSection />
       </div>
     </div>
   );

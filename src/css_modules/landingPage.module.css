@@ -13,5 +13,8 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    & > :last-of-type {
+      margin-bottom: 2rem;
+    }
   }
 }
