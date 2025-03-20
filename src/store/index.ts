@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import cartReducer from "./cartSlice";
+import { newsAPI } from "./newsAPI";
 
 const persistConfig = {
   key: "wgb_root",
@@ -13,6 +14,7 @@ const persistConfig = {
 //ADD NEW REDUCERS / APIS HERE
 const rootReducer = combineReducers({
   cartSlice: cartReducer,
+  [newsAPI.reducerPath]: newsAPI.reducer,
 });
 //this persist the shopping cart in localStorage in the browser
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -24,7 +26,7 @@ const weGotBoard = configureStore({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
-    }).concat(logger),
+    }).concat(logger, newsAPI.middleware),
 });
 export default weGotBoard;
 export type RootState = ReturnType<typeof weGotBoard.getState>;
