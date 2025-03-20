@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import cartReducer from "./cartSlice";
-import { newsAPI } from "./newsAPI";
+import newsAPI from "./newsAPI";
 
 const persistConfig = {
   key: "wgb_root",
