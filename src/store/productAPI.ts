@@ -22,6 +22,7 @@ const productAPI = createApi({
         categories = undefined,
         difficulty = undefined,
         duration = undefined,
+        search = undefined,
       }) => {
         return {
           url: `/${products}`,
@@ -38,6 +39,7 @@ const productAPI = createApi({
             categories,
             difficulty,
             duration,
+            search,
           },
         };
       },

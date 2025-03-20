@@ -11,6 +11,7 @@ export interface ProductQuery {
   categories?: string[];
   difficulty?: string;
   duration?: string;
+  search?: string;
 }
 
 export interface Product {
