@@ -1,14 +1,13 @@
-import ProductTabs from "./components/ProductTabs"; // default import
 import "./style.css";
 import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
-import { Filter } from "./components/Filter";
+import LandingPage from "./pages/LandingPage";
 const App = () => {
   return (
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<></>} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/products" element={<></>} />
           <Route path="/categories" element={<></>} />
           <Route path="/user/login" element={<></>} />
