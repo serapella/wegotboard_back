@@ -23,6 +23,7 @@ export const getProducts = async (req: Request, res: Response) => {
       categories,
       sort,
       order,
+      search
     } = req.query;
 
     const filters = {} as ProductFilter;
@@ -57,6 +58,7 @@ export const getProducts = async (req: Request, res: Response) => {
         $lte: parseInt(ageMax as string),
       };
     if (tags) filters.tags = { $in: (tags as string).split(",") };
+    if(search) filters.name = { $regex: search as string, $options: "i" };
 
     const productsQuery = Product.find(filters)
       .populate("tags")
