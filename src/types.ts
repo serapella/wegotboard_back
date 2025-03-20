@@ -11,6 +11,7 @@ export interface ProductQuery {
   categories?: string[];
   difficulty?: string;
   duration?: string;
+  search?: string;
 }
 
 export interface Product {
@@ -40,4 +41,26 @@ interface Tag {
 interface Category {
   _id: string;
   name: string;
+}
+export interface NewsFeed {
+  items: NewsFeedItem[];
+  image: string;
+  title: string;
+  description: string;
+  pubDate: string;
+  webMaster: string;
+  link: string;
+  language: string;
+  lastBuildDate: string;
+  backdrop: string;
+}
+
+export interface NewsFeedItem {
+  creator: string;
+  title: string;
+  link: string;
+  pubDate: string;
+  "dc:creator": string;
+  guid: string;
+  isoDate: Date;
 }
