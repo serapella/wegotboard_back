@@ -6,7 +6,7 @@ import logger from "redux-logger";
 import cartReducer from "./cartSlice";
 import productAPI from "./productAPI";
 import filterReducer from "./filterSlice";
-import { newsAPI } from "./newsAPI";
+import newsAPI from "./newsAPI";
 
 const persistConfig = {
   key: "wgb_root",
