@@ -43,7 +43,7 @@ const NewsSection = () => {
                 <img src={newsFeed.backdrop} alt="backdrop" />
                 <img src={newsFeed.image} alt={newsFeed.title} />
                 <div className={styles.date}>
-                  <p>{new Date(pubDate).getDay()}</p>
+                  <p>{new Date(pubDate).getDate()}</p>
                   <p>{months[new Date(pubDate).getMonth()]}</p>
                 </div>
               </div>
