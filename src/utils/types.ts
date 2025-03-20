@@ -8,4 +8,5 @@ export type ProductFilter = {
   duration?: ["short", "medium", "long"];
   ageRating?: object;
   tags?: object;
+  name?: object;
 };
