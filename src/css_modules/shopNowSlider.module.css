@@ -10,7 +10,7 @@
     img {
       display: block;
       object-fit: cover;
-      width: 100%;
+      width: 100% !important;
       height: 100%;
     }
     .sliderContent {
