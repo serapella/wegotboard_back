@@ -6,6 +6,7 @@ import logger from "redux-logger";
 import cartReducer from "./cartSlice";
 import productAPI from "./productAPI";
 import filterReducer from "./filterSlice";
+import { newsAPI } from "./newsAPI";
 
 const persistConfig = {
   key: "wgb_root",
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   cartSlice: cartReducer,
   filter: filterReducer,
   [productAPI.reducerPath]: productAPI.reducer,
+  [newsAPI.reducerPath]: newsAPI.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -29,7 +31,7 @@ const weGotBoard = configureStore({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
-    }).concat(logger, productAPI.middleware),
+    }).concat(logger, productAPI.middleware, newsAPI.middleware),
 });
 
 export default weGotBoard;
