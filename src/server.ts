@@ -4,6 +4,7 @@ import cors from "cors";
 import express from "express";
 import { notFound } from "./controllers/notFoundController";
 import productRoutes from "./routes/productRoutes";
+import newsRoutes from "./routes/newsRoutes";
 import { helloMiddleware } from "./middleware/exampleMiddleware";
 import mongoose from "mongoose";
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 // Routes
 app.use("/p", productRoutes);
+app.use("/api/news", newsRoutes);
 app.all("*", notFound);
 
 // Database connection
