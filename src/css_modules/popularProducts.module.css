@@ -1,4 +1,5 @@
 .popular_products {
+  width: 100%;
   margin-top: 8.7rem;
   display: flex;
   flex-direction: column;
