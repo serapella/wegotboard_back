@@ -1,4 +1,6 @@
 import express from "express";
+import { authenticateUser } from "../middleware/authMiddleware";
+const router = express.Router();
 import {
   getUserReviews,
   getUserReviewById,
@@ -7,13 +9,11 @@ import {
   deleteUserReview,
 } from "../controllers/userReviewController";
 
-const router = express.Router();
-
 router
   .get("/users/reviews", getUserReviews)
   .get("/users/:id/reviews", getUserReviewById)
-  .post("/users/:id/reviews", createUserReview)
-  .patch("/users/:id/reviews/:reviewId", updateUserReview)
-  .delete("/users/:id/reviews/:reviewId", deleteUserReview);
+  .post("/users/:id/reviews", authenticateUser, createUserReview)
+  .patch("/users/:id/reviews/:reviewId", authenticateUser, updateUserReview)
+  .delete("/users/:id/reviews/:reviewId", authenticateUser, deleteUserReview);
 
 export default router;

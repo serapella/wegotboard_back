@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { timeStamp } from "node:console";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -23,10 +22,6 @@ const UserSchema = new mongoose.Schema(
       trim: true,
     },
     isAdmin: {
-      type: Boolean,
-      default: false,
-    },
-    isLoggedIn: {
       type: Boolean,
       default: false,
     },
