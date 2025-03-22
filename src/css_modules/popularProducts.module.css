@@ -6,7 +6,6 @@
 }
 
 .detail {
-  background-color: var(--filter);
   border: 1px solid var(--cardBorder);
   border-radius: 0.8rem;
   padding: 6rem 2rem;

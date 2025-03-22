@@ -19,16 +19,6 @@
   margin-bottom: clamp(4rem, 6vw, 6rem);
 }
 
-@media (min-width: 1441px) {
-  .productDetailPage {
-    padding: 4rem 8rem;
-  }
-
-  .mainContent {
-    gap: 6rem;
-  }
-}
-
 @media (max-width: 1200px) {
   .mainContent {
     grid-template-columns: 1fr;
@@ -50,6 +40,7 @@
   .mainContent {
     gap: 3rem;
     margin-bottom: 4rem;
+    grid-template-columns: 1fr;
   }
 
   .popularSection {
