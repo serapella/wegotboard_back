@@ -5,6 +5,8 @@ import express from "express";
 import { notFound } from "./controllers/notFoundController";
 import productRoutes from "./routes/productRoutes";
 import newsRoutes from "./routes/newsRoutes";
+import tagRoutes from "./routes/tagsRoutes";
+import categoryRoutes from "./routes/categoryRoutes";
 import { helloMiddleware } from "./middleware/exampleMiddleware";
 import mongoose from "mongoose";
 
@@ -18,7 +20,8 @@ app.use(express.json());
 
 // Routes
 app.use("/p", productRoutes);
-app.use("/api/news", newsRoutes);
+app.use("/tags", tagRoutes);
+app.use("/categories", categoryRoutes);
 app.all("*", notFound);
 
 // Database connection
