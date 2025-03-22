@@ -12,7 +12,7 @@ interface PurchaseOptionsProps {
 }
 
 const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
-  const [mainImage, setMainImage] = useState(product.image[0]);
+  const [mainImage, setMainImage] = useState(product.images[0]);
   const [isLiked, setIsLiked] = useState(false);
 
   const handleShare = async () => {
@@ -39,7 +39,7 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
             <Modal imgSrc={mainImage} imgAlt={product.name} />
           </div>
           <div className={styles.thumbnailImages}>
-            {product.image.map((img, index) => (
+            {product.images.map((img, index) => (
               <img
                 key={index}
                 src={img}
@@ -53,7 +53,7 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
       </div>
       <div className={styles.productInfo}>
         <div className={styles.gameCategory}>
-          {product.categories[0]?.name || "Board Game"}
+          {product.category?.name || "Board Game"}
         </div>
         <h1>{product.name}</h1>
         <p>{product.description}</p>

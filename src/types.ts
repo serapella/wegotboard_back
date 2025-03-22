@@ -25,10 +25,10 @@ export interface Product {
     max: number;
   };
   tags: Tag[];
-  categories: Category[];
+  category: Category;
   difficulty: "easy" | "medium" | "hard";
   duration: "short" | "medium" | "long";
-  image: string[];
+  images: string[];
   createdAt: string;
   updatedAt: string;
 }
