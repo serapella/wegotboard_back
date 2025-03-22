@@ -22,7 +22,6 @@ const rootReducer = combineReducers({
   filter: filterReducer,
   [productAPI.reducerPath]: productAPI.reducer,
   [newsAPI.reducerPath]: newsAPI.reducer,
-  reviewSlice: reviewsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
