@@ -1,8 +1,7 @@
-import ProductTabs from "./components/ProductTabs"; // default import
 import "./style.css";
 import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
-import { Filter } from "./components/Filter";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 const App = () => {
   return (
     <>
@@ -16,6 +15,7 @@ const App = () => {
           <Route path="/user/logout" element={<></>} />
           <Route path="/user/wishlist" element={<></>} />
           <Route path="/cart" element={<></>} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
       </Layout>
     </>
