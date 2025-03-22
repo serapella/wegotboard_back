@@ -72,9 +72,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
             </li>
             <li>Difficulty: {product.difficulty}</li>
             <li>Duration: {product.duration}</li>
-            <li>
-              Categories: {product.categories.map((cat) => cat.name).join(", ")}
-            </li>
+            <li>Category: {product.category}</li>
           </ul>
           <h3>Care Instructions</h3>
           <p>Store in a cool, dry place. Keep away from direct sunlight.</p>

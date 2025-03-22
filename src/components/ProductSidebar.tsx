@@ -34,7 +34,7 @@ const ProductSidebar: React.FC<ProductSidebarProps> = ({ products }) => {
               className={styles["game-item"]}
             >
               <img
-                src={product.image[0]}
+                src={product.images[0]}
                 alt={product.name}
                 className={styles["game-image"]}
               />

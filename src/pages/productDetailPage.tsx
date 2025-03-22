@@ -10,7 +10,7 @@ import {
 import styles from "../css_modules/productDetailPage.module.css";
 
 const ProductDetailPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string; slug: string }>();
 
   const {
     data: product,
@@ -36,7 +36,8 @@ const ProductDetailPage = () => {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-red-500 text-xl font-semibold">
-          Error loading product
+          Error loading product:{" "}
+          {(productError as any)?.data?.message || "Unknown error"}
         </div>
       </div>
     );

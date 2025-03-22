@@ -25,10 +25,10 @@ export interface Product {
     max: number;
   };
   tags: Tag[];
-  categories: Category[];
+  category: Category;
   difficulty: "easy" | "medium" | "hard";
   duration: "short" | "medium" | "long";
-  image: string[];
+  images: string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -41,6 +41,22 @@ export interface Tag {
 export interface Category {
   _id: string;
   name: string;
+}
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  date: string;
+  author: string;
+}
+
+export interface NewsFeed {
+  items: NewsItem[];
+  total: number;
+  page: number;
+  limit: number;
 }
 
 export interface PopularProductsProps {
