@@ -6,6 +6,7 @@ import logger from "redux-logger";
 import cartReducer from "./cartSlice";
 import productAPI from "./productAPI";
 import filterReducer from "./filterSlice";
+import productgridReducer from "./paginationSlice";
 import newsAPI from "./newsAPI";
 
 const persistConfig = {
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
+  productGrid: productgridReducer,
   [productAPI.reducerPath]: productAPI.reducer,
   [newsAPI.reducerPath]: newsAPI.reducer,
 });

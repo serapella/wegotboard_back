@@ -1,10 +1,9 @@
 import styles from "../css_modules/productGrid.module.css";
 import ProductCard from "./ProductCard";
-import { setTotalPages } from "../store/productgridSlice";
+import { setTotalPages } from "../store/paginationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { useEffect } from "react";
-// import { Product } from "../types";
 import { useGetProductsQuery } from "../store/productAPI";
 
 const ProductGrid = () => {
@@ -15,15 +14,19 @@ const ProductGrid = () => {
   );
 
   useEffect(() => {
+    console.log("Products length:", products.length, productsPerPage);
     dispatch(setTotalPages(Math.ceil(products.length / productsPerPage)));
-  }, []);
+  }, [products]);
+
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+
+  const productsToDisplay = products.slice(startIndex, endIndex);
 
   return (
     <div className={styles.product_grid}>
-      {products.map((product) => (
-        // TODO: Make the ProductCard components here
+      {productsToDisplay.map((product) => (
         <ProductCard key={product._id} product={product} />
-        // <p key={product._id}>{product.name}</p>
       ))}
     </div>
   );

@@ -1,54 +1,49 @@
 import styles from "../css_modules/pagination.module.css";
-import React from "react";
-// import { useEffect } from "react";
+import { setCurrentPage } from "../store/paginationSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
 
-interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}
+const Pagination = () => {
+  const dispatch = useDispatch();
+  const { currentPage, totalPages } = useSelector(
+    (state: RootState) => state.productGrid
+  );
+  return (
+    <div className={styles.gridPagination}>
+      <button
+        onClick={() => {
+          dispatch(setCurrentPage(currentPage - 1));
+        }}
+        disabled={currentPage === 1}
+      >
+        Previous
+      </button>
 
-const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-}) => {
-  const handlePreviousPage = () => {
-    if (currentPage > 1) onPageChange(currentPage - 1);
-    const handleNextPage = () => {
-      if (currentPage < totalPages) onPageChange(currentPage + 1);
-    };
-
-    let pageNumbers = [currentPage];
-    if (currentPage === 1) {
-      pageNumbers = [1, 2, 3].filter((page) => page <= totalPages);
-    } else if (currentPage === totalPages) {
-      pageNumbers = [totalPages - 2, totalPages - 1, totalPages].filter(
-        (page) => page >= 1
-      );
-    } else {
-      pageNumbers = [currentPage - 1, currentPage, currentPage + 1].filter(
-        (page) => page <= totalPages
-      );
-    }
-
-    return (
-      <div className={styles.gridPagination}>
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-          Previous
-        </button>
-
-        {pageNumbers.map((page) => (
-          <button key={page} onClick={() => onPageChange(page)}>
-            {page}
-          </button>
-        ))}
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next
-        </button>
-      </div>
-    );
-  };
+      {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+        (page) => (
+          console.log(page),
+          (
+            <button
+              key={page}
+              onClick={() => {
+                dispatch(setCurrentPage(page));
+              }}
+            >
+              {page}
+            </button>
+          )
+        )
+      )}
+      <button
+        onClick={() => {
+          dispatch(setCurrentPage(currentPage + 1));
+        }}
+        disabled={currentPage === totalPages}
+      >
+        Next
+      </button>
+    </div>
+  );
 };
 
 export default Pagination;
