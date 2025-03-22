@@ -1,12 +1,13 @@
+import React from "react";
 import styles from "../css_modules/productCard.module.css";
-// import { BsCart3, BsStarFill } from "react-icons/bs";
 import ProductCardInfo from "./ProductCardInfo";
+import { ProductCardProps } from "../types";
 
-const ProductCard = () => {
+const ProductCard: React.FC<ProductCardProps> = ({ variant = "landing" }) => {
   return (
     <div className={styles.popular_item}>
       <img src="" alt="" />
-      <ProductCardInfo />
+      <ProductCardInfo variant={variant} />
     </div>
   );
 };

@@ -72,3 +72,12 @@ export interface PopularProductsProps {
 export interface ProductGridProps {
   maxItems?: number;
 }
+
+export interface ProductCardProps {
+  variant?: "landing" | "detail";
+}
+
+export interface ProductGridProps {
+  maxItems?: number;
+  variant?: "landing" | "detail";
+}

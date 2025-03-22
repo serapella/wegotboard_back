@@ -15,22 +15,22 @@
 }
 
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 4rem;
   padding: 0 2rem;
+  text-align: center;
 
   & > h2 {
     font-size: 3.2rem;
     font-weight: 700;
     color: var(--black-like);
+    margin-bottom: 1.6rem;
   }
 
   & ul {
     display: flex;
     gap: 2.4rem;
     flex-wrap: wrap;
+    justify-content: center;
 
     & li {
       font-size: 1.6rem;
@@ -48,11 +48,14 @@
       }
     }
   }
-}
 
-.detail .nav {
-  text-align: center;
-  justify-content: center;
+  & .description {
+    font-size: 1.6rem;
+    color: var(--amountItemsFiltered);
+    max-width: 60rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
 }
 
 @media (max-width: 992px) {
@@ -66,17 +69,18 @@
   }
 
   .nav {
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
-
     & > h2 {
       font-size: 2.8rem;
+      margin-bottom: 1.2rem;
     }
 
     & ul {
-      justify-content: center;
       gap: 1.6rem;
+    }
+
+    & .description {
+      font-size: 1.4rem;
+      padding: 0 1rem;
     }
   }
 }
