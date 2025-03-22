@@ -1,7 +1,14 @@
+import React from "react";
 import styles from "../css_modules/popularProducts.module.css";
 import ProductGrid from "./ProductGrid";
 
-const PopularProducts = ({ variant = "landing" }) => {
+interface PopularProductsProps {
+  variant?: "landing" | "detail";
+}
+
+const PopularProducts: React.FC<PopularProductsProps> = ({
+  variant = "landing",
+}) => {
   const containerClass =
     variant === "landing" ? styles.popular_products : styles.product_detail;
 
