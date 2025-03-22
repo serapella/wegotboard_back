@@ -1,4 +1,4 @@
-import styles from "../../css_modules/popularProducts.module.css";
+import styles from "../css_modules/popularProducts.module.css";
 import ProductGrid from "./ProductGrid";
 
 const PopularProducts = ({ variant = "landing" }) => {
