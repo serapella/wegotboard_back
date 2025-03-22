@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../css_modules/productGrid.module.css";
+import styles from "../css_modules/productGrid.module.css";
 import ProductCard from "./ProductCard";
 
 interface ProductGridProps {
