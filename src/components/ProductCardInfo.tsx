@@ -1,10 +1,14 @@
+import React from "react";
 import styles from "../css_modules/productCardInfo.module.css";
 import { BsCart3, BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
+import { ProductCardProps } from "../types";
 
-const ProductCardInfo = () => {
+const ProductCardInfo: React.FC<ProductCardProps> = ({
+  variant = "landing",
+}) => {
   return (
     <div className={styles.popular_item_text}>
-      <h5>Deep Rock Galactic Boardgame</h5>
+      <h5>Deep Rock Galactic Board Game</h5>
       <i className={styles.ratingIcon}>
         <BsStarFill />
         <BsStarFill />
@@ -19,14 +23,17 @@ const ProductCardInfo = () => {
       <div className={styles.popular_item_bottom}>
         <h4>$32.85</h4>
         <p>$33.8</p>
-        <button>
-          <span>
-            <BsCart3 />
-          </span>
-          Add
-        </button>
+        {variant === "landing" && (
+          <button>
+            <span>
+              <BsCart3 />
+            </span>
+            Add
+          </button>
+        )}
       </div>
     </div>
   );
 };
+
 export default ProductCardInfo;

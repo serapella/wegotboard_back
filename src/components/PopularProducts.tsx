@@ -1,22 +1,18 @@
 import React from "react";
-import styles from "../css_modules/popularProducts.module.css";
+import styles from "../css_modules/PopularProducts.module.css";
 import ProductGrid from "./ProductGrid";
-
-interface PopularProductsProps {
-  variant?: "landing" | "detail";
-}
+import { PopularProductsProps } from "../types";
 
 const PopularProducts: React.FC<PopularProductsProps> = ({
   variant = "landing",
 }) => {
-  const containerClass =
-    variant === "landing" ? styles.popular_products : styles.product_detail;
+  const containerClass = variant === "landing" ? styles.landing : styles.detail;
 
   return (
     <div className={containerClass}>
-      <div className={styles.popular_nav}>
+      <div className={styles.nav}>
         <h2>Popular Products</h2>
-        {variant === "landing" && (
+        {variant === "landing" ? (
           <ul>
             <li className={styles.active}>All</li>
             <li>Boardgames</li>
@@ -26,9 +22,15 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
             <li>Travel games</li>
             <li>Theme games</li>
           </ul>
+        ) : (
+          <p className={styles.description}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et viverra maecenas accumsan
+            lacus vel facilisis.
+          </p>
         )}
       </div>
-      <ProductGrid maxItems={variant === "detail" ? 4 : 8} />
+      <ProductGrid maxItems={variant === "detail" ? 4 : 8} variant={variant} />
     </div>
   );
 };
