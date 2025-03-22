@@ -21,13 +21,13 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
         By <span>De Spelfanaat</span>
       </p>
       <div className={styles.popular_item_bottom}>
-        <h4>$32.85</h4>
-        <p>$33.8</p>
+        <div className={styles.price_container}>
+          <span className={styles.current_price}>$32.85</span>
+          <span className={styles.original_price}>$33.80</span>
+        </div>
         {variant === "landing" && (
-          <button>
-            <span>
-              <BsCart3 />
-            </span>
+          <button className={styles.add_button}>
+            <BsCart3 />
             Add
           </button>
         )}

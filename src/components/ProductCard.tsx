@@ -6,7 +6,7 @@ import { ProductCardProps } from "../types";
 const ProductCard: React.FC<ProductCardProps> = ({ variant = "landing" }) => {
   return (
     <div className={styles.popular_item}>
-      <img src="" alt="" />
+      <div className={styles.image_placeholder} />
       <ProductCardInfo variant={variant} />
     </div>
   );

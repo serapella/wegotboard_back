@@ -24,13 +24,13 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
           </ul>
         ) : (
           <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et viverra maecenas accumsan
-            lacus vel facilisis.
+            Discover the most popular games that bring people together! Whether
+            you enjoy strategy, luck, or fast-paced action, there's a perfect
+            game for every occasion.
           </p>
         )}
       </div>
-      <ProductGrid maxItems={variant === "detail" ? 4 : 8} variant={variant} />
+      <ProductGrid maxItems={variant === "detail" ? 4 : 8} variant="detail" />
     </div>
   );
 };

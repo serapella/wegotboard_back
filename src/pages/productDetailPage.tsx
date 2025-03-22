@@ -2,7 +2,7 @@ import PurchaseOptions from "../components/PurchaseOptions";
 import ProductSidebar from "../components/ProductSidebar";
 import ProductTabs from "../components/ProductTabs";
 import PopularProducts from "../components/PopularProducts";
-import styles from "../css_modules/ProductDetailpage.module.css";
+import styles from "../css_modules/productDetailPage.module.css";
 
 const ProductDetailPage = () => {
   return (

@@ -11,16 +11,12 @@
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-    & img {
-      transform: scale(1.05);
-    }
   }
 
-  & img {
+  & .image_placeholder {
     width: 100%;
     aspect-ratio: 1;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    background-color: var(--filter);
+    border-bottom: 1px solid var(--cardBorder);
   }
 }
