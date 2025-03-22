@@ -43,6 +43,22 @@ export interface Category {
   name: string;
 }
 
+export interface NewsItem {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  date: string;
+  author: string;
+}
+
+export interface NewsFeed {
+  items: NewsItem[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
 export interface PopularProductsProps {
   variant?: "landing" | "detail";
 }
