@@ -1,12 +1,43 @@
-import React from "react";
 import styles from "../css_modules/PopularProducts.module.css";
 import ProductGrid from "./ProductGrid";
 import { PopularProductsProps } from "../types";
+import { useGetProductsQuery } from "../store/productAPI";
 
 const PopularProducts: React.FC<PopularProductsProps> = ({
   variant = "landing",
 }) => {
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useGetProductsQuery({
+    limit: variant === "detail" ? 4 : 8,
+    page: 0,
+  });
+
   const containerClass = variant === "landing" ? styles.landing : styles.detail;
+
+  if (isLoading) {
+    return (
+      <div className={containerClass}>
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={containerClass}>
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-red-500 text-xl font-semibold">
+            Error loading products
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={containerClass}>
@@ -30,7 +61,11 @@ const PopularProducts: React.FC<PopularProductsProps> = ({
           </p>
         )}
       </div>
-      <ProductGrid maxItems={variant === "detail" ? 4 : 8} variant="detail" />
+      <ProductGrid
+        products={products || []}
+        maxItems={variant === "detail" ? 4 : 8}
+        variant={variant}
+      />
     </div>
   );
 };

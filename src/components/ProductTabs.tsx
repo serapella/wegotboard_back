@@ -1,5 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "../css_modules/ProductTabs.module.css";
+import { Product } from "../types";
+
+interface ProductTabsProps {
+  product: Product;
+}
 
 type TabContentProps = {
   isActive: boolean;
@@ -12,31 +17,8 @@ const TabContent: React.FC<TabContentProps> = ({ isActive, children }) => (
   </div>
 );
 
-const ProductTabs = () => {
+const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   const [activeTab, setActiveTab] = useState("description");
-  const [productData, setProductData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchProductData = async () => {
-      try {
-        const response = await fetch("https://api....");
-        const data = await response.json();
-        setProductData(data);
-      } catch (error) {
-        console.error("Something went wrong:", error);
-        setProductData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProductData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className={styles["product-tabs"]}>
@@ -64,35 +46,43 @@ const ProductTabs = () => {
       <div className={styles["tab-content"]}>
         <TabContent isActive={activeTab === "description"}>
           <h3>Product Overview</h3>
-          <p>{productData?.description}</p>
+          <p>{product.description}</p>
           <h3>Features</h3>
-          <p>{productData?.features}</p>
+          <p>
+            Experience the thrill of strategic gameplay and immersive
+            storytelling.
+          </p>
           <h3>Components</h3>
           <ul className={styles["component-list"]}>
-            {productData?.components?.map(
-              (component: string, index: number) => (
-                <li key={index}>{component}</li>
-              )
-            )}
+            <li>Game board</li>
+            <li>Player pieces</li>
+            <li>Cards</li>
+            <li>Rulebook</li>
           </ul>
           <h3>Packaging & Delivery</h3>
-          <p>{productData?.packagingDelivery}</p>
+          <p>Securely packaged to ensure safe delivery to your doorstep.</p>
         </TabContent>
 
         <TabContent isActive={activeTab === "information"}>
           <h3>Product Specifications</h3>
           <ul className={styles["component-list"]}>
-            {productData?.specifications?.map((spec: string, index: number) => (
-              <li key={index}>{spec}</li>
-            ))}
+            <li>Language: {product.language}</li>
+            <li>
+              Players: {product.playerCount.min}-{product.playerCount.max}
+            </li>
+            <li>Difficulty: {product.difficulty}</li>
+            <li>Duration: {product.duration}</li>
+            <li>
+              Categories: {product.categories.map((cat) => cat.name).join(", ")}
+            </li>
           </ul>
           <h3>Care Instructions</h3>
-          <p>{productData?.careInstructions}</p>
+          <p>Store in a cool, dry place. Keep away from direct sunlight.</p>
         </TabContent>
 
         <TabContent isActive={activeTab === "review"}>
           <h3>Customer Reviews</h3>
-          <p>{productData?.reviews}</p>
+          <p>Reviews coming soon!</p>
         </TabContent>
       </div>
     </div>

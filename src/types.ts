@@ -33,36 +33,14 @@ export interface Product {
   updatedAt: string;
 }
 
-interface Tag {
+export interface Tag {
   _id: string;
   name: string;
 }
 
-interface Category {
+export interface Category {
   _id: string;
   name: string;
-}
-export interface NewsFeed {
-  items: NewsFeedItem[];
-  image: string;
-  title: string;
-  description: string;
-  pubDate: string;
-  webMaster: string;
-  link: string;
-  language: string;
-  lastBuildDate: string;
-  backdrop: string;
-}
-
-export interface NewsFeedItem {
-  creator: string;
-  title: string;
-  link: string;
-  pubDate: string;
-  "dc:creator": string;
-  guid: string;
-  isoDate: Date;
 }
 
 export interface PopularProductsProps {
@@ -70,14 +48,12 @@ export interface PopularProductsProps {
 }
 
 export interface ProductGridProps {
+  products: Product[];
   maxItems?: number;
+  variant?: "landing" | "detail";
 }
 
 export interface ProductCardProps {
   variant?: "landing" | "detail";
-}
-
-export interface ProductGridProps {
-  maxItems?: number;
-  variant?: "landing" | "detail";
+  product?: Product;
 }
