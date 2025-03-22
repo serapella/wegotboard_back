@@ -1,0 +1,82 @@
+import style from "../css_modules/shoppingcart.module.css";
+import { selectCart, increment, decrement, deleteProductFromCart, emptyCart, geTotalCartPrice, addToCart } from "../store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import cartData from "../cartTestData.json";
+const ShoppingCart = () => {
+  const dispatch = useDispatch();
+  //   const cart = useSelector(selectCart);
+  const cart = cartData;
+  return (
+    <div>
+      <section className={style.headerNav}>
+        <nav>
+          <a href="#" id="shopLeft">
+            Cart
+          </a>
+          <div>
+            <a href="#" id="homeRight">
+              Home
+            </a>
+            /
+            <a href="#" id="shopRight">
+              Shop
+            </a>
+          </div>
+        </nav>
+      </section>
+      <section className={style.shoppingCartCrud}>
+        <form className={style.crud} action="#" method="POST">
+          <table>
+            <tr className={style.tableHead}>
+              <th>Product</th>
+              <th id="thProductName"></th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+            {cart &&
+              cart.map((product) => (
+                <tr className={style.tableData}>
+                  <td className={style.productCartImage}>
+                    <div>
+                      <img src={`../${product.image}`} alt={product.name} />
+                    </div>
+                  </td>
+                  <td className={style.productCartName}>
+                    <p>{product.name}</p>
+                  </td>
+                  <td className={style.productCartPrice}>
+                    <p>€ {product.price}</p>
+                  </td>
+                  <td className={style.productCartQty}>
+                    <button onClick={() => dispatch(increment())}>+</button>
+                    <input type="number" className="product-qty" min="1" max="10" />
+                    <button onClick={() => dispatch(decrement())}>-</button>
+                  </td>
+                  <td className={style.productCartTotalQtyPrice}>€56.00</td>
+                  <td className={style.productCartDelete}>
+                    <a href="#" onClick={() => dispatch(deleteProductFromCart(product._id))}>
+                      🗑️
+                    </a>
+                  </td>
+                </tr>
+              ))}
+          </table>
+          <hr />
+          <td className={style.productCartTotalPrice}>Total: € 100.00</td>
+          <div className={style.checkOut}>
+            <div className={style.linksCheckOut}>
+              <a href="#">Continue Shopping</a>
+              <a href="" onClick={() => dispatch(emptyCart())}>
+                Empty Cart
+              </a>
+            </div>
+            <button>Check Out</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  );
+};
+export default ShoppingCart;

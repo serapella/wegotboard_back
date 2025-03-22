@@ -64,3 +64,8 @@ export interface NewsFeedItem {
   guid: string;
   isoDate: Date;
 }
+export interface Cart {
+  _id: string;
+  products: [];
+  quantity: number;
+}
