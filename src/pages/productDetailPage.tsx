@@ -4,7 +4,7 @@ import ProductTabs from "../components/ProductTabs";
 import PopularProducts from "../components/PopularProducts";
 import styles from "../css_modules/ProductDetailpage.module.css";
 
-const ProductDetail = () => {
+const ProductDetailPage = () => {
   return (
     <div className={styles.productDetailPage}>
       <section className={styles.productContent}>
@@ -22,4 +22,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailPage;
