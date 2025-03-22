@@ -8,6 +8,7 @@ import productAPI from "./productAPI";
 import filterReducer from "./filterSlice";
 import productgridReducer from "./paginationSlice";
 import newsAPI from "./newsAPI";
+import sort from "./sortSlice";
 
 const persistConfig = {
   key: "wgb_root",
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   cartSlice: cartReducer,
   filter: filterReducer,
   productGrid: productgridReducer,
+  sort: sort,
   [productAPI.reducerPath]: productAPI.reducer,
   [newsAPI.reducerPath]: newsAPI.reducer,
 });

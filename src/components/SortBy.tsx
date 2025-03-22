@@ -1,8 +1,12 @@
 import styles from "../css_modules/sortBy.module.css";
 import { BsGrid3X3 } from "react-icons/bs";
 import { BsListTask } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { setSelectedSort } from "../store/sortSlice";
 
 const SortBy = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.productSorting}>
       <div>
@@ -19,7 +23,12 @@ const SortBy = () => {
         <p>We found 29 items for you!</p>
       </div>
       <div>
-        <select name="sortDropdown" id="sortDropdown">
+        <select
+          name="sortDropdown"
+          id="sortDropdown"
+          defaultValue="default"
+          onChange={(e) => dispatch(setSelectedSort(e.target.value))}
+        >
           <option value="default">Sort By : Featured</option>
           <option value="popularity">Popularity</option>
           <option value="ascending">Price - Ascending</option>
