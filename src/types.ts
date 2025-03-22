@@ -28,7 +28,7 @@ export interface Product {
   categories: Category[];
   difficulty: "easy" | "medium" | "hard";
   duration: "short" | "medium" | "long";
-  image: string[];
+  images: string[];
   createdAt: string;
   updatedAt: string;
 }

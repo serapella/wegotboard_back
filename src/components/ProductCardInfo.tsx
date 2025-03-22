@@ -1,10 +1,16 @@
 import styles from "../css_modules/productCardInfo.module.css";
 import { BsCart3, BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 
-const ProductCardInfo = () => {
+import { Product } from "../types";
+
+interface ProductCardInfoProps {
+  product: Product;
+}
+
+const ProductCardInfo = ({ product }: ProductCardInfoProps) => {
   return (
     <div className={styles.popular_item_text}>
-      <h5>Deep Rock Galactic Boardgame</h5>
+      <h5>{product.name}</h5>
       <i className={styles.ratingIcon}>
         <BsStarFill />
         <BsStarFill />
@@ -17,7 +23,7 @@ const ProductCardInfo = () => {
         By <span>De Spelfanaat</span>
       </p>
       <div className={styles.popular_item_bottom}>
-        <h4>$32.85</h4>
+        <h4>{product.price}</h4>
         <p>$33.8</p>
         <button>
           <span>

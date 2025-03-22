@@ -1,14 +1,13 @@
 import { Filter } from "../components/Filter";
-import Layout from "../components/Layout";
 import ProductGrid from "../components/ProductGrid";
+import Pagination from "../components/Pagination";
 
 const ProductListPage = () => {
   return (
     <div>
-      <Layout>
-        <ProductGrid />
-        <Filter />
-      </Layout>
+      <ProductGrid />
+      <Filter />
+      <Pagination />
     </div>
   );
 };
