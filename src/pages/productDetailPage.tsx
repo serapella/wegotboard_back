@@ -16,7 +16,7 @@ const ProductDetail = () => {
       </section>
 
       <section className={styles.popularSection}>
-        <PopularProducts />
+        <PopularProducts variant="detail" />
       </section>
     </div>
   );

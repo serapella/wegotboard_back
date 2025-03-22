@@ -64,3 +64,11 @@ export interface NewsFeedItem {
   guid: string;
   isoDate: Date;
 }
+
+export interface PopularProductsProps {
+  variant?: "landing" | "detail";
+}
+
+export interface ProductGridProps {
+  maxItems?: number;
+}
