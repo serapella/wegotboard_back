@@ -3,12 +3,13 @@ import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
 import ProductDetailPage from "./pages/productDetailPage";
 
+import LandingPage from "./pages/LandingPage";
 const App = () => {
   return (
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<></>} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/products" element={<></>} />
           <Route path="/products/:id/:slug" element={<ProductDetailPage />} />
           <Route path="/categories" element={<></>} />

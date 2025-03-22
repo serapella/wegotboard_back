@@ -6,7 +6,7 @@ import logger from "redux-logger";
 import cartReducer from "./cartSlice";
 import productAPI from "./productAPI";
 import filterReducer from "./filterSlice";
-import reviewsReducer from "./reviewSlice";
+import reviewReducer from "./reviewSlice";
 import newsAPI from "./newsAPI";
 
 const persistConfig = {
@@ -16,6 +16,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  reviewSlice: reviewReducer,
   counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
