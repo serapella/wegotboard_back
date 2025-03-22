@@ -13,7 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   cartSlice: cartReducer,
-  reviews: reviewsReducer,
+  reviewSlice: reviewsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
