@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLoginMutation } from "../store/authAPI";
-import styles from "../css_modules/Login.module.css";
+import styles from "../css_modules/login.module.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();

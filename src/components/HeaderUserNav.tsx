@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { BsPerson, BsHeart, BsCart3, BsSearch } from "react-icons/bs";
+import { BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
 import styles from "../css_modules/HeaderUserNav.module.css";
 import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 import { useSelector } from "react-redux";
