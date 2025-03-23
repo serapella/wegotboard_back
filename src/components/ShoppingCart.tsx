@@ -28,41 +28,45 @@ const ShoppingCart = () => {
       <section className={style.shoppingCartCrud}>
         <form className={style.crud} action="#" method="POST">
           <table>
-            <tr className={style.tableHead}>
-              <th>Product</th>
-              <th id="thProductName"></th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-            {cart &&
-              cart.map((product) => (
-                <tr className={style.tableData}>
-                  <td className={style.productCartImage}>
-                    <div>
-                      <img src={`../${product.image}`} alt={product.name} />
-                    </div>
-                  </td>
-                  <td className={style.productCartName}>
-                    <p>{product.name}</p>
-                  </td>
-                  <td className={style.productCartPrice}>
-                    <p>€ {product.price}</p>
-                  </td>
-                  <td className={style.productCartQty}>
-                    <button onClick={() => dispatch(increment())}>+</button>
-                    <input type="number" className="product-qty" min="1" max="10" value={product.quantity} />
-                    <button onClick={() => dispatch(decrement())}>-</button>
-                  </td>
-                  <td className={style.productCartTotalQtyPrice}>€ {product.price * product.quantity}</td>
-                  <td className={style.productCartDelete}>
-                    <a href="#" onClick={() => dispatch(deleteProductFromCart(product._id))}>
-                      🗑️
-                    </a>
-                  </td>
-                </tr>
-              ))}
+            <thead>
+              <tr className={style.tableHead}>
+                <td>Product</td>
+                <td id="thProductName"></td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Total</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              {cart &&
+                cart.map((product) => (
+                  <tr className={style.tableData}>
+                    <td className={style.productCartImage}>
+                      <div>
+                        <img src={`../${product.image}`} alt={product.name} />
+                      </div>
+                    </td>
+                    <td className={style.productCartName}>
+                      <p>{product.name}</p>
+                    </td>
+                    <td className={style.productCartPrice}>
+                      <p>€ {product.price}</p>
+                    </td>
+                    <td className={style.productCartQty}>
+                      <button onClick={() => dispatch(increment())}>+</button>
+                      <input type="number" className="product-qty" min="1" max="10" value={product.quantity} />
+                      <button onClick={() => dispatch(decrement())}>-</button>
+                    </td>
+                    <td className={style.productCartTotalQtyPrice}>€ {product.price * product.quantity}</td>
+                    <td className={style.productCartDelete}>
+                      <a href="#" onClick={() => dispatch(deleteProductFromCart(product._id))}>
+                        🗑️
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
           </table>
           <hr />
           <td className={style.productCartTotalPrice}>Total: € {cart.reduce((acc, product) => acc + product.price * product.quantity, 0)}</td>
