@@ -33,12 +33,12 @@ export interface Product {
   updatedAt: string;
 }
 
-interface Tag {
+export interface Tag {
   _id: string;
   name: string;
 }
 
-interface Category {
+export interface Category {
   _id: string;
   name: string;
 }
@@ -65,7 +65,6 @@ export interface NewsFeedItem {
   isoDate: Date;
 }
 export interface Cart {
-  _id: string;
-  products: [];
+  products: Product[];
   quantity: number;
 }

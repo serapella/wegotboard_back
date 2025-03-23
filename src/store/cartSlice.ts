@@ -3,7 +3,6 @@ import { type RootState } from ".";
 import { type Product, type Cart } from "../types";
 
 const initialState: Cart = {
-  _id: "",
   products: [],
   quantity: 0,
 };
@@ -12,20 +11,14 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
-      const existingProduct = state.products.find((product) => product._id === action.payload._id);
-      if (existingProduct) {
-        existingProduct.quantity += 1;
-      } else {
-        state.products.push({ ...action.payload, quantity: 1 });
-      }
-      state.quantity += action.payload.quantity;
+    addToCart: (state, { payload }: PayloadAction<Product>) => {
+      state.products.push(payload);
     },
-    deleteProductFromCart: (state, action) => {
-      state.cart = state.cart.filter((product) => product._id !== action.payload.id);
+    deleteProductFromCart: (state, { payload }: PayloadAction<string>) => {
+      state.products.filter((product) => product._id !== payload);
     },
     emptyCart: (state) => {
-      state.cart = [];
+      state.products = [];
     },
     increment: (state) => {
       state.quantity += 1;
@@ -34,13 +27,12 @@ const cartSlice = createSlice({
       state.quantity -= 1;
     },
     geTotalCartPrice: (state) => {
-      state.total = state.products.reduce((acc, product) => acc + product.price, 0);
+      state.quantity = state.products.reduce((acc, product) => acc + product.price, 0);
     },
-    // getTotalProductQuantityPrice: (state) => {},
+    // getTotalProductQuantityPrice: () => {},
   },
 });
 
-export const { deleteProductFromCart, geTotalCartPrice, emptyCart, increment, decrement, addToCart, getTotalProductQuantityPrice } =
-  cartSlice.actions;
-export const selectCart = (state: RootState) => state.cartSlice.cart;
+export const { deleteProductFromCart, geTotalCartPrice, emptyCart, increment, decrement, addToCart } = cartSlice.actions;
+export const selectCart = (state: RootState) => state.cartSlice.products;
 export default cartSlice.reducer;

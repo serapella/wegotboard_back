@@ -1,9 +1,11 @@
 import style from "../css_modules/shoppingcart.module.css";
-import { selectCart, increment, decrement, deleteProductFromCart, emptyCart, geTotalCartPrice, addToCart } from "../store/cartSlice";
+import { selectCart, increment, decrement, deleteProductFromCart, emptyCart, geTotalCartPrice } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+
 import cartData from "../cartTestData.json";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
+
   //   const cart = useSelector(selectCart);
   const cart = cartData;
   return (
@@ -64,7 +66,7 @@ const ShoppingCart = () => {
               ))}
           </table>
           <hr />
-          <td className={style.productCartTotalPrice}>Total: € 100.00</td>
+          <td className={style.productCartTotalPrice}>Total: € {cart.reduce((acc, product) => acc + product.price, 0)}</td>
           <div className={style.checkOut}>
             <div className={style.linksCheckOut}>
               <a href="#">Continue Shopping</a>
