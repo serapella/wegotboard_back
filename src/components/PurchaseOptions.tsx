@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./PurchaseOptions.module.css";
+import styles from "../css_modules/PurchaseOptions.module.css";
 import {
   BsHeart,
   BsHeartFill,
