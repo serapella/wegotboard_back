@@ -1,0 +1,58 @@
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qtyInput {
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border: 1px solid var(--cardBorder);
+  border-radius: 0.5rem;
+}
+
+.qtyInput::-webkit-outer-spin-button,
+.qtyInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.qtyInput[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.qtyBtnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.qtyBtn {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
+  border-radius: 0.3rem;
+  background-color: white;
+  border: 1px solid var(--cardBorder);
+  color: var(--black-like);
+}
+
+.qtyBtn:hover:not(:disabled) {
+  background-color: var(--amountItemsFiltered);
+  color: white;
+  border-color: var(--amountItemsFiltered);
+}
+
+.qtyBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
