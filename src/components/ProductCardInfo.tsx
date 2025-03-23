@@ -1,32 +1,65 @@
 import styles from "../css_modules/productCardInfo.module.css";
-import { BsCart3, BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
+import { BsCart3, BsStarFill, BsStar } from "react-icons/bs";
+import { ProductCardProps } from "../types";
+import { useGetUserReviewByIdQuery } from "../store/reviewAPI";
 
-const ProductCardInfo = () => {
+const ProductCardInfo: React.FC<ProductCardProps> = ({
+  variant = "landing",
+  product,
+}) => {
+  const { data: reviews } = useGetUserReviewByIdQuery(product?._id || "", {
+    skip: !product?._id,
+  });
+
+  if (!product) {
+    return null;
+  }
+
+  // Calculate average rating
+  const averageRating = reviews?.length
+    ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
+    : 0;
+
+  const renderStars = () => {
+    return Array.from({ length: 5 }).map((_, index) => (
+      <span key={index}>
+        {index < averageRating ? (
+          <BsStarFill className={styles.starFilled} />
+        ) : (
+          <BsStar className={styles.starEmpty} />
+        )}
+      </span>
+    ));
+  };
+
   return (
     <div className={styles.popular_item_text}>
-      <h5>Deep Rock Galactic Boardgame</h5>
-      <i className={styles.ratingIcon}>
-        <BsStarFill />
-        <BsStarFill />
-        <BsStarFill />
-        <BsStarHalf />
-        <BsStar />
-      </i>
-      <p>(4.0)</p>
-      <p>
-        By <span>De Spelfanaat</span>
+      <p className={styles.vendor}>
+        By <span>{product.category?.name || "Unknown"}</span>
       </p>
+      <div className={styles.rating_container}>
+        <div className={styles.ratingIcon}>{renderStars()}</div>
+        <div className={styles.rating_value}>
+          ({reviews?.length || 0} {reviews?.length === 1 ? "Review" : "Reviews"}
+          )
+        </div>
+      </div>
+      <h5>{product.name}</h5>
       <div className={styles.popular_item_bottom}>
-        <h4>$32.85</h4>
-        <p>$33.8</p>
-        <button>
-          <span>
-            <BsCart3 />
+        <div className={styles.price_container}>
+          <span className={styles.current_price}>
+            ${product.price.toFixed(2)}
           </span>
-          Add
-        </button>
+        </div>
+        {variant === "landing" && (
+          <button className={styles.add_button}>
+            <BsCart3 />
+            Add
+          </button>
+        )}
       </div>
     </div>
   );
 };
+
 export default ProductCardInfo;

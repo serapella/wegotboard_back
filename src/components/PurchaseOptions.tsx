@@ -1,22 +1,18 @@
-import styles from "../css_modules/purchaseOptions.module.css";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { BsShare } from "react-icons/bs";
+import React, { useState } from "react";
+import styles from "../css_modules/PurchaseOptions.module.css";
+import { BsHeart, BsHeartFill, BsShare } from "react-icons/bs";
 import Counter from "./Counter";
-import { useState } from "react";
 import Modal from "./Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Product } from "../types";
 
-const imageList = [
-  "https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2958&auto=format&fit=crop",
-  "../Gloomhaven.jpg",
-  "../HeroQuest.jpg",
-  "../mh_bg.png",
-  "../talisman.jpg",
-];
+interface PurchaseOptionsProps {
+  product: Product;
+}
 
-const PurchaseOptions = () => {
-  const [mainImage, setMainImage] = useState(imageList[0]);
+const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
+  const [mainImage, setMainImage] = useState(product.images[0]);
   const [isLiked, setIsLiked] = useState(false);
 
   const handleShare = async () => {
@@ -29,34 +25,9 @@ const PurchaseOptions = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        style: {
-          fontSize: "1.4rem",
-          fontWeight: 600,
-          color: "var(--black-like)",
-          background: "var(--cardBackground)",
-          border: "1px solid var(--cardBorder)",
-          borderRadius: "0.5rem",
-          padding: "1.2rem",
-        },
       });
     } catch (err) {
-      toast.error("Failed to copy link. Please try again.", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        style: {
-          fontSize: "1.4rem",
-          fontWeight: 600,
-          color: "var(--errorText)",
-          background: "var(--errorBackground)",
-          border: "1px solid var(--errorBorder)",
-          borderRadius: "0.5rem",
-          padding: "1.2rem",
-        },
-      });
+      toast.error("Failed to copy link. Please try again.");
     }
   };
 
@@ -65,17 +36,15 @@ const PurchaseOptions = () => {
       <div className={styles.productContent}>
         <div className={styles.productGallery}>
           <div className={styles.mainImage}>
-            <Modal imgSrc={mainImage} imgAlt="needs to be changed" />
+            <Modal imgSrc={mainImage} imgAlt={product.name} />
           </div>
           <div className={styles.thumbnailImages}>
-            {imageList.map((img, index) => (
+            {product.images.map((img, index) => (
               <img
                 key={index}
                 src={img}
-                alt={`Thumbnail ${index}`}
-                className={`${styles.thumbnail} ${
-                  mainImage === img ? styles.active : ""
-                }`}
+                alt={`${product.name} - View ${index + 1}`}
+                className={mainImage === img ? styles.active : ""}
                 onClick={() => setMainImage(img)}
               />
             ))}
@@ -83,45 +52,42 @@ const PurchaseOptions = () => {
         </div>
       </div>
       <div className={styles.productInfo}>
-        <div className={styles.gameCategory}></div>
-        <h1>Luxury Wooden Chess Set</h1>
-        <p>
-          Luxury Wooden Chess Set Luxury Wooden Chess Set Luxury Wooden Chess
-          Set Luxury Wooden Chess Set Luxury Wooden Chess Set
-        </p>
+        <div className={styles.gameCategory}>
+          {product.category?.name || "Board Game"}
+        </div>
+        <h1>{product.name}</h1>
+        <p>{product.description}</p>
         <div className={styles.rating}>
           <div className={styles.stars}>★★★★★</div>
           <span>(182 Reviews)</span>
         </div>
         <div className={styles.productDetails}>
           <div className={styles.detailRow}>
-            <span className={styles.label}>Brand</span>
-            <span className={styles.value}>Royal Chess Collection</span>
-          </div>
-          <div className={styles.detailRow}>
-            <span className={styles.label}>Publisher</span>
-            <span className={styles.value}>classNameic Games Co.</span>
-          </div>
-          <div className={styles.detailRow}>
             <span className={styles.label}>Players</span>
-            <span className={styles.value}>2 Players</span>
+            <span className={styles.value}>
+              {product.playerCount.min}-{product.playerCount.max} Players
+            </span>
           </div>
           <div className={styles.detailRow}>
-            <span className={styles.label}>Age</span>
-            <span className={styles.value}>8+</span>
+            <span className={styles.label}>Difficulty</span>
+            <span className={styles.value}>{product.difficulty}</span>
           </div>
           <div className={styles.detailRow}>
-            <span className={styles.label}>Material</span>
-            <span className={styles.value}>Rosewood & Maple</span>
+            <span className={styles.label}>Duration</span>
+            <span className={styles.value}>{product.duration}</span>
           </div>
           <div className={styles.detailRow}>
-            <span className={styles.label}>Board Size</span>
-            <span className={styles.value}>20" x 20"</span>
+            <span className={styles.label}>Language</span>
+            <span className={styles.value}>{product.language}</span>
           </div>
         </div>
         <div className={styles.priceSection}>
-          <span className={styles.discountPrice}>$199.99</span>
-          <span className={styles.originalPrice}>$249.99</span>
+          <span className={styles.discountPrice}>
+            ${product.price.toFixed(2)}
+          </span>
+          <span className={styles.originalPrice}>
+            ${(product.price * 1.2).toFixed(2)}
+          </span>
         </div>
         <div className={styles.purchaseOptions}>
           <div className={styles.addToCartSection}>
@@ -129,12 +95,12 @@ const PurchaseOptions = () => {
             <button className={styles.addToCart}>Add To Cart</button>
             <div className={styles.actionButtons}>
               <button
-                className={`${styles.wishlist} ${isLiked ? styles.liked : ""}`}
+                className={`${isLiked ? styles.liked : ""}`}
                 onClick={() => setIsLiked(!isLiked)}
               >
                 {isLiked ? <BsHeartFill /> : <BsHeart />}
               </button>
-              <button className={styles.zoom} onClick={handleShare}>
+              <button onClick={handleShare}>
                 <BsShare />
               </button>
             </div>

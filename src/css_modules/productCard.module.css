@@ -1,16 +1,22 @@
 .popular_item {
-  border-radius: 1.5rem;
+  background: white;
   border: 1px solid var(--cardBorder);
+  border-radius: 1.2rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 29.8rem;
-  > img {
-    width: 24.6rem;
-    height: 24.6rem;
-    border-radius: 1.5rem;
-    margin-top: 2.5rem;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  & .image_placeholder {
+    width: 100%;
+    aspect-ratio: 1;
     background-color: var(--filter);
+    border-bottom: 1px solid var(--cardBorder);
   }
 }

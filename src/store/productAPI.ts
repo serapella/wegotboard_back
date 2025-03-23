@@ -11,13 +11,13 @@ const productAPI = createApi({
     getProducts: builder.query<Product[], ProductQuery>({
       query: ({
         products = "products",
-        page = 0,
-        limit = 15,
+        page = undefined,
+        limit = undefined,
         sort = undefined,
         order = undefined,
-        priceMax = 999,
-        playerMin = 1,
-        playerMax = 99,
+        priceMax = undefined,
+        playerMin = undefined,
+        playerMax = undefined,
         tags = undefined,
         categories = undefined,
         difficulty = undefined,
@@ -52,20 +52,5 @@ const productAPI = createApi({
   }),
 });
 
+export const { useGetProductsQuery, useGetProductByIdQuery } = productAPI;
 export default productAPI;
-
-export const { useGetProductsQuery } = productAPI;
-
-/*
-`products?${`page=${page}&`}${`limit=${limit}&`}${
-          sort ? `sort=${sort}&` : ""
-        }${order ? `order=${order}&` : ""}${
-          priceMax ? `priceMax=${priceMax}&` : ""
-        }${playerMin ? `playerMin=${playerMin}&` : ""}${
-          playerMax ? `playerMax=${playerMax}&` : ""
-        }${tags.length > 0 ? `tags=${tags.join(",")}&` : ""}${
-          categories.length > 0 ? `categories=${categories}&` : ""
-        }${difficulty ? `difficulty=${difficulty}&` : ""}${
-          duration ? `duration=${duration}` : ""
-        }`,
-*/

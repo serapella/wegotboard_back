@@ -5,7 +5,7 @@ import { setReviews } from "../store/reviewSlice";
 import styles from "../css_modules/greatwords.module.css";
 
 const GreatWords: React.FC = () => {
-  const reviews = useSelector((state: RootState) => state.reviews.reviews);
+  const reviews = useSelector((state: RootState) => state.reviewSlice.reviews);
   const dispatch = useDispatch();
 
   useEffect(() => {
