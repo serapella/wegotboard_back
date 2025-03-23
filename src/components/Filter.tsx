@@ -37,6 +37,13 @@ let difficulty_translation: { [key: string]: string } = {
   medium: "Intermediate",
   hard: "Expert",
 };
+let player_count_translation: { [key: string]: string } = {
+  players_1: "Solo",
+  players_2: "2 Players",
+  "players_3-5": "3-5 Players",
+  "players_6+": ">5 Players",
+  "players_10+": "Party Games",
+};
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -106,7 +113,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(togglePlayerCount(count))}
                 />
-                <p>{count}</p>
+                <p>{player_count_translation[count]}</p>
               </div>
             </li>
           ))}

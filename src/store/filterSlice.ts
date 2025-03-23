@@ -32,11 +32,11 @@ const initialState: FilterState = {
     max: 200,
   },
   playerCount: {
-    Solo: false,
-    "2 Players": false,
-    "3-5 Players": false,
-    ">5 Players": false,
-    "Party Games": false,
+    players_1: false,
+    players_2: false,
+    "players_3-5": false,
+    "players_6+": false,
+    "players_10+": false,
   },
   duration: {
     short: false,

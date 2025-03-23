@@ -9,6 +9,51 @@ import { setProducts, setTotalPages } from "../store/paginationSlice";
 import { useGetProductsQuery } from "../store/productAPI";
 import { ProductQuery } from "../types";
 
+interface PlayerCount {
+  min: number;
+  max: number;
+}
+
+let player_count_translation: { [key: string]: PlayerCount } = {
+  players_1: { min: 1, max: 1 },
+  players_2: { min: 2, max: 2 },
+  "players_3-5": { min: 3, max: 5 },
+  "players_6+": { min: 2, max: 6 },
+  "players_10+": { min: 4, max: 999 },
+};
+
+const getPlayerCountMin = (playerCount: object) => {
+  let playercount_min = 999;
+
+  for (const [key, value] of Object.entries(playerCount)) {
+    if (value) {
+      if (player_count_translation[key].min < playercount_min) {
+        playercount_min = player_count_translation[key].min;
+      }
+    }
+  }
+
+  return playercount_min > 0 && playercount_min < 999
+    ? playercount_min
+    : undefined;
+};
+
+const getPlayerCountMax = (playerCount: object) => {
+  let playercount_max = -1;
+
+  for (const [key, value] of Object.entries(playerCount)) {
+    if (value) {
+      if (player_count_translation[key].max > playercount_max) {
+        playercount_max = player_count_translation[key].max;
+      }
+    }
+  }
+
+  return playercount_max > 0 && playercount_max < 999
+    ? playercount_max
+    : undefined;
+};
+
 const ProductListPage = () => {
   const dispatch = useDispatch();
   const { currentPage, productsPerPage, products } = useSelector(
@@ -27,13 +72,13 @@ const ProductListPage = () => {
     categories: Object.keys(categories).filter(
       (category) => categories[category]
     ),
-    priceRange: priceRange || {},
-    playerCount:
-      Object.keys(playerCount).filter((count) => playerCount[count]) || "",
+    priceMax: priceRange.max,
+    playerMin: getPlayerCountMin(playerCount),
+    playerMax: getPlayerCountMax(playerCount),
     duration: Object.keys(duration).find((time) => duration[time]) || "",
     difficulty:
       Object.keys(difficulty).find((level) => difficulty[level]) || "",
-    age,
+    // age,
   };
   const { data: fetchedProducts } = useGetProductsQuery(filters);
 
