@@ -7,14 +7,16 @@ import newsAPI from "./newsAPI";
 import reviewAPI from "./reviewAPI";
 import cartReducer from "./cartSlice";
 import filterReducer from "./filterSlice";
+import counterReducer from "./counterSlice";
 
 const persistConfig = {
   key: "wgb_root",
   storage,
-  whitelist: ["cartSlice"],
+  whitelist: ["cartSlice", "counterSlice"],
 };
 
 const rootReducer = combineReducers({
+  counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
   [productAPI.reducerPath]: productAPI.reducer,

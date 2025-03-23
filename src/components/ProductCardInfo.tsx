@@ -15,6 +15,7 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
     return null;
   }
 
+  // Calculate average rating
   const averageRating = reviews?.length
     ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
     : 0;
