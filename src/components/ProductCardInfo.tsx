@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../css_modules/productCardInfo.module.css";
 import { BsCart3, BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { ProductCardProps } from "../types";
@@ -14,7 +13,7 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
   return (
     <div className={styles.popular_item_text}>
       <p className={styles.vendor}>
-        By <span>{product.categories[0]?.name || "Unknown"}</span>
+        By <span>{product.category?.name || "Unknown"}</span>
       </p>
       <div className={styles.rating_container}>
         <div className={styles.ratingIcon}>

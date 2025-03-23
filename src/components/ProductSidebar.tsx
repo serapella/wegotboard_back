@@ -1,6 +1,6 @@
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router";
-import styles from "../css_modules/ProductSidebar.module.css";
+import styles from "./ProductSidebar.module.css";
 import { Product } from "../types";
 
 interface ProductSidebarProps {
