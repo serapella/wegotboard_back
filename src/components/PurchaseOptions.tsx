@@ -7,7 +7,7 @@ import {
   BsStarFill,
   BsStar,
 } from "react-icons/bs";
-import Counter from "./ShoppingCartAdd";
+import Counter from "./Counter";
 import Modal from "./Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

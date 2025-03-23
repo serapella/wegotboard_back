@@ -83,6 +83,17 @@ export interface ReviewResponse {
   limit: number;
 }
 
+export interface Cart {
+  itemList: CartItem[];
+  totalQuantity: number;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+  totalPrice: number;
+}
+
 export interface PopularProductsProps {
   variant?: "landing" | "detail";
 }
@@ -98,6 +109,7 @@ export interface ProductCardProps {
   product?: Product;
 }
 
+// Authentication Types
 export interface LoginCredentials {
   email: string;
   password: string;
