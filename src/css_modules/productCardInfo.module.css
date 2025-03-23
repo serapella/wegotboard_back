@@ -31,6 +31,10 @@
   color: var(--orange);
 }
 
+.starHalf {
+  color: var(--orange);
+}
+
 .starEmpty {
   color: #e4e4e4;
 }
