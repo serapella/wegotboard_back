@@ -1,4 +1,12 @@
 .footer {
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: inherit;
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: center;
