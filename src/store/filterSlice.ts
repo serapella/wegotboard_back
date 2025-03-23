@@ -57,7 +57,6 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     toggleCategory: (state, action: PayloadAction<string>) => {
-      console.log(action.payload);
       state.categories[action.payload] = !state.categories[action.payload];
     },
     setPriceRange: (

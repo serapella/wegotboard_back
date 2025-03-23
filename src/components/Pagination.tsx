@@ -21,17 +21,14 @@ const Pagination = () => {
 
       {Array.from({ length: totalPages }, (_, index) => index + 1).map(
         (page) => (
-          console.log(page),
-          (
-            <button
-              key={page}
-              onClick={() => {
-                dispatch(setCurrentPage(page));
-              }}
-            >
-              {page}
-            </button>
-          )
+          <button
+            key={page}
+            onClick={() => {
+              dispatch(setCurrentPage(page));
+            }}
+          >
+            {page}
+          </button>
         )
       )}
       <button

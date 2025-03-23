@@ -20,15 +20,12 @@ const productGridSlice = createSlice({
   initialState, // Set the initial state
   reducers: {
     setCurrentPage: (state, action: PayloadAction<number>) => {
-      console.log("Set Current Page was called !", action.payload);
       state.currentPage = action.payload;
     },
     setTotalPages: (state, action: PayloadAction<number>) => {
-      console.log("Set Total Pages was called !", action.payload);
       state.totalPages = action.payload;
     },
     setProducts: (state, action: PayloadAction<Product[]>) => {
-      console.log("Set Products was called !");
       state.products = action.payload;
     },
   },

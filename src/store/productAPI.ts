@@ -26,7 +26,6 @@ const productAPI = createApi({
         ageMax = undefined,
         search = undefined,
       }) => {
-        console.log("API Query - GetProducts: ");
         return {
           url: `/${products}`,
           method: "GET",

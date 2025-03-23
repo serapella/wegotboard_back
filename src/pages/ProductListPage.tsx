@@ -89,7 +89,6 @@ const ProductListPage = () => {
 
   const { categories, priceRange, playerCount, duration, difficulty, age } =
     useSelector((state: RootState) => state.filter || {});
-  // console.log("Redux state - Products:", products);
 
   const filters: ProductQuery = {
     categories: Object.keys(categories).filter(
@@ -108,14 +107,11 @@ const ProductListPage = () => {
 
   useEffect(() => {
     if (fetchedProducts) {
-      console.log("Fetched products:", fetchedProducts);
       dispatch(setProducts(fetchedProducts));
       dispatch(
         setTotalPages(Math.ceil(fetchedProducts.length / productsPerPage))
       );
     }
-    console.log("Products length:", products.length, productsPerPage);
-    console.log("Filters: ", filters);
   }, [fetchedProducts, productsPerPage]);
 
   useEffect(() => {

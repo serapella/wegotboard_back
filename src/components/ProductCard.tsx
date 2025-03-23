@@ -8,7 +8,6 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  console.log(product);
   return (
     <div className={styles.popular_item}>
       <img src={product.images[0]} alt="" />
