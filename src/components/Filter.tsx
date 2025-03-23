@@ -50,7 +50,7 @@ export const Filter = () => {
   const { categories, priceRange, playerCount, duration, difficulty, age } =
     useSelector((state: RootState) => state.filter);
 
-  const [sliderValue, setSliderValue] = useState(priceRange.min);
+  const [sliderValue, setSliderValue] = useState(priceRange.max);
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -58,7 +58,7 @@ export const Filter = () => {
   };
 
   const handlePriceFilter = () => {
-    dispatch(setPriceRange({ min: sliderValue, max: priceRange.max }));
+    dispatch(setPriceRange({ max: sliderValue, min: priceRange.min }));
   };
 
   return (
@@ -87,14 +87,14 @@ export const Filter = () => {
         <hr className={styles.divider} />
         <input
           type="range"
-          min="10"
+          min="0"
           max="200"
           value={sliderValue}
           onChange={handlePriceChange}
           className={styles.priceSlider}
         />
         <p className={styles.priceText}>
-          Price: €{sliderValue} - €{priceRange.max}
+          Price: €{priceRange.min} - €{sliderValue}
         </p>
         <button className={styles.filterButton} onClick={handlePriceFilter}>
           Filter

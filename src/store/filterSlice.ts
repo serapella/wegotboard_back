@@ -28,7 +28,7 @@ const initialState: FilterState = {
     "dice-games": false,
   },
   priceRange: {
-    min: 10,
+    min: 0,
     max: 200,
   },
   playerCount: {
