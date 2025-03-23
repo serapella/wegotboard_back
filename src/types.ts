@@ -11,6 +11,8 @@ export interface ProductQuery {
   categories?: string;
   difficulty?: string;
   duration?: string;
+  ageMin?: number;
+  ageMax?: number;
   search?: string;
 }
 
@@ -20,6 +22,8 @@ export interface Product {
   name: string;
   description: string;
   price: number;
+  discount: number;
+  userRating: number[];
   playerCount: {
     min: number;
     max: number;

@@ -3,10 +3,12 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import productAPI from "./productAPI";
+import filterReducer from "./filterSlice";
+import productgridReducer from "./paginationSlice";
 import newsAPI from "./newsAPI";
+import sort from "./sortSlice";
 import reviewAPI from "./reviewAPI";
 import cartReducer from "./cartSlice";
-import filterReducer from "./filterSlice";
 import counterReducer from "./counterSlice";
 import authsliceReducer from "./authSlice";
 
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
   counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
+  productGrid: productgridReducer,
+  sort: sort,
   authslice: authsliceReducer,
   [productAPI.reducerPath]: productAPI.reducer,
   [newsAPI.reducerPath]: newsAPI.reducer,

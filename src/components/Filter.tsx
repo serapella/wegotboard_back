@@ -22,12 +22,35 @@ const ageCategories = [
   "18+",
 ];
 
+let category_translation: { [key: string]: string } = {
+  "board-games": "Board Games",
+  "card-games": "Card Games",
+  "dice-games": "Dice Games",
+};
+let duration_translation: { [key: string]: string } = {
+  short: "Short (< 30min)",
+  medium: "Medium (30-60min)",
+  long: "Long (> 60min)",
+};
+let difficulty_translation: { [key: string]: string } = {
+  easy: "Beginner",
+  medium: "Intermediate",
+  hard: "Expert",
+};
+let player_count_translation: { [key: string]: string } = {
+  players_1: "Solo",
+  players_2: "2 Players",
+  "players_3-5": "3-5 Players",
+  "players_6+": ">5 Players",
+  "players_10+": "Party Games",
+};
+
 export const Filter = () => {
   const dispatch = useDispatch();
   const { categories, priceRange, playerCount, duration, difficulty, age } =
     useSelector((state: RootState) => state.filter);
 
-  const [sliderValue, setSliderValue] = useState(priceRange.min);
+  const [sliderValue, setSliderValue] = useState(priceRange.max);
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -35,7 +58,7 @@ export const Filter = () => {
   };
 
   const handlePriceFilter = () => {
-    dispatch(setPriceRange({ min: sliderValue, max: priceRange.max }));
+    dispatch(setPriceRange({ max: sliderValue, min: priceRange.min }));
   };
 
   return (
@@ -52,7 +75,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(toggleCategory(category))}
                 />
-                <p>{category}</p>
+                <p>{category_translation[category]}</p>
               </div>
             </li>
           ))}
@@ -64,14 +87,14 @@ export const Filter = () => {
         <hr className={styles.divider} />
         <input
           type="range"
-          min="10"
+          min="0"
           max="200"
           value={sliderValue}
           onChange={handlePriceChange}
           className={styles.priceSlider}
         />
         <p className={styles.priceText}>
-          Price: €{sliderValue} - €{priceRange.max}
+          Price: €{priceRange.min} - €{sliderValue}
         </p>
         <button className={styles.filterButton} onClick={handlePriceFilter}>
           Filter
@@ -90,7 +113,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(togglePlayerCount(count))}
                 />
-                <p>{count}</p>
+                <p>{player_count_translation[count]}</p>
               </div>
             </li>
           ))}
@@ -109,7 +132,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(toggleDuration(time))}
                 />
-                <p>{time}</p>
+                <p>{duration_translation[time]}</p>
               </div>
             </li>
           ))}
@@ -128,7 +151,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(toggleDifficulty(level))}
                 />
-                <p>{level}</p>
+                <p>{difficulty_translation[level]}</p>
               </div>
             </li>
           ))}

@@ -1,30 +1,38 @@
-import styles from "../css_modules/ProductCardInfo.module.css";
-import { BsCart3, BsStarFill, BsStar } from "react-icons/bs";
-import { Product } from "../types";
+import styles from "../css_modules/productCardInfo.module.css";
+import { BsCart3, BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
+import { Product } from "../types";
 
 interface ProductCardInfoProps {
   product: Product;
 }
-
 const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
   const { data: reviews } = useGetProductReviewsQuery(product._id);
+  if (!product) {
+    return null;
+  }
+  const avgRating =
+    product.userRating.reduce((a, b) => a + b, 0) / product.userRating.length;
+  const fullStars = Math.floor(avgRating);
+  const halfStar = avgRating % 1 !== 0;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
-  const averageRating = reviews?.length
-    ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
-    : 0;
+  const discountedPrice = (
+    product.price *
+    (1 - product.discount / 100)
+  ).toFixed(2);
 
-  const renderStars = () => {
-    return Array.from({ length: 5 }).map((_, index) => (
-      <span key={index}>
-        {index < Math.round(averageRating) ? (
-          <BsStarFill className={styles.starFilled} />
-        ) : (
-          <BsStar className={styles.starEmpty} />
-        )}
-      </span>
-    ));
-  };
+  const renderStars = () => (
+    <>
+      {Array.from({ length: fullStars }).map((_, index) => (
+        <BsStarFill key={`full-${index}`} className={styles.starFilled} />
+      ))}
+      {halfStar && <BsStarHalf key={"half"} className={styles.starHalf} />}
+      {Array.from({ length: emptyStars }).map((_, index) => (
+        <BsStar key={`empty-${index}`} className={styles.starEmpty} />
+      ))}
+    </>
+  );
 
   return (
     <div className={styles.content}>
@@ -39,11 +47,9 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
         </div>
       </div>
       <h5>{product.name}</h5>
-      <div className={styles.priceContainer}>
-        <div className={styles.price}>
-          <span className={styles.currentPrice}>
-            ${product.price.toFixed(2)}
-          </span>
+      <div className={styles.popular_item_bottom}>
+        <div className={styles.price_container}>
+          <span className={styles.current_price}>${discountedPrice}</span>
         </div>
         <button className={styles.addToCart}>
           <BsCart3 />
