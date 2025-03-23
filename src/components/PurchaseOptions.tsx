@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styles from "../css_modules/PurchaseOptions.module.css";
 import {
   BsHeart,
@@ -7,12 +8,13 @@ import {
   BsStarFill,
   BsStar,
 } from "react-icons/bs";
-import Counter from "./ShoppingCartAdd";
+// import Counter from "./Counter";
 import Modal from "./Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Product } from "../types";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
+import { addToCart } from "../store/cartSlice";
 
 interface PurchaseOptionsProps {
   product: Product;
@@ -22,10 +24,12 @@ const FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=300&q=80";
 
 const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
+  const dispatch = useDispatch();
   const [mainImage, setMainImage] = useState(
     product.images[0] || FALLBACK_IMAGE
   );
   const [isLiked, setIsLiked] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const { data: reviews } = useGetProductReviewsQuery(product._id);
 
@@ -36,17 +40,15 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
   const handleShare = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      toast.success("Link copied to clipboard!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.success("Link copied to clipboard!");
     } catch (err) {
       toast.error("Failed to copy link. Please try again.");
     }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ product, quantity }));
+    toast.success("Added to cart!");
   };
 
   const renderStars = () => {
@@ -99,7 +101,7 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
           <div className={styles.detailRow}>
             <span className={styles.label}>Players</span>
             <span className={styles.value}>
-              {product.playerCount.min}-{product.playerCount.max} Players
+              {product.playerCount.min}-{product.playerCount.max}
             </span>
           </div>
           <div className={styles.detailRow}>
@@ -125,11 +127,13 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
         </div>
         <div className={styles.purchaseOptions}>
           <div className={styles.addToCartSection}>
-            <Counter product={product} />
-
+            <Counter value={quantity} onChange={setQuantity} />
+            <button className={styles.addToCart} onClick={handleAddToCart}>
+              Add To Cart
+            </button>
             <div className={styles.actionButtons}>
               <button
-                className={`${isLiked ? styles.liked : ""}`}
+                className={isLiked ? styles.liked : ""}
                 onClick={() => setIsLiked(!isLiked)}
               >
                 {isLiked ? <BsHeartFill /> : <BsHeart />}
