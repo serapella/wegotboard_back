@@ -6,6 +6,7 @@ import ProductDetailPage from "./pages/productDetailPage";
 import LandingPage from "./pages/LandingPage";
 import ShoppingCart from "./components/ShoppingCart";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 const App = () => {
   return (
     <>
@@ -28,6 +29,7 @@ const App = () => {
             }
           />
           <Route path="/terms" element={<TermsAndConditions />}></Route>
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
       </Layout>
     </>
