@@ -10,7 +10,7 @@ import {
 } from "../controllers/userReviewController";
 
 router
-  .get("/users/reviews", getUserReviews)
+  .get("/reviews", getUserReviews)
   .get("/users/:id/reviews", getUserReviewById)
   .post("/users/:id/reviews", authenticateUser, createUserReview)
   .patch("/users/:id/reviews/:reviewId", authenticateUser, updateUserReview)
