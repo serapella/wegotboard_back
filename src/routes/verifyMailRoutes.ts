@@ -1,16 +1,16 @@
 import express from "express";
 const router = express.Router();
-import { sendVerificationEmail } from "../utils/verifyMail";
+import { sendEmail } from "../utils/verifyMail";
+import { Request, Response } from "express";
 
-router.post("/mail", async (req, res) => {
+router.post("/mail", async (req: Request, res: Response) => {
   try {
-    const { email, data } = req.body;
-    const response = await sendVerificationEmail(email, data);
-    res.send(response);
-    res.status(200).end();
+    const { email, name, link } = req.body;
+    const response = await sendEmail({ email, name, link });
+    res.status(200).json({ message: "Email sent successfully", response });
   } catch (error) {
-    console.log(error);
-    res.status(500).end();
+    console.error(error);
+    res.status(500).json({ error: "Failed to send email" });
   }
 });
 

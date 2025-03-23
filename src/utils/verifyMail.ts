@@ -1,33 +1,46 @@
 import dotenv from "dotenv";
 dotenv.config();
-import jwt from "jsonwebtoken";
-import { Recipient, EmailParams, MailerSend } from "mailersend";
-import { SMTP_USER } from "./envs";
+import { Recipient, EmailParams, MailerSend, Sender } from "mailersend";
+import { TEMPLATE_SENDER_MAIL, SMTP_USER } from "./envs";
+import { EmailData } from "./types";
 
-const mailersend = new MailerSend({ apiKey: process.env.MAILERSEND_API_KEY as string });
-
-export const sendVerificationEmail = async (userEmail: string, userId: string): Promise<void> => {
+export const sendEmail = async (data: EmailData) => {
   try {
-    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
-    const verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
-    const recipients = [new Recipient(userEmail, "New User")];
+    const mailersend = new MailerSend({ apiKey: process.env.MAILERSEND_API_KEY as string });
+
+    const recipients = [new Recipient(data.email, data.name)];
+
     const personalization = [
       {
-        email: userEmail,
-        data: { verification_link: verificationLink },
+        email: data.email,
+        data: {
+          name: data.name,
+          link: data.link,
+        },
       },
     ];
 
-    const emailParams = new EmailParams()
-      .setFrom(SMTP_USER as any)
-      .setTo(recipients)
-      .setSubject("Verify Your Email")
-      .setTemplateId("ynrw7gyx5vkl2k8e")
-      .setPersonalization(personalization);
+    const emailParams = new EmailParams({
+      from: new Sender(SMTP_USER as string, "WeGotBoard"),
+      to: recipients,
+      subject: "Verify your email",
+      templateId: TEMPLATE_SENDER_MAIL,
+      personalization: personalization,
+    });
 
-    await mailersend.email.send(emailParams);
-    console.log("Verification email sent to:", userEmail);
+    if (TEMPLATE_SENDER_MAIL) {
+      emailParams.setTemplateId(TEMPLATE_SENDER_MAIL as string);
+      emailParams.setPersonalization(personalization);
+    } else {
+      emailParams.setText(`Hello ${data.name}, please verify your email using this link: ${data.link}`);
+    }
+
+    const response = await mailersend.email.send(emailParams);
+    console.log("Email sent successfully:", response);
+    return response;
   } catch (error) {
-    console.error("Error sending verification email:", error);
+    console.error(error);
+    console.log("Failed to send email");
+    throw error;
   }
 };

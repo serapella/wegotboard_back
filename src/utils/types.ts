@@ -24,3 +24,8 @@ declare global {
     }
   }
 }
+export type EmailData = {
+  email: string;
+  name: string;
+  link: string;
+};
