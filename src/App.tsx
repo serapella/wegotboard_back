@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
 import ProductDetailPage from "./pages/productDetailPage";
 import LandingPage from "./pages/LandingPage";
-import WishlistPage from "./pages/wishlistPage";
+import WishlistPage from "./pages/WishlistPage";
 const App = () => {
   return (
     <>
