@@ -2,8 +2,8 @@ import "./style.css";
 import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
 import ProductDetailPage from "./pages/productDetailPage";
-
 import LandingPage from "./pages/LandingPage";
+import WishlistPage from "./pages/wishlistPage";
 const App = () => {
   return (
     <>
@@ -16,7 +16,14 @@ const App = () => {
           <Route path="/user/login" element={<></>} />
           <Route path="/user/register" element={<></>} />
           <Route path="/user/logout" element={<></>} />
-          <Route path="/user/wishlist" element={<></>} />
+          <Route
+            path="/user/wishlist"
+            element={
+              <>
+                <WishlistPage />
+              </>
+            }
+          />
           <Route path="/cart" element={<></>} />
         </Routes>
       </Layout>
