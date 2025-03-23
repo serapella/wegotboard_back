@@ -1,17 +1,20 @@
 .quantity {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
 }
 
 .qtyInput {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
   text-align: center;
   padding: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: 500;
   border: 1px solid var(--cardBorder);
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
+  background: white;
+  color: var(--black-like);
 }
 
 .qtyInput::-webkit-outer-spin-button,
@@ -27,23 +30,23 @@
 .qtyBtnContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .qtyBtn {
-  width: 1.8rem;
-  height: 1.8rem;
-  border: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--cardBorder);
+  background-color: white;
+  color: var(--black-like);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  transition: all 0.3s ease;
-  border-radius: 0.3rem;
-  background-color: white;
-  border: 1px solid var(--cardBorder);
-  color: var(--black-like);
+  font-size: 1.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 0.4rem;
 }
 
 .qtyBtn:hover:not(:disabled) {

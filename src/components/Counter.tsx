@@ -1,62 +1,45 @@
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  increment,
+  decrement,
+  getCount,
+  setValue,
+} from "../store/counterSlice";
 import styles from "./Counter.module.css";
 
-interface CounterProps {
-  value: number;
-  onChange: (value: number) => void;
-  min?: number;
-  max?: number;
-}
+const Counter = () => {
+  const val = useSelector(getCount);
+  const dispatch = useDispatch();
 
-const Counter: React.FC<CounterProps> = ({
-  value,
-  onChange,
-  min = 1,
-  max = 99,
-}) => {
-  const handleIncrement = () => {
-    if (value < max) {
-      onChange(value + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (value > min) {
-      onChange(value - 1);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value, 10);
-    if (!isNaN(newValue) && newValue >= min && newValue <= max) {
-      onChange(newValue);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const numValue = Number(value);
+    if (value === "" || !isNaN(numValue)) {
+      dispatch(setValue(Math.max(numValue, 1)));
     }
   };
 
   return (
     <div className={styles.quantity}>
       <input
-        type="number"
         className={styles.qtyInput}
-        value={value}
-        onChange={handleChange}
-        min={min}
-        max={max}
+        type="number"
+        value={val}
+        onChange={handleInputChange}
+        min="1"
       />
       <div className={styles.qtyBtnContainer}>
-        <button
-          type="button"
-          className={styles.qtyBtn}
-          onClick={handleIncrement}
-          disabled={value >= max}
-        >
+        <button className={styles.qtyBtn} onClick={() => dispatch(increment())}>
           +
         </button>
         <button
-          type="button"
           className={styles.qtyBtn}
-          onClick={handleDecrement}
-          disabled={value <= min}
+          onClick={() => {
+            if (val > 1) {
+              dispatch(decrement());
+            }
+          }}
+          disabled={val <= 1}
         >
           -
         </button>
