@@ -8,7 +8,7 @@ export interface ProductQuery {
   playerMin?: number;
   playerMax?: number;
   tags?: string[];
-  categories?: string[];
+  categories?: string;
   difficulty?: string;
   duration?: string;
   search?: string;
@@ -29,6 +29,11 @@ export interface Product {
   difficulty: "easy" | "medium" | "hard";
   duration: "short" | "medium" | "long";
   images: string[];
+  overview: {
+    features: string[];
+    components: string[];
+    packaging: string;
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -74,25 +79,37 @@ export interface ProductCardProps {
   product?: Product;
 }
 
-export interface NewsFeed {
-  items: NewsFeedItem[];
-  image: string;
-  title: string;
-  description: string;
-  pubDate: string;
-  webMaster: string;
-  link: string;
-  language: string;
-  lastBuildDate: string;
-  backdrop: string;
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  role: "user" | "admin";
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface NewsFeedItem {
-  creator: string;
-  title: string;
-  link: string;
-  pubDate: string;
-  "dc:creator": string;
-  guid: string;
-  isoDate: Date;
+export interface UserReview {
+  _id: string;
+  user: User;
+  product: Product;
+  rating: number;
+  review?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateReviewDto {
+  product: string;
+  rating: number;
+  review?: string;
+}
+
+export interface ReviewQuery {
+  product?: string;
+  user?: string;
+  page?: number;
+  limit?: number;
+  sort?: string;
+  order?: string;
 }
