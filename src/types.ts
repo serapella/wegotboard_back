@@ -25,6 +25,7 @@ export interface Product {
     max: number;
   };
   tags: Tag[];
+
   category: Category;
   difficulty: "easy" | "medium" | "hard";
   duration: "short" | "medium" | "long";
@@ -95,4 +96,13 @@ export interface ProductGridProps {
 export interface ProductCardProps {
   variant?: "landing" | "detail";
   product?: Product;
+}
+export interface Cart {
+  itemList: ProductWithQty[];
+  totalQuantity: number;
+}
+export interface ProductWithQty {
+  product: Product;
+  quantity: number;
+  totalPrice: number;
 }

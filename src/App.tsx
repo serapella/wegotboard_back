@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import ProductDetailPage from "./pages/productDetailPage";
 
 import LandingPage from "./pages/LandingPage";
+import ShoppingCart from "./components/ShoppingCart";
 const App = () => {
   return (
     <>
@@ -17,7 +18,14 @@ const App = () => {
           <Route path="/user/register" element={<></>} />
           <Route path="/user/logout" element={<></>} />
           <Route path="/user/wishlist" element={<></>} />
-          <Route path="/cart" element={<></>} />
+          <Route
+            path="/cart"
+            element={
+              <>
+                <ShoppingCart />
+              </>
+            }
+          />
         </Routes>
       </Layout>
     </>

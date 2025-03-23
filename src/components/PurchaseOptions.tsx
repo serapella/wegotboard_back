@@ -7,7 +7,7 @@ import {
   BsStarFill,
   BsStar,
 } from "react-icons/bs";
-import Counter from "./Counter";
+import Counter from "./ShoppingCartAdd";
 import Modal from "./Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -125,8 +125,8 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
         </div>
         <div className={styles.purchaseOptions}>
           <div className={styles.addToCartSection}>
-            <Counter />
-            <button className={styles.addToCart}>Add To Cart</button>
+            <Counter product={product} />
+
             <div className={styles.actionButtons}>
               <button
                 className={`${isLiked ? styles.liked : ""}`}
