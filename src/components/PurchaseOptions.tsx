@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./PurchaseOptions.module.css";
+import styles from "../css_modules/PurchaseOptions.module.css";
 import { BsHeart, BsHeartFill, BsShare } from "react-icons/bs";
 import Counter from "./Counter";
 import Modal from "./Modal";
