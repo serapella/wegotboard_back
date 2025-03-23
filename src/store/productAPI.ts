@@ -11,13 +11,13 @@ const productAPI = createApi({
     getProducts: builder.query<Product[], ProductQuery>({
       query: ({
         products = "products",
-        page = 0,
-        limit = 15,
+        page = undefined,
+        limit = undefined,
         sort = undefined,
         order = undefined,
-        priceMax = 999,
-        playerMin = 1,
-        playerMax = 99,
+        priceMax = undefined,
+        playerMin = undefined,
+        playerMax = undefined,
         tags = undefined,
         categories = undefined,
         difficulty = undefined,

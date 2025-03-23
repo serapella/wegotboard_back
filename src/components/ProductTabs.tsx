@@ -72,10 +72,8 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
             </li>
             <li>Difficulty: {product.difficulty}</li>
             <li>Duration: {product.duration}</li>
-            <li>Category: {product.category}</li>
+            <li>Category: {product.category.name}</li>
           </ul>
-          <h3>Care Instructions</h3>
-          <p>Store in a cool, dry place. Keep away from direct sunlight.</p>
         </TabContent>
 
         <TabContent isActive={activeTab === "review"}>
