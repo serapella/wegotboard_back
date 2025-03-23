@@ -43,7 +43,12 @@ export const createUserReview = async (
     console.log(userId, rating, review, id);
 
     if (!userId || !rating) {
-      res.status(400).json({ message: "User, and rating are required." });
+      res.status(400).json({ message: "User and rating are required." });
+      return;
+    }
+
+    if (rating < 1 || rating > 5) {
+      res.status(400).json({ message: "Rating must be between 1 and 5" });
       return;
     }
 
@@ -68,6 +73,11 @@ export const updateUserReview = async (
     const { reviewId, id } = req.params;
     const { user, product, rating, review } = req.body;
     const userId = user || id;
+
+    if (rating && (rating < 1 || rating > 5)) {
+      res.status(400).json({ message: "Rating must be between 1 and 5" });
+      return;
+    }
 
     const updatedReview = await UserReview.findByIdAndUpdate(
       reviewId,
