@@ -49,7 +49,10 @@ const ShoppingCart = () => {
             Total: €{" "}
             {cartItems &&
               cartItems
-                .reduce((acc, item) => acc + item.totalPrice, 0)
+                .reduce(
+                  (acc, item) => acc + item.product.price * item.quantity,
+                  0
+                )
                 .toFixed(2)}
           </div>
           <div className={style.checkOut}>
