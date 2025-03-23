@@ -4,16 +4,10 @@ import cors from "cors";
 import express from "express";
 import { notFound } from "./controllers/notFoundController";
 import productRoutes from "./routes/productRoutes";
-<<<<<<< HEAD
-import newsRoutes from "./routes/newsRoutes";
-import tagRoutes from "./routes/tagsRoutes";
-import categoryRoutes from "./routes/categoryRoutes";
-import { helloMiddleware } from "./middleware/exampleMiddleware";
-=======
->>>>>>> 12-wgb-api-route-users
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes";
 import userReviewRoutes from "./routes/userReviewRoutes";
+import cookieParser from "cookie-parser";
 
 // Variables
 const app = express();
@@ -22,16 +16,12 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use("/p", productRoutes);
-<<<<<<< HEAD
-app.use("/tags", tagRoutes);
-app.use("/categories", categoryRoutes);
-=======
 app.use("/u", userRoutes);
 app.use("/r", userReviewRoutes);
->>>>>>> 12-wgb-api-route-users
 app.all("*", notFound);
 
 // Database connection
