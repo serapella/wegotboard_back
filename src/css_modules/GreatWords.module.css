@@ -1,0 +1,89 @@
+.people {
+  text-align: center;
+  padding: 60px 20px;
+
+  width: 100%;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--black-like);
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--amountItemsFiltered);
+    max-width: 800px;
+    margin: 0 auto 30px;
+  }
+
+  .people_grid {
+    margin-top: 6rem;
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    height: 325px;
+
+    .people_item {
+      position: relative;
+      width: 410px;
+      background-color: var(--cardBorder);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      height: 278px;
+      .img-container {
+        display: block;
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin: 0 auto;
+
+        img {
+          border: 1rem solid white;
+          border-radius: 50%;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .people-text-container {
+        margin: 50px auto;
+        text-align: center;
+        max-width: 310px;
+        h6 {
+          font-size: 1rem;
+          color: var(--amountItemsFiltered);
+          margin-bottom: 10px;
+        }
+
+        h5 {
+          font-size: 1.3rem;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 1rem;
+          color: var(--amountItemsFiltered);
+          margin-bottom: 10px;
+        }
+
+        p:last-child {
+          font-size: 2rem;
+          color: var(--black-like);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

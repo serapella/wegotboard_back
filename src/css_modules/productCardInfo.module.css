@@ -1,0 +1,96 @@
+.popular_item_text {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.vendor {
+  font-size: 1.4rem;
+  color: var(--amountItemsFiltered);
+  margin-bottom: 1.2rem;
+}
+
+.vendor span {
+  color: var(--greenSubmit);
+}
+
+.rating_container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.rating_value {
+  font-size: 1.4rem;
+  color: var(--amountItemsFiltered);
+}
+
+.ratingIcon {
+  display: flex;
+  gap: 0.2rem;
+  font-size: 1.4rem;
+}
+
+.starFilled {
+  color: var(--orange);
+}
+
+.starEmpty {
+  color: #e4e4e4;
+}
+
+h5 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--black-like);
+  margin-bottom: 1.6rem;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+.popular_item_bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.price_container {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.current_price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navTop);
+}
+
+.add_button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  background-color: var(--navTop);
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add_button:hover {
+  background-color: var(--buttonHover);
+}
+
+.add_button svg {
+  font-size: 1.6rem;
+}
