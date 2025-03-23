@@ -1,6 +1,7 @@
 import "./style.css";
 import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
+import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/productDetailPage";
 import Login from "./pages/LoginPage";
 import LandingPage from "./pages/LandingPage";
@@ -15,7 +16,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/products" element={<></>} />
+          <Route path="/products" element={<ProductListPage />} />
           <Route path="/products/:id/:slug" element={<ProductDetailPage />} />
           <Route path="/categories" element={<></>} />
           <Route path="/user/login" element={<Login />} />
