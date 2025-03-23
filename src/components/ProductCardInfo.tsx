@@ -1,13 +1,19 @@
 import styles from "../css_modules/productCardInfo.module.css";
-import { BsCart3, BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
+import { BsCart3, BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
+import { ProductCardProps } from "../types";
+import { useGetProductReviewsQuery } from "../store/reviewAPI";
 
-import { Product } from "../types";
+const ProductCardInfo: React.FC<ProductCardProps> = ({
+  variant = "landing",
+  product,
+}) => {
+  const { data: reviews } = useGetProductReviewsQuery(product?._id || "", {
+    skip: !product?._id,
+  });
 
-interface ProductCardInfoProps {
-  product: Product;
-}
-
-const ProductCardInfo = ({ product }: ProductCardInfoProps) => {
+  if (!product) {
+    return null;
+  }
   const avgRating =
     product.userRating.reduce((a, b) => a + b, 0) / product.userRating.length;
   const fullStars = Math.floor(avgRating);
@@ -19,38 +25,54 @@ const ProductCardInfo = ({ product }: ProductCardInfoProps) => {
     (1 - product.discount / 100)
   ).toFixed(2);
 
+  const renderStars = () => {
+    return Array.from({ length: fullStars }, (_, index) => (
+      <span key={index}>
+        <BsStarFill className={styles.starFilled} />
+      </span>
+    ));
+    {
+      halfStar && (
+        <span>
+          <BsStarHalf />
+        </span>
+      );
+    }
+    {
+      Array.from({ length: emptyStars }, (_, index) => (
+        <span key={index}>
+          <BsStar className={styles.starEmpty} />
+        </span>
+      ));
+    }
+  };
+
   return (
     <div className={styles.popular_item_text}>
-      <h5>{product.name}</h5>
-      <i className={styles.ratingIcon}>
-        {Array.from({ length: fullStars }, (_, index) => (
-          <BsStarFill key={index} />
-        ))}
-        {halfStar && <BsStarHalf />}
-        {Array.from({ length: emptyStars }, (_, index) => (
-          <BsStar key={index} />
-        ))}
-      </i>
-      <p>({avgRating.toFixed(2)})</p>
-      <p>
-        By <span>De Spelfanaat</span>
+      <p className={styles.vendor}>
+        By <span>{product.category?.name || "Unknown"}</span>
       </p>
+      <div className={styles.rating_container}>
+        <div className={styles.ratingIcon}>{renderStars()}</div>
+        <div className={styles.rating_value}>
+          ({reviews?.length || 0} {reviews?.length === 1 ? "Review" : "Reviews"}
+          )
+        </div>
+      </div>
+      <h5>{product.name}</h5>
       <div className={styles.popular_item_bottom}>
-        <h4>{discountedPrice}</h4>
-        {product.discount > 0 && <p>${product.price}</p>}
-
-        <button
-          type="button"
-          className={styles.addToCart}
-          // TODO: onClick= add product to cart!
-        >
-          <span>
+        <div className={styles.price_container}>
+          <span className={styles.current_price}>${discountedPrice}</span>
+        </div>
+        {variant === "landing" && (
+          <button className={styles.add_button}>
             <BsCart3 />
-          </span>
-          Add
-        </button>
+            Add
+          </button>
+        )}
       </div>
     </div>
   );
 };
+
 export default ProductCardInfo;

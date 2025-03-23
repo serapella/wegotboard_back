@@ -56,6 +56,5 @@ const productAPI = createApi({
   }),
 });
 
+export const { useGetProductsQuery, useGetProductByIdQuery } = productAPI;
 export default productAPI;
-
-export const { useGetProductsQuery } = productAPI;

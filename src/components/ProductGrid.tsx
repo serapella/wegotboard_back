@@ -1,18 +1,21 @@
 import styles from "../css_modules/productGrid.module.css";
 import ProductCard from "./ProductCard";
-import { Product } from "../types";
+import { ProductGridProps } from "../types";
 
-interface ProductGridProps {
-  products: Product[];
-}
+const ProductGrid: React.FC<ProductGridProps> = ({
+  products,
+  maxItems = 8,
+  variant = "landing",
+}) => {
+  const displayProducts = products.slice(0, maxItems);
 
-const ProductGrid = ({ products }: ProductGridProps) => {
   return (
     <div className={styles.product_grid}>
-      {products.map((product) => (
-        <ProductCard key={product._id} product={product} />
+      {displayProducts.map((product) => (
+        <ProductCard key={product._id} product={product} variant={variant} />
       ))}
     </div>
   );
 };
+
 export default ProductGrid;

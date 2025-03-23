@@ -1,6 +1,7 @@
 import styles from "../css_modules/headerNav.module.css";
 import { LuPhone } from "react-icons/lu";
 import { BsList } from "react-icons/bs";
+import { NavLink } from "react-router";
 const HeaderMainNav = () => {
   return (
     <header>
@@ -12,7 +13,7 @@ const HeaderMainNav = () => {
         </div>
         <ul>
           <li>
-            <a href="#">Home</a>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
             <select name="category" id="category">

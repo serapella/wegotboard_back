@@ -8,7 +8,7 @@ export interface ProductQuery {
   playerMin?: number;
   playerMax?: number;
   tags?: string[];
-  categories?: string[];
+  categories?: string;
   difficulty?: string;
   duration?: string;
   ageMin?: number;
@@ -29,42 +29,84 @@ export interface Product {
     max: number;
   };
   tags: Tag[];
-  categories: Category[];
+
+  category: Category;
   difficulty: "easy" | "medium" | "hard";
   duration: "short" | "medium" | "long";
   images: string[];
+  overview: {
+    features: string[];
+    components: string[];
+    packaging: string;
+  };
   createdAt: string;
   updatedAt: string;
 }
 
-interface Tag {
+export interface Tag {
   _id: string;
   name: string;
 }
 
-interface Category {
+export interface Category {
   _id: string;
   name: string;
 }
-export interface NewsFeed {
-  items: NewsFeedItem[];
-  image: string;
-  title: string;
-  description: string;
-  pubDate: string;
-  webMaster: string;
-  link: string;
-  language: string;
-  lastBuildDate: string;
-  backdrop: string;
+
+export interface User {
+  _id: string;
+  first: string;
+  last: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  role: "user" | "admin";
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface NewsFeedItem {
-  creator: string;
-  title: string;
-  link: string;
-  pubDate: string;
-  "dc:creator": string;
-  guid: string;
-  isoDate: Date;
+export interface Review {
+  _id: string;
+  user: User;
+  product: string;
+  rating: number;
+  review: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateReviewDto {
+  rating: number;
+  review: string;
+}
+
+export interface ReviewResponse {
+  reviews: Review[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface PopularProductsProps {
+  variant?: "landing" | "detail";
+}
+
+export interface ProductGridProps {
+  products: Product[];
+  maxItems?: number;
+  variant?: "landing" | "detail";
+}
+
+export interface ProductCardProps {
+  variant?: "landing" | "detail";
+  product?: Product;
+}
+export interface Cart {
+  itemList: ProductWithQty[];
+  totalQuantity: number;
+}
+export interface ProductWithQty {
+  product: Product;
+  quantity: number;
+  totalPrice: number;
 }
