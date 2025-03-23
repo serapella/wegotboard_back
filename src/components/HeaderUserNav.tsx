@@ -1,10 +1,14 @@
 import { Link } from "react-router";
 import { BsPerson, BsHeart, BsCart3, BsSearch } from "react-icons/bs";
 import styles from "../css_modules/HeaderUserNav.module.css";
+import SearchBar from "./SearchBar";
+import WeGotBoardLogo from "../images/WeGotBoard_.png";
 import { useSelector } from "react-redux";
+import { getTotalQuantity } from "../store/cartSlice";
 import { selectCurrentUser } from "../store/authSlice";
 
 const HeaderUserNav = () => {
+  const total = useSelector(getTotalQuantity);
   const user = useSelector(selectCurrentUser);
 
   return (
@@ -40,6 +44,7 @@ const HeaderUserNav = () => {
             <i>
               <BsCart3 />
             </i>
+            {total !== 0 && <span className={styles.quantity}>{total}</span>}
             Cart
           </Link>
         </li>

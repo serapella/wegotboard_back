@@ -3,7 +3,10 @@ import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
 import ProductDetailPage from "./pages/productDetailPage";
 import Login from "./pages/LoginPage";
-
+import LandingPage from "./pages/LandingPage";
+import ShoppingCart from "./components/ShoppingCart";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 const App = () => {
   return (
     <>
