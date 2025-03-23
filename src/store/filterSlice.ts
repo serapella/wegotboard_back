@@ -23,9 +23,9 @@ interface FilterState {
 
 const initialState: FilterState = {
   categories: {
-    "Board Games": false,
-    "Card Games": false,
-    "Dice Games": false,
+    "board-games": false,
+    "card-games": false,
+    "dice-games": false,
   },
   priceRange: {
     min: 10,
@@ -39,14 +39,14 @@ const initialState: FilterState = {
     "Party Games": false,
   },
   duration: {
-    "Short (< 30min)": false,
-    "Medium (30-60min)": false,
-    "Long (> 60min)": false,
+    short: false,
+    medium: false,
+    long: false,
   },
   difficulty: {
-    Beginner: false,
-    Intermediate: false,
-    Expert: false,
+    easy: false,
+    medium: false,
+    hard: false,
   },
   age: "All Ages",
   isFilterVisible: false,
@@ -57,6 +57,7 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     toggleCategory: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
       state.categories[action.payload] = !state.categories[action.payload];
     },
     setPriceRange: (
@@ -80,11 +81,6 @@ const filterSlice = createSlice({
     toggleFilterVisibility: (state) => {
       state.isFilterVisible = !state.isFilterVisible;
     },
-
-    //eventueel toevoegen.
-    // resetFilters: (state) => {
-    //   return initialState;
-    // },
   },
 });
 
@@ -96,7 +92,6 @@ export const {
   toggleDifficulty,
   setAge,
   toggleFilterVisibility,
-  // resetFilters,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

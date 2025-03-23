@@ -22,6 +22,22 @@ const ageCategories = [
   "18+",
 ];
 
+let category_translation: { [key: string]: string } = {
+  "board-games": "Board Games",
+  "card-games": "Card Games",
+  "dice-games": "Dice Games",
+};
+let duration_translation: { [key: string]: string } = {
+  short: "Short (< 30min)",
+  medium: "Medium (30-60min)",
+  long: "Long (> 60min)",
+};
+let difficulty_translation: { [key: string]: string } = {
+  easy: "Beginner",
+  medium: "Intermediate",
+  hard: "Expert",
+};
+
 export const Filter = () => {
   const dispatch = useDispatch();
   const { categories, priceRange, playerCount, duration, difficulty, age } =
@@ -52,7 +68,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(toggleCategory(category))}
                 />
-                <p>{category}</p>
+                <p>{category_translation[category]}</p>
               </div>
             </li>
           ))}
@@ -109,7 +125,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(toggleDuration(time))}
                 />
-                <p>{time}</p>
+                <p>{duration_translation[time]}</p>
               </div>
             </li>
           ))}
@@ -128,7 +144,7 @@ export const Filter = () => {
                   checked={checked}
                   onChange={() => dispatch(toggleDifficulty(level))}
                 />
-                <p>{level}</p>
+                <p>{difficulty_translation[level]}</p>
               </div>
             </li>
           ))}

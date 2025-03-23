@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { setProducts, setTotalPages } from "../store/paginationSlice";
 import { useGetProductsQuery } from "../store/productAPI";
+import { ProductQuery } from "../types";
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
@@ -18,17 +19,35 @@ const ProductListPage = () => {
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
 
-  const { data: fetchedProducts } = useGetProductsQuery({});
+  const { categories, priceRange, playerCount, duration, difficulty, age } =
+    useSelector((state: RootState) => state.filter || {});
+  // console.log("Redux state - Products:", products);
+
+  const filters: ProductQuery = {
+    categories: Object.keys(categories).filter(
+      (category) => categories[category]
+    ),
+    priceRange: priceRange || {},
+    playerCount:
+      Object.keys(playerCount).filter((count) => playerCount[count]) || "",
+    duration: Object.keys(duration).find((time) => duration[time]) || "",
+    difficulty:
+      Object.keys(difficulty).find((level) => difficulty[level]) || "",
+    age,
+  };
+  const { data: fetchedProducts } = useGetProductsQuery(filters);
 
   useEffect(() => {
     if (fetchedProducts) {
+      console.log("Fetched products:", fetchedProducts);
       dispatch(setProducts(fetchedProducts));
       dispatch(
         setTotalPages(Math.ceil(fetchedProducts.length / productsPerPage))
       );
     }
     console.log("Products length:", products.length, productsPerPage);
-  }, [fetchedProducts]);
+    console.log("Filters: ", filters);
+  }, [fetchedProducts, productsPerPage]);
 
   useEffect(() => {
     dispatch(setTotalPages(Math.ceil(products.length / productsPerPage)));
