@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import ProductDetailPage from "./pages/productDetailPage";
 
 import LandingPage from "./pages/LandingPage";
+import TermsAndConditions from "./pages/TermsAndConditions";
 const App = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/user/logout" element={<></>} />
           <Route path="/user/wishlist" element={<></>} />
           <Route path="/cart" element={<></>} />
+          <Route path="/terms" element={<TermsAndConditions />}></Route>
         </Routes>
       </Layout>
     </>
