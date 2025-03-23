@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../css_modules/PurchaseOptions.module.css";
+import styles from "./PurchaseOptions.module.css";
 import {
   BsHeart,
   BsHeartFill,
@@ -13,7 +13,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Product } from "../types";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
-import { addToCart } from "../store/cartSlice";
 
 interface PurchaseOptionsProps {
   product: Product;
@@ -127,7 +126,6 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
         <div className={styles.purchaseOptions}>
           <div className={styles.addToCartSection}>
             <Counter product={product} />
-
             <div className={styles.actionButtons}>
               <button
                 className={`${isLiked ? styles.liked : ""}`}
@@ -142,11 +140,9 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
           </div>
         </div>
       </div>
-      <button className={styles.addToCart} onClick={handleAddToCart}>
-        Add To Cart
-      </button>
+      <ToastContainer />
     </div>
   );
 };
 
-export default Counter;
+export default PurchaseOptions;
