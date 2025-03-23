@@ -27,8 +27,7 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
   );
   const [isLiked, setIsLiked] = useState(false);
 
-  const { data: reviews, isLoading: reviewsLoading } =
-    useGetProductReviewsQuery(product._id);
+  const { data: reviews } = useGetProductReviewsQuery(product._id);
 
   const averageRating = reviews?.length
     ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
@@ -86,9 +85,7 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
         </div>
       </div>
       <div className={styles.productInfo}>
-        <div className={styles.gameCategory}>
-          {product.category?.name || "Board Game"}
-        </div>
+        <div className={styles.gameCategory}>{product.category?.name}</div>
         <h1>{product.name}</h1>
         <p>{product.description}</p>
         <div className={styles.rating}>
