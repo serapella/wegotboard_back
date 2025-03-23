@@ -37,6 +37,18 @@ const ProductGrid = () => {
       dispatch(setProducts([...products].sort((a, b) => a.price - b.price)));
     } else if (selectedSort === "descending") {
       dispatch(setProducts([...products].sort((a, b) => b.price - a.price)));
+    } else if (selectedSort === "rating") {
+      dispatch(
+        setProducts(
+          [...products].sort((a, b) => {
+            const avgA =
+              a.userRating.reduce((a, b) => a + b, 0) / a.userRating.length;
+            const avgB =
+              b.userRating.reduce((a, b) => a + b, 0) / b.userRating.length;
+            return avgB - avgA;
+          })
+        )
+      );
     }
   }, [selectedSort]);
 
