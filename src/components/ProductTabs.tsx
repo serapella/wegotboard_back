@@ -5,7 +5,7 @@ import {
 } from "../store/reviewAPI";
 import styles from "../css_modules/ProductTabs.module.css";
 import { Product, Review } from "../types";
-import { BsStarFill, BsStar, BsStarHalf, BsTrash } from "react-icons/bs";
+import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
 interface ProductTabsProps {
   product: Product;
@@ -16,6 +16,8 @@ type TabContentProps = {
   children: React.ReactNode;
 };
 
+const REVIEWS_PER_PAGE = 4;
+
 const TabContent: React.FC<TabContentProps> = ({ isActive, children }) => (
   <div className={`${styles.description} ${isActive ? styles.active : ""}`}>
     {children}
@@ -24,6 +26,7 @@ const TabContent: React.FC<TabContentProps> = ({ isActive, children }) => (
 
 const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   const [activeTab, setActiveTab] = useState("description");
+  const [currentPage, setCurrentPage] = useState(1);
   const { data: reviews, isLoading } = useGetProductReviewsQuery(product._id);
   const [deleteReview] = useDeleteReviewMutation();
 
@@ -32,14 +35,10 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
       reviews.length
     : 0;
 
-  // Sort reviews by date (newest first) and limit to 10
-  const latestReviews = reviews
-    ?.slice()
-    .sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    )
-    .slice(0, 10);
+  const totalPages = Math.ceil((reviews?.length || 0) / REVIEWS_PER_PAGE);
+  const startIndex = (currentPage - 1) * REVIEWS_PER_PAGE;
+  const endIndex = startIndex + REVIEWS_PER_PAGE;
+  const currentReviews = reviews?.slice(startIndex, endIndex) || [];
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -159,11 +158,13 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
             <div className={styles.loading}>Loading reviews...</div>
           ) : (
             <div className={styles["reviews-container"]}>
-              {latestReviews?.map((review: Review) => (
+              {currentReviews.map((review: Review) => (
                 <div key={review._id} className={styles["review-card"]}>
                   <div className={styles["review-header"]}>
                     <div className={styles["reviewer-info"]}>
-                      <h4>{review.user.name.first}</h4>
+                      <h4>
+                        {review.user.name.first} {review.user.name.last}
+                      </h4>
                       <div className={styles["rating-stars"]}>
                         {renderStars(review.rating)}
                       </div>
@@ -172,6 +173,30 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
                   <p className={styles["review-quote"]}>{review.review}</p>
                 </div>
               ))}
+            </div>
+          )}
+
+          {totalPages > 1 && (
+            <div className={styles.pagination}>
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className={styles.pageButton}
+              >
+                Previous
+              </button>
+              <span className={styles.pageInfo}>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+                className={styles.pageButton}
+              >
+                Next
+              </button>
             </div>
           )}
         </TabContent>

@@ -1,15 +1,16 @@
 import { useNavigate } from "react-router";
 import styles from "../css_modules/ProductCard.module.css";
 import ProductCardInfo from "./ProductCardInfo";
-import { ProductCardProps } from "../types";
+import { Product } from "../types";
 
 const FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=300&q=80";
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  variant = "landing",
-  product,
-}) => {
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const navigate = useNavigate();
 
   if (!product) {
@@ -47,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {product.category?.name || "Board Game"}
         </div>
       </div>
-      <ProductCardInfo variant={variant} product={product} />
+      <ProductCardInfo product={product} />
     </div>
   );
 };

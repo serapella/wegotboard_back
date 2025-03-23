@@ -1,19 +1,14 @@
-import styles from "../css_modules/productCardInfo.module.css";
+import styles from "../css_modules/ProductCardInfo.module.css";
 import { BsCart3, BsStarFill, BsStar } from "react-icons/bs";
-import { ProductCardProps } from "../types";
+import { Product } from "../types";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
 
-const ProductCardInfo: React.FC<ProductCardProps> = ({
-  variant = "landing",
-  product,
-}) => {
-  const { data: reviews } = useGetProductReviewsQuery(product?._id || "", {
-    skip: !product?._id,
-  });
+interface ProductCardInfoProps {
+  product: Product;
+}
 
-  if (!product) {
-    return null;
-  }
+const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
+  const { data: reviews } = useGetProductReviewsQuery(product._id);
 
   const averageRating = reviews?.length
     ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
@@ -32,30 +27,28 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className={styles.popular_item_text}>
+    <div className={styles.content}>
       <p className={styles.vendor}>
-        By <span>{product.category?.name || "Unknown"}</span>
+        By <span>{product.category?.name}</span>
       </p>
-      <div className={styles.rating_container}>
-        <div className={styles.ratingIcon}>{renderStars()}</div>
-        <div className={styles.rating_value}>
+      <div className={styles.ratingContainer}>
+        <div className={styles.stars}>{renderStars()}</div>
+        <div className={styles.ratingValue}>
           ({reviews?.length || 0} {reviews?.length === 1 ? "Review" : "Reviews"}
           )
         </div>
       </div>
       <h5>{product.name}</h5>
-      <div className={styles.popular_item_bottom}>
-        <div className={styles.price_container}>
-          <span className={styles.current_price}>
+      <div className={styles.priceContainer}>
+        <div className={styles.price}>
+          <span className={styles.currentPrice}>
             ${product.price.toFixed(2)}
           </span>
         </div>
-        {variant === "landing" && (
-          <button className={styles.add_button}>
-            <BsCart3 />
-            Add
-          </button>
-        )}
+        <button className={styles.addToCart}>
+          <BsCart3 />
+          Add
+        </button>
       </div>
     </div>
   );
