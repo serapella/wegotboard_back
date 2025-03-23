@@ -22,7 +22,7 @@ export const getUserReviewById = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const reviews = await UserReview.find({ user: new ObjectId(id) })
+    const reviews = await UserReview.find({ product: new ObjectId(id) })
       .populate("user")
       .populate("product");
     res.status(200).json(reviews);
