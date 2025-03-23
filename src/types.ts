@@ -115,9 +115,11 @@ export interface ReviewQuery {
   order?: string;
 }
 export interface Cart {
-  items: CartItem[];
+  itemList: ProductWithQty[];
+  totalQuantity: number;
 }
-export interface CartItem {
-  product: Product["_id"];
+export interface ProductWithQty {
+  product: Product;
   quantity: number;
+  totalPrice: number;
 }
