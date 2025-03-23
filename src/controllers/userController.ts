@@ -263,7 +263,7 @@ export const getWishlist = async (req: Request, res: Response) => {
       return;
     }
     const _id = req.user._id;
-    const user = await User.findById(_id);
+    const user = await User.findById(_id).populate("favorites");
     if (!user) {
       res.status(404).json({
         message: "User not found",
@@ -301,9 +301,7 @@ export const removeFromWishlist = async (req: Request, res: Response) => {
       });
       return;
     }
-    user.favorites = user.favorites.filter(
-      (item: string) => item !== productId
-    );
+    user.favorites = user.favorites.filter((item) => item !== productId);
     await user.save();
     res.status(200).json({ message: "Product removed from wishlist" });
   } catch (error: unknown) {
