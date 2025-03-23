@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import ShoppingCart from "./components/ShoppingCart";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ContactUs from "./pages/ContactUs";
 const App = () => {
   return (
     <>
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </Layout>
     </>
