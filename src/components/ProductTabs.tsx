@@ -12,9 +12,7 @@ type TabContentProps = {
 };
 
 const TabContent: React.FC<TabContentProps> = ({ isActive, children }) => (
-  <div className={`${styles.description} ${isActive ? styles.active : ""}`}>
-    {children}
-  </div>
+  <div className={`${styles.description} ${isActive ? styles.active : ""}`}>{children}</div>
 );
 
 const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
@@ -23,22 +21,13 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   return (
     <div className={styles["product-tabs"]}>
       <div className={styles["tab-buttons"]}>
-        <button
-          className={activeTab === "description" ? styles.active : ""}
-          onClick={() => setActiveTab("description")}
-        >
+        <button className={activeTab === "description" ? styles.active : ""} onClick={() => setActiveTab("description")}>
           Description
         </button>
-        <button
-          className={activeTab === "information" ? styles.active : ""}
-          onClick={() => setActiveTab("information")}
-        >
+        <button className={activeTab === "information" ? styles.active : ""} onClick={() => setActiveTab("information")}>
           Information
         </button>
-        <button
-          className={activeTab === "review" ? styles.active : ""}
-          onClick={() => setActiveTab("review")}
-        >
+        <button className={activeTab === "review" ? styles.active : ""} onClick={() => setActiveTab("review")}>
           Review
         </button>
       </div>
@@ -46,12 +35,9 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
       <div className={styles["tab-content"]}>
         <TabContent isActive={activeTab === "description"}>
           <h3>Product Overview</h3>
-          <p>{product.description}</p>
+          <p>{product?.description || "No description available."}</p>
           <h3>Features</h3>
-          <p>
-            Experience the thrill of strategic gameplay and immersive
-            storytelling.
-          </p>
+          <p>Experience the thrill of strategic gameplay and immersive storytelling.</p>
           <h3>Components</h3>
           <ul className={styles["component-list"]}>
             <li>Game board</li>
@@ -66,13 +52,13 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
         <TabContent isActive={activeTab === "information"}>
           <h3>Product Specifications</h3>
           <ul className={styles["component-list"]}>
-            <li>Language: {product.language}</li>
+            <li>Language: {product?.language || "No language specified"}</li>
             <li>
-              Players: {product.playerCount.min}-{product.playerCount.max}
+              Players: {product?.playerCount.min || 0}-{product?.playerCount.max || 0}
             </li>
-            <li>Difficulty: {product.difficulty}</li>
-            <li>Duration: {product.duration}</li>
-            <li>Category: {product.category.name}</li>
+            <li>Difficulty: {product?.difficulty || "No difficulty specified"}</li>
+            <li>Duration: {product?.duration || "No duration specified"}</li>
+            <li>Category: {product?.category.name || "No category specified"}</li>
           </ul>
         </TabContent>
 

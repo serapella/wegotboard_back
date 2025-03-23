@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../types";
 
 interface WishlistState {
-  items: Product[];
+  items: Product[]; // Ensure `items` exists in the state
 }
 
 const initialState: WishlistState = {
-  items: [],
+  items: [], // Initialize an empty array
 };
 
 const wishlistSlice = createSlice({
@@ -26,3 +26,5 @@ const wishlistSlice = createSlice({
 
 export const { addToWishlist, removeFromWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;
+
+export type { WishlistState };

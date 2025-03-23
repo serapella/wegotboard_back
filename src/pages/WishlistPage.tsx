@@ -9,7 +9,10 @@ import ProductCard from "../components/ProductCard";
 import { Product } from "../types";
 
 const WishlistPage: React.FC = () => {
-  const wishlist = useSelector((state: RootState) => state.wishlist.items);
+  const wishlist = useSelector((state: RootState) => {
+    console.log("Redux State:", state);
+    return state.wishlistSlice.items;
+  });
   const dispatch = useDispatch();
 
   const handleRemove = (id: string) => {
