@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { useGetProductReviewsQuery } from "../store/reviewAPI";
+import {
+  useGetProductReviewsQuery,
+  useDeleteReviewMutation,
+} from "../store/reviewAPI";
 import styles from "../css_modules/ProductTabs.module.css";
-import { Product } from "../types";
-import { BsStarFill, BsStar } from "react-icons/bs";
+import { Product, Review } from "../types";
+import { BsStarFill, BsStar, BsStarHalf, BsTrash } from "react-icons/bs";
 
 interface ProductTabsProps {
   product: Product;
@@ -22,21 +25,57 @@ const TabContent: React.FC<TabContentProps> = ({ isActive, children }) => (
 const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   const [activeTab, setActiveTab] = useState("description");
   const { data: reviews, isLoading } = useGetProductReviewsQuery(product._id);
+  const [deleteReview] = useDeleteReviewMutation();
 
   const averageRating = reviews?.length
-    ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
+    ? reviews.reduce((acc: number, review: Review) => acc + review.rating, 0) /
+      reviews.length
     : 0;
 
+  // Sort reviews by date (newest first) and limit to 10
+  const latestReviews = reviews
+    ?.slice()
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+    .slice(0, 10);
+
   const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }).map((_, index) => (
-      <span key={index}>
-        {index < Math.round(rating) ? (
-          <BsStarFill className={styles.star} />
-        ) : (
-          <BsStar className={styles.star} />
-        )}
-      </span>
-    ));
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(
+        <BsStarFill key={`full-${i}`} className={styles.star} size={20} />
+      );
+    }
+
+    if (hasHalfStar) {
+      stars.push(<BsStarHalf key="half" className={styles.star} size={20} />);
+    }
+
+    const remainingStars = 5 - (fullStars + (hasHalfStar ? 1 : 0));
+    for (let i = 0; i < remainingStars; i++) {
+      stars.push(
+        <BsStar
+          key={`empty-${i}`}
+          className={`${styles.star} ${styles.emptyStar}`}
+          size={20}
+        />
+      );
+    }
+
+    return stars;
+  };
+
+  const handleDeleteReview = async (reviewId: string) => {
+    try {
+      await deleteReview({ productId: product._id, reviewId }).unwrap();
+    } catch (error) {
+      console.error("Failed to delete review:", error);
+    }
   };
 
   return (
@@ -120,7 +159,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
             <div className={styles.loading}>Loading reviews...</div>
           ) : (
             <div className={styles["reviews-container"]}>
-              {reviews?.map((review) => (
+              {latestReviews?.map((review: Review) => (
                 <div key={review._id} className={styles["review-card"]}>
                   <div className={styles["review-header"]}>
                     <div className={styles["reviewer-info"]}>
