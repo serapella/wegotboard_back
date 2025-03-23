@@ -5,6 +5,7 @@ import ProductDetailPage from "./pages/productDetailPage";
 
 import LandingPage from "./pages/LandingPage";
 import ShoppingCart from "./components/ShoppingCart";
+import TermsAndConditions from "./pages/TermsAndConditions";
 const App = () => {
   return (
     <>
@@ -26,6 +27,7 @@ const App = () => {
               </>
             }
           />
+          <Route path="/terms" element={<TermsAndConditions />}></Route>
         </Routes>
       </Layout>
     </>
