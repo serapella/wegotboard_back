@@ -1,7 +1,6 @@
 import style from "../css_modules/shoppingcart.module.css";
 import { selectCart, increment, decrement, deleteProductFromCart, emptyCart, geTotalCartPrice } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-
 import cartData from "../cartTestData.json";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -53,10 +52,10 @@ const ShoppingCart = () => {
                   </td>
                   <td className={style.productCartQty}>
                     <button onClick={() => dispatch(increment())}>+</button>
-                    <input type="number" className="product-qty" min="1" max="10" />
+                    <input type="number" className="product-qty" min="1" max="10" value={product.quantity} />
                     <button onClick={() => dispatch(decrement())}>-</button>
                   </td>
-                  <td className={style.productCartTotalQtyPrice}>€56.00</td>
+                  <td className={style.productCartTotalQtyPrice}>€ {product.price * product.quantity}</td>
                   <td className={style.productCartDelete}>
                     <a href="#" onClick={() => dispatch(deleteProductFromCart(product._id))}>
                       🗑️
@@ -66,7 +65,7 @@ const ShoppingCart = () => {
               ))}
           </table>
           <hr />
-          <td className={style.productCartTotalPrice}>Total: € {cart.reduce((acc, product) => acc + product.price, 0)}</td>
+          <td className={style.productCartTotalPrice}>Total: € {cart.reduce((acc, product) => acc + product.price * product.quantity, 0)}</td>
           <div className={style.checkOut}>
             <div className={style.linksCheckOut}>
               <a href="#">Continue Shopping</a>

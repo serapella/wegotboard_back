@@ -5,26 +5,27 @@ import { type Product, type Cart } from "../types";
 const initialState: Cart = {
   products: [],
   quantity: 0,
+  productQty: 0,
 };
 // TODO
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, { payload }: PayloadAction<Product>) => {
+    addToCart: (state, { payload }) => {
       state.products.push(payload);
     },
-    deleteProductFromCart: (state, { payload }: PayloadAction<string>) => {
+    deleteProductFromCart: (state, { payload }) => {
       state.products.filter((product) => product._id !== payload);
     },
     emptyCart: (state) => {
       state.products = [];
     },
     increment: (state) => {
-      state.quantity += 1;
+      state.productQty += 1;
     },
     decrement: (state) => {
-      state.quantity -= 1;
+      state.productQty -= 1;
     },
     geTotalCartPrice: (state) => {
       state.quantity = state.products.reduce((acc, product) => acc + product.price, 0);

@@ -67,4 +67,5 @@ export interface NewsFeedItem {
 export interface Cart {
   products: Product[];
   quantity: number;
+  productQty: number;
 }
