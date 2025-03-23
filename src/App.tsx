@@ -12,7 +12,7 @@ const App = () => {
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<></>} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/products" element={<></>} />
           <Route path="/products/:id/:slug" element={<ProductDetailPage />} />
           <Route path="/categories" element={<></>} />
@@ -20,7 +20,9 @@ const App = () => {
           <Route path="/user/register" element={<></>} />
           <Route path="/user/logout" element={<></>} />
           <Route path="/user/wishlist" element={<></>} />
-          <Route path="/cart" element={<></>} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
       </Layout>
     </>
