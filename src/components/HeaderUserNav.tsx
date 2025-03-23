@@ -1,8 +1,8 @@
-import { Link } from "react-router";
 import { BsPerson, BsHeart, BsCart3, BsSearch } from "react-icons/bs";
 import styles from "../css_modules/HeaderUserNav.module.css";
 import SearchBar from "./SearchBar";
-import WeGotBoardLogo from "../images/WeGotBoard_.png";
+import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
+import { Link } from "react-router";
 import { useSelector } from "react-redux";
 import { getTotalQuantity } from "../store/cartSlice";
 import { selectCurrentUser } from "../store/authSlice";
@@ -24,15 +24,15 @@ const HeaderUserNav = () => {
       </div>
       <ul>
         <li>
-          <Link to={user ? "/user/profile" : "/user/login"}>
+          <a href="#">
             <i>
               <BsPerson />
             </i>
-            {user ? `${user.name.first}` : "Account"}
-          </Link>
+            Account
+          </a>
         </li>
         <li>
-          <Link to="/user/wishlist">
+          <a href="#">
             <i>
               <BsHeart />
             </i>
