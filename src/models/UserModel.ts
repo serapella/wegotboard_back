@@ -1,11 +1,15 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { Product } from "./ProductModel";
 
 const UserSchema = new mongoose.Schema(
   {
-    favorites: {
-      type: Array,
-      required: true,
-    },
+    favorites: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: Product,
+        trim: true,
+      },
+    ],
     name: {
       first: { type: String, required: true, trim: true },
       last: { type: String, required: true, trim: true },
