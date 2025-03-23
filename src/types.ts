@@ -11,6 +11,8 @@ export interface ProductQuery {
   categories?: string[];
   difficulty?: string;
   duration?: string;
+  ageMin?: number;
+  ageMax?: number;
   search?: string;
 }
 

@@ -54,6 +54,29 @@ const getPlayerCountMax = (playerCount: object) => {
     : undefined;
 };
 
+const getAgeMin = (age: string) => {
+  switch (age) {
+    case "All Ages":
+      return 0;
+    case "6+":
+      return 6;
+    case "8+":
+      return 8;
+    case "10+":
+      return 10;
+    case "12+":
+      return 12;
+    case "14+":
+      return 14;
+    case "16+":
+      return 16;
+    case "18+":
+      return 18;
+    default:
+      return 0;
+  }
+};
+
 const ProductListPage = () => {
   const dispatch = useDispatch();
   const { currentPage, productsPerPage, products } = useSelector(
@@ -78,7 +101,8 @@ const ProductListPage = () => {
     duration: Object.keys(duration).find((time) => duration[time]) || "",
     difficulty:
       Object.keys(difficulty).find((level) => difficulty[level]) || "",
-    // age,
+    ageMin: getAgeMin(age),
+    ageMax: undefined,
   };
   const { data: fetchedProducts } = useGetProductsQuery(filters);
 

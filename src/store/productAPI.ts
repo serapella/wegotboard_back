@@ -22,6 +22,8 @@ const productAPI = createApi({
         categories = undefined,
         difficulty = undefined,
         duration = undefined,
+        ageMin = undefined,
+        ageMax = undefined,
         search = undefined,
       }) => {
         console.log("API Query - GetProducts: ");
@@ -40,6 +42,8 @@ const productAPI = createApi({
             categories,
             difficulty,
             duration,
+            ageMin,
+            ageMax,
             search,
           },
         };
