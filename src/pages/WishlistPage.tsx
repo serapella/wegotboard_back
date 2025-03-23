@@ -39,7 +39,7 @@ const WishlistPage: React.FC = () => {
             )}
           </div>
         </div>
-        <ProductTabs product={wishlist[0]} />
+        {/* <ProductTabs product={wishlist[0]} /> */}
       </section>
       <section className={styles.popularSection}>
         <PopularProducts variant="detail" />
