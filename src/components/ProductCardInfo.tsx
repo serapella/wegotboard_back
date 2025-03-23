@@ -1,16 +1,13 @@
 import styles from "../css_modules/productCardInfo.module.css";
 import { BsCart3, BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
-import { ProductCardProps } from "../types";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
+import { Product } from "../types";
 
-const ProductCardInfo: React.FC<ProductCardProps> = ({
-  variant = "landing",
-  product,
-}) => {
-  const { data: reviews } = useGetProductReviewsQuery(product?._id || "", {
-    skip: !product?._id,
-  });
-
+interface ProductCardInfoProps {
+  product: Product;
+}
+const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
+  const { data: reviews } = useGetProductReviewsQuery(product._id);
   if (!product) {
     return null;
   }
@@ -25,36 +22,26 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
     (1 - product.discount / 100)
   ).toFixed(2);
 
-  const renderStars = () => {
-    return Array.from({ length: fullStars }, (_, index) => (
-      <span key={index}>
-        <BsStarFill className={styles.starFilled} />
-      </span>
-    ));
-    {
-      halfStar && (
-        <span>
-          <BsStarHalf />
-        </span>
-      );
-    }
-    {
-      Array.from({ length: emptyStars }, (_, index) => (
-        <span key={index}>
-          <BsStar className={styles.starEmpty} />
-        </span>
-      ));
-    }
-  };
+  const renderStars = () => (
+    <>
+      {Array.from({ length: fullStars }).map((_, index) => (
+        <BsStarFill key={`full-${index}`} className={styles.starFilled} />
+      ))}
+      {halfStar && <BsStarHalf key={"half"} className={styles.starHalf} />}
+      {Array.from({ length: emptyStars }).map((_, index) => (
+        <BsStar key={`empty-${index}`} className={styles.starEmpty} />
+      ))}
+    </>
+  );
 
   return (
-    <div className={styles.popular_item_text}>
+    <div className={styles.content}>
       <p className={styles.vendor}>
-        By <span>{product.category?.name || "Unknown"}</span>
+        By <span>{product.category?.name}</span>
       </p>
-      <div className={styles.rating_container}>
-        <div className={styles.ratingIcon}>{renderStars()}</div>
-        <div className={styles.rating_value}>
+      <div className={styles.ratingContainer}>
+        <div className={styles.stars}>{renderStars()}</div>
+        <div className={styles.ratingValue}>
           ({reviews?.length || 0} {reviews?.length === 1 ? "Review" : "Reviews"}
           )
         </div>
@@ -64,12 +51,10 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
         <div className={styles.price_container}>
           <span className={styles.current_price}>${discountedPrice}</span>
         </div>
-        {variant === "landing" && (
-          <button className={styles.add_button}>
-            <BsCart3 />
-            Add
-          </button>
-        )}
+        <button className={styles.addToCart}>
+          <BsCart3 />
+          Add
+        </button>
       </div>
     </div>
   );

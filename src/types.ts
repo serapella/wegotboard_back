@@ -29,7 +29,6 @@ export interface Product {
     max: number;
   };
   tags: Tag[];
-
   category: Category;
   difficulty: "easy" | "medium" | "hard";
   duration: "short" | "medium" | "long";
@@ -55,9 +54,10 @@ export interface Category {
 
 export interface User {
   _id: string;
-  first: string;
-  last: string;
-  name: string;
+  name: {
+    first: string;
+    last: string;
+  };
   email: string;
   avatar?: string;
   role: "user" | "admin";
@@ -87,6 +87,17 @@ export interface ReviewResponse {
   limit: number;
 }
 
+export interface Cart {
+  itemList: CartItem[];
+  totalQuantity: number;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+  totalPrice: number;
+}
+
 export interface PopularProductsProps {
   variant?: "landing" | "detail";
 }
@@ -101,12 +112,26 @@ export interface ProductCardProps {
   variant?: "landing" | "detail";
   product?: Product;
 }
-export interface Cart {
-  itemList: ProductWithQty[];
-  totalQuantity: number;
+
+// Authentication Types
+export interface LoginCredentials {
+  email: string;
+  password: string;
 }
-export interface ProductWithQty {
-  product: Product;
-  quantity: number;
-  totalPrice: number;
+
+export interface RegisterCredentials {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface UserResponse {
+  user: User;
+  token: string;
+}
+
+export interface AuthState {
+  user: User | null;
+  token: string | null;
 }
