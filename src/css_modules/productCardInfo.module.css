@@ -11,10 +11,10 @@
   font-size: 1.4rem;
   color: var(--amountItemsFiltered);
   margin-bottom: 1.2rem;
+}
 
-  & span {
-    color: var(--greenSubmit);
-  }
+.vendor span {
+  color: var(--greenSubmit);
 }
 
 .rating_container {
@@ -32,8 +32,15 @@
 .ratingIcon {
   display: flex;
   gap: 0.2rem;
-  color: var(--orange);
   font-size: 1.4rem;
+}
+
+.starFilled {
+  color: var(--orange);
+}
+
+.starEmpty {
+  color: #e4e4e4;
 }
 
 h5 {
@@ -48,7 +55,7 @@ h5 {
 .popular_item_bottom {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
 }
@@ -65,12 +72,6 @@ h5 {
   color: var(--navTop);
 }
 
-.original_price {
-  font-size: 1.4rem;
-  color: var(--amountItemsFiltered);
-  text-decoration: line-through;
-}
-
 .add_button {
   display: flex;
   align-items: center;
@@ -84,12 +85,12 @@ h5 {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
+}
 
-  &:hover {
-    background-color: var(--buttonHover);
-  }
+.add_button:hover {
+  background-color: var(--buttonHover);
+}
 
-  & svg {
-    font-size: 1.6rem;
-  }
+.add_button svg {
+  font-size: 1.6rem;
 }
