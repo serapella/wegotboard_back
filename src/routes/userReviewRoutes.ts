@@ -11,9 +11,9 @@ import {
 
 router
   .get("/reviews", getUserReviews)
-  .get("/users/:id/reviews", getUserReviewById)
-  .post("/users/:id/reviews", authenticateUser, createUserReview)
-  .patch("/users/:id/reviews/:reviewId", authenticateUser, updateUserReview)
-  .delete("/users/:id/reviews/:reviewId", authenticateUser, deleteUserReview);
+  .get("/:id/reviews", getUserReviewById)
+  .post("/:id/reviews", authenticateUser, createUserReview)
+  .patch("/:id/reviews/:reviewId", authenticateUser, updateUserReview)
+  .delete("/:id/reviews/:reviewId", authenticateUser, deleteUserReview);
 
 export default router;
