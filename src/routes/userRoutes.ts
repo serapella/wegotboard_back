@@ -12,6 +12,7 @@ import {
   removeFromWishlist,
   deleteWishlist,
 } from "../controllers/userController";
+import { authenticateUser } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
@@ -22,9 +23,13 @@ router
   .post("/user/logout", logoutUser)
   .patch("/users/:id", updateUser)
   .delete("/users/:id", deleteUser)
-  .post("/users/:id/wishlist", addToWishlist)
-  .get("/users/:id/wishlist", getWishlist)
-  .delete("/users/:id/wishlist/:productId", removeFromWishlist)
-  .delete("/users/:id/wishlist", deleteWishlist);
+  .post("/users/:id/wishlist", authenticateUser, addToWishlist)
+  .get("/users/:id/wishlist", authenticateUser, getWishlist)
+  .delete(
+    "/users/:id/wishlist/:productId",
+    authenticateUser,
+    removeFromWishlist
+  )
+  .delete("/users/:id/wishlist", authenticateUser, deleteWishlist);
 
 export default router;
