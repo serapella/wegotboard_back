@@ -38,7 +38,7 @@ const LoginPage = () => {
 
   return (
     <main className={styles.main}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.logoWgb}>
           <h1>WeGotBoard</h1>
         </div>
