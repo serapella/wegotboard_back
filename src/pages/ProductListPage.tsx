@@ -15,7 +15,7 @@ interface PlayerCount {
 }
 
 let player_count_translation: { [key: string]: PlayerCount } = {
-  players_1: { min: 1, max: 1 },
+  players_1: { min: 1, max: 999 },
   players_2: { min: 2, max: 2 },
   "players_3-5": { min: 3, max: 5 },
   "players_6+": { min: 2, max: 6 },
