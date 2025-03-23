@@ -37,19 +37,17 @@ export const createUserReview = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const { user, product, rating, review } = req.body;
-    const userId = user || id;
+    const { rating, review } = req.body;
+    const userId = req.user;
 
-    if (!userId || !product || !rating) {
-      res
-        .status(400)
-        .json({ message: "User, product, and rating are required." });
+    if (!userId || !rating) {
+      res.status(400).json({ message: "User, and rating are required." });
       return;
     }
 
     const newReview = await UserReview.create({
       user: userId,
-      product,
+      product: id,
       rating,
       review,
     });
