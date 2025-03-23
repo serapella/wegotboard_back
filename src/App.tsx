@@ -1,8 +1,6 @@
-import ProductTabs from "./components/ProductTabs"; // default import
 import "./style.css";
 import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
-import { Filter } from "./components/Filter";
 import ShoppingCart from "./components/ShoppingCart";
 const App = () => {
   return (
