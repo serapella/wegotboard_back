@@ -1,46 +1,51 @@
-import styles from "../css_modules/HeaderUserNav.module.css";
-import { BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
-import SearchBar from "./SearchBar";
-
-import WeGotBoardLogo from "../images/WeGotBoard_.png";
 import { Link } from "react-router";
+import { BsPerson, BsHeart, BsCart3, BsSearch } from "react-icons/bs";
+import styles from "../css_modules/HeaderUserNav.module.css";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../store/authSlice";
 
 const HeaderUserNav = () => {
+  const user = useSelector(selectCurrentUser);
+
   return (
     <div className={styles.userNav}>
       <Link to="/">
-        <img src={WeGotBoardLogo} alt="logo" />
+        <h1>WeGotBoard</h1>
       </Link>
-      <SearchBar />
+      <div className={styles.searchBar}>
+        <input type="text" placeholder="Search products..." />
+        <button>
+          <BsSearch />
+        </button>
+      </div>
       <ul>
         <li>
-          <a href="#">
+          <Link to={user ? "/user/profile" : "/user/login"}>
             <i>
               <BsPerson />
             </i>
-            Account
-          </a>
+            {user ? `${user.name.first}` : "Account"}
+          </Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="/user/wishlist">
             <i>
-              {" "}
               <BsHeart />
             </i>
             Wishlist
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="/cart">
             <i>
-              {" "}
               <BsCart3 />
             </i>
             Cart
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
   );
 };
+
 export default HeaderUserNav;

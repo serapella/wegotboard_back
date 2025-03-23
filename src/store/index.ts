@@ -5,23 +5,29 @@ import logger from "redux-logger";
 import productAPI from "./productAPI";
 import newsAPI from "./newsAPI";
 import reviewAPI from "./reviewAPI";
+import userAPI from "./userAPI";
+import authAPI from "./authAPI";
 import cartReducer from "./cartSlice";
 import filterReducer from "./filterSlice";
 import counterReducer from "./counterSlice";
+import authReducer from "./authSlice";
 
 const persistConfig = {
   key: "wgb_root",
   storage,
-  whitelist: ["cartSlice", "counterSlice"],
+  whitelist: ["cartSlice", "counterSlice", "auth"],
 };
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
   [productAPI.reducerPath]: productAPI.reducer,
   [newsAPI.reducerPath]: newsAPI.reducer,
   [reviewAPI.reducerPath]: reviewAPI.reducer,
+  [userAPI.reducerPath]: userAPI.reducer,
+  [authAPI.reducerPath]: authAPI.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -37,7 +43,9 @@ const store = configureStore({
       logger,
       productAPI.middleware,
       newsAPI.middleware,
-      reviewAPI.middleware
+      reviewAPI.middleware,
+      userAPI.middleware,
+      authAPI.middleware
     ),
 });
 
