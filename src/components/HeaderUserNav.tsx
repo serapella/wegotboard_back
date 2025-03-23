@@ -1,7 +1,9 @@
 import styles from "../css_modules/HeaderUserNav.module.css";
 import { BsSearch, BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
 import SearchBar from "./SearchBar";
-import logo from "../images/WeGotBoard_.png";
+
+import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
+import { Link } from "react-router";
 
 const HeaderUserNav = () => {
   return (
