@@ -15,7 +15,7 @@ const ShoppingCartItem = ({ item }: { item: ProductWithQty }) => {
         <tr className={style.tableData}>
           <td className={style.productCartImage}>
             <div>
-              <img src={`../${data.images[0]}`} alt={item.product.name} />
+              <img src={`${data.images[0]}`} alt={item.product.name} />
             </div>
           </td>
           <td className={style.productCartName}>
