@@ -3,10 +3,7 @@ import PurchaseOptions from "../components/PurchaseOptions";
 import ProductSidebar from "../components/ProductSidebar";
 import ProductTabs from "../components/ProductTabs";
 import PopularProducts from "../components/PopularProducts";
-import {
-  useGetProductByIdQuery,
-  useGetProductsQuery,
-} from "../store/productAPI";
+import { useGetProductByIdQuery } from "../store/productAPI";
 import styles from "../css_modules/productDetailPage.module.css";
 
 const ProductDetailPage = () => {
@@ -18,13 +15,7 @@ const ProductDetailPage = () => {
     error: productError,
   } = useGetProductByIdQuery(id || "");
 
-  const { data: relatedProducts, isLoading: relatedLoading } =
-    useGetProductsQuery({
-      limit: 4,
-      page: 0,
-    });
-
-  if (productLoading || relatedLoading) {
+  if (productLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
@@ -57,7 +48,10 @@ const ProductDetailPage = () => {
     <div className={styles.productDetailPage}>
       <section className={styles.productContent}>
         <div className={styles.mainContent}>
-          <ProductSidebar products={relatedProducts?.slice(0, 3) || []} />
+          <ProductSidebar
+            currentProductId={product._id}
+            categoryId={product.category?._id}
+          />
           <PurchaseOptions product={product} />
         </div>
         <ProductTabs product={product} />

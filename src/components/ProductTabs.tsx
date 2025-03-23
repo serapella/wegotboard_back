@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
 import styles from "../css_modules/ProductTabs.module.css";
 import { Product } from "../types";
-import { BsStarFill } from "react-icons/bs";
+import { BsStarFill, BsStar } from "react-icons/bs";
 
 interface ProductTabsProps {
   product: Product;
@@ -28,8 +28,14 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
     : 0;
 
   const renderStars = (rating: number) => {
-    return Array.from({ length: Math.round(rating) }).map((_, index) => (
-      <BsStarFill key={index} className={styles.star} />
+    return Array.from({ length: 5 }).map((_, index) => (
+      <span key={index}>
+        {index < Math.round(rating) ? (
+          <BsStarFill className={styles.star} />
+        ) : (
+          <BsStar className={styles.star} />
+        )}
+      </span>
     ));
   };
 
@@ -118,7 +124,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
                 <div key={review._id} className={styles["review-card"]}>
                   <div className={styles["review-header"]}>
                     <div className={styles["reviewer-info"]}>
-                      <h4>{review.user.name}</h4>
+                      <h4>{review.user.name.first}</h4>
                       <div className={styles["rating-stars"]}>
                         {renderStars(review.rating)}
                       </div>

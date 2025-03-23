@@ -50,6 +50,8 @@ export interface Category {
 
 export interface User {
   _id: string;
+  first: string;
+  last: string;
   name: string;
   email: string;
   avatar?: string;
