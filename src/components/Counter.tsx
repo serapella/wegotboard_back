@@ -5,7 +5,7 @@ import {
   getCount,
   setValue,
 } from "../store/counterSlice";
-import styles from "../css_modules/counter.module.css";
+import styles from "../css_modules/Counter.module.css";
 import { Product } from "../types";
 import { addToCart } from "../store/cartSlice";
 
@@ -13,8 +13,7 @@ const Counter = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();
   const val = useSelector(getCount);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleAddToCart = () => {
     dispatch(addToCart({ product, quantity: val }));
     dispatch(setValue(1));
   };
@@ -28,7 +27,7 @@ const Counter = ({ product }: { product: Product }) => {
   };
 
   return (
-    <form className={styles.counterForm} onSubmit={onSubmit}>
+    <div className={styles.quantity}>
       <div className={styles.inputGroup}>
         <input
           className={styles.qtyInput}
@@ -52,15 +51,16 @@ const Counter = ({ product }: { product: Product }) => {
                 dispatch(decrement());
               }
             }}
+            disabled={val <= 1}
           >
             –
           </button>
         </div>
       </div>
-      <button className={styles.addToCart} type="submit">
+      <button className={styles.addToCart} onClick={handleAddToCart}>
         Add To Cart
       </button>
-    </form>
+    </div>
   );
 };
 
