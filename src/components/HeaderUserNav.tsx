@@ -9,7 +9,7 @@ const HeaderUserNav = () => {
   return (
     <div className={styles.userNav}>
       <a href="#">
-        <img src={logo} alt="logo" />
+        <img src={WeGotBoardLogo} alt="logo" />
       </a>
       <SearchBar />
       <ul>
