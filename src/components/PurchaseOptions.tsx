@@ -1,19 +1,38 @@
 import React, { useState } from "react";
 import styles from "../css_modules/PurchaseOptions.module.css";
-import { BsHeart, BsHeartFill, BsShare } from "react-icons/bs";
+import {
+  BsHeart,
+  BsHeartFill,
+  BsShare,
+  BsStarFill,
+  BsStar,
+} from "react-icons/bs";
 import Counter from "./Counter";
 import Modal from "./Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Product } from "../types";
+import { useGetProductReviewsQuery } from "../store/reviewAPI";
 
 interface PurchaseOptionsProps {
   product: Product;
 }
 
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=300&q=80";
+
 const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
-  const [mainImage, setMainImage] = useState(product.images[0]);
+  const [mainImage, setMainImage] = useState(
+    product.images[0] || FALLBACK_IMAGE
+  );
   const [isLiked, setIsLiked] = useState(false);
+
+  const { data: reviews, isLoading: reviewsLoading } =
+    useGetProductReviewsQuery(product._id);
+
+  const averageRating = reviews?.length
+    ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
+    : 0;
 
   const handleShare = async () => {
     try {
@@ -31,6 +50,18 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
     }
   };
 
+  const renderStars = () => {
+    return Array.from({ length: 5 }).map((_, index) => (
+      <span key={index}>
+        {index < Math.round(averageRating) ? (
+          <BsStarFill className={styles.starFilled} />
+        ) : (
+          <BsStar className={styles.starEmpty} />
+        )}
+      </span>
+    ));
+  };
+
   return (
     <div className={styles.productOverview}>
       <div className={styles.productContent}>
@@ -42,10 +73,13 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
             {product.images.map((img, index) => (
               <img
                 key={index}
-                src={img}
+                src={img || FALLBACK_IMAGE}
                 alt={`${product.name} - View ${index + 1}`}
                 className={mainImage === img ? styles.active : ""}
                 onClick={() => setMainImage(img)}
+                onError={(e) => {
+                  e.currentTarget.src = FALLBACK_IMAGE;
+                }}
               />
             ))}
           </div>
@@ -58,8 +92,11 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
         <h1>{product.name}</h1>
         <p>{product.description}</p>
         <div className={styles.rating}>
-          <div className={styles.stars}>★★★★★</div>
-          <span>(182 Reviews)</span>
+          <div className={styles.stars}>{renderStars()}</div>
+          <span>
+            ({reviews?.length || 0}{" "}
+            {reviews?.length === 1 ? "Review" : "Reviews"})
+          </span>
         </div>
         <div className={styles.productDetails}>
           <div className={styles.detailRow}>
