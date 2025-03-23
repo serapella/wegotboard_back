@@ -22,9 +22,9 @@ export const getUserReviewById = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const reviews = await UserReview.find({ product: new ObjectId(id) })
-      .populate("user")
-      .populate("product");
+    const reviews = await UserReview.find({
+      product: new ObjectId(id),
+    }).populate("user", "name");
     res.status(200).json(reviews);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
