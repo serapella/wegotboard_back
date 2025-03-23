@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Product, ProductQuery } from "../types";
 
 const productAPI = createApi({
-  tagTypes: ["Product"],
+  tagTypes: ["Product", "Wishlist"],
   reducerPath: "productAPI",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/p",
@@ -49,8 +49,12 @@ const productAPI = createApi({
       query: (id) => `/products/${id}`,
       providesTags: ["Product"],
     }),
+    getWishlist: builder.query<Product[], void>({
+      query: () => "/wishlist",
+      providesTags: ["Wishlist"],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = productAPI;
+export const { useGetProductsQuery, useGetProductByIdQuery, useGetWishlistQuery } = productAPI;
 export default productAPI;

@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
+import wishlistReducer from "./wishlistSlice";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import productAPI from "./productAPI";
@@ -16,6 +17,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  wishlistSlice: wishlistReducer,
   counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
@@ -33,12 +35,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
-    }).concat(
-      logger,
-      productAPI.middleware,
-      newsAPI.middleware,
-      reviewAPI.middleware
-    ),
+    }).concat(logger, productAPI.middleware, newsAPI.middleware, reviewAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

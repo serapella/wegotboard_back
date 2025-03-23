@@ -1,49 +1,48 @@
-import { useParams } from "react-router";
-import ProductGrid from "../components/ProductGrid";
-import ProductCard from "../components/ProductCard";
-import ProductCardInfo from "../components/ProductCardInfo";
-import { useGetProductsQuery } from "../store/productAPI";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store/index";
+import { removeFromWishlist } from "../store/wishlistSlice";
+import ProductSidebar from "../components/ProductSidebar";
+import ProductTabs from "../components/ProductTabs";
+import PopularProducts from "../components/PopularProducts";
 import styles from "../css_modules/wishlistPage.module.css";
+import ProductCard from "../components/ProductCard";
+import { Product } from "../types";
 
-const WishlistPage = () => {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useGetProductsQuery({
-    products: "wishlist",
-  });
+const WishlistPage: React.FC = () => {
+  const wishlist = useSelector((state: RootState) => state.wishlist.items);
+  const dispatch = useDispatch();
 
-  if (isLoading) {
-    return (
-      <div className={styles.container}>
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-500"></div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={styles.container}>
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-red-500 text-xl font-semibold">Error loading wishlist</div>
-        </div>
-      </div>
-    );
-  }
+  const handleRemove = (id: string) => {
+    dispatch(removeFromWishlist(id));
+  };
 
   return (
-    <div className={styles.container}>
-      <ProductGrid products={products}>
-        {products?.map((product) => (
-          <ProductCard key={product._id} product={product}>
-            <ProductCardInfo product={product} />
-          </ProductCard>
-        ))}
-      </ProductGrid>
+    <div className={styles.wishlistPage}>
+      <section className={styles.productContent}>
+        <div className={styles.mainContent}>
+          <ProductSidebar products={wishlist.slice(0, 3)} />
+          <div className={styles.wishlistGrid}>
+            {wishlist.length > 0 ? (
+              wishlist.map((product: Product) => (
+                <div key={product._id} className={styles.productCardWrapper}>
+                  <ProductCard product={product} />
+                  <button className={styles.removeButton} onClick={() => handleRemove(product._id)}>
+                    Remove from Wishlist
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p className={styles.emptyMessage}>Your wishlist is empty.</p>
+            )}
+          </div>
+        </div>
+        <ProductTabs product={wishlist[0]} />
+      </section>
+      <section className={styles.popularSection}>
+        <PopularProducts variant="detail" />
+      </section>
     </div>
   );
 };
+
 export default WishlistPage;
