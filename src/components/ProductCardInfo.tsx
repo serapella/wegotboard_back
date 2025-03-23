@@ -1,13 +1,13 @@
 import styles from "../css_modules/productCardInfo.module.css";
 import { BsCart3, BsStarFill, BsStar } from "react-icons/bs";
 import { ProductCardProps } from "../types";
-import { useGetUserReviewByIdQuery } from "../store/reviewAPI";
+import { useGetProductReviewsQuery } from "../store/reviewAPI";
 
 const ProductCardInfo: React.FC<ProductCardProps> = ({
   variant = "landing",
   product,
 }) => {
-  const { data: reviews } = useGetUserReviewByIdQuery(product?._id || "", {
+  const { data: reviews } = useGetProductReviewsQuery(product?._id || "", {
     skip: !product?._id,
   });
 
@@ -15,7 +15,6 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
     return null;
   }
 
-  // Calculate average rating
   const averageRating = reviews?.length
     ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
     : 0;
@@ -23,7 +22,7 @@ const ProductCardInfo: React.FC<ProductCardProps> = ({
   const renderStars = () => {
     return Array.from({ length: 5 }).map((_, index) => (
       <span key={index}>
-        {index < averageRating ? (
+        {index < Math.round(averageRating) ? (
           <BsStarFill className={styles.starFilled} />
         ) : (
           <BsStar className={styles.starEmpty} />
