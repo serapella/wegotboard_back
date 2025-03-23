@@ -38,7 +38,7 @@ export const createUserReview = async (
   try {
     const { id } = req.params;
     const { rating, review } = req.body;
-    const userId = req.user;
+    const userId = req.user?._id;
 
     if (!userId || !rating) {
       res.status(400).json({ message: "User, and rating are required." });
