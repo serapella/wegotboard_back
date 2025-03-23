@@ -24,7 +24,7 @@ const cartSlice = createSlice({
         state.itemList.push({
           ...action.payload,
           totalPrice: action.payload.totalPrice,
-          quantity: 1,
+          quantity: action.payload.quantity ? action.payload.quantity : 1,
         });
       }
     },
@@ -32,7 +32,6 @@ const cartSlice = createSlice({
       const findItem = state.itemList.filter(
         (item) => item.product._id === action.payload.product._id
       )[0];
-      // console.log("findItem", findItem.product._id);
       if (findItem)
         if (findItem.quantity == 1) {
           state.itemList = state.itemList.filter(
