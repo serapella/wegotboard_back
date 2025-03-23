@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { User } from "../utils/types";
+import { type User as UserType } from "../utils/types";
+import { User } from "../models/UserModel";
 const { JWT_SECRET } = process.env;
 
 export const authenticateUser = async (
@@ -22,14 +23,12 @@ export const authenticateUser = async (
       res.status(401).json({ message: "Unauthorized" });
       return;
     }
-
-    const userObject: User = {
-      _id: (user as JwtPayload)._id,
-      name: (user as JwtPayload).name,
+    const foundUser = await User.findOne({
       email: (user as JwtPayload).email,
-    };
+    }).select("-password");
 
-    req.user = userObject;
+    // @ts-ignore
+    req.user = foundUser;
     next();
   } catch (error: unknown) {
     if (error instanceof Error) {

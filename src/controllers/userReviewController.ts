@@ -40,6 +40,8 @@ export const createUserReview = async (
     const { rating, review } = req.body;
     const userId = req.user?._id;
 
+    console.log(userId, rating, review, id);
+
     if (!userId || !rating) {
       res.status(400).json({ message: "User, and rating are required." });
       return;
@@ -51,7 +53,7 @@ export const createUserReview = async (
       rating,
       review,
     });
-
+    console.log(newReview);
     res.status(201).json(newReview);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
