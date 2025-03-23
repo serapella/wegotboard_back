@@ -14,30 +14,30 @@ const HeaderUserNav = () => {
       <SearchBar />
       <ul>
         <li>
-          <a href="#">
+          <Link to="/user">
             <i>
               <BsPerson />
             </i>
             Account
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="/wishlist">
             <i>
               {" "}
               <BsHeart />
             </i>
             Wishlist
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="/cart">
             <i>
               {" "}
               <BsCart3 />
             </i>
             Cart
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
