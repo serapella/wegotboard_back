@@ -67,7 +67,7 @@ export const createUser = async (req: Request, res: Response) => {
       sameSite: "none",
       maxAge: 60 * 60 * 1000,
     });
-    const sendUser = User.findOne({ email }).select("-password");
+    const sendUser = await User.findOne({ email }).select("-password");
     res.status(201).json({
       message: "User created succesfully",
       token: verificationToken,
@@ -116,14 +116,12 @@ export const loginUser = async (req: Request, res: Response) => {
           sameSite: "none",
           maxAge: 60 * 60 * 1000,
         });
-        const sendUser = User.findOne({ email }).select("-password");
-        res
-          .status(200)
-          .json({
-            message: "User logged in successfully",
-            token,
-            user: sendUser,
-          });
+        const sendUser = await User.findOne({ email }).select("-password");
+        res.status(200).json({
+          message: "User logged in successfully",
+          token,
+          user: sendUser,
+        });
       } else {
         res.status(401).json({
           message: "Password is incorrect",
