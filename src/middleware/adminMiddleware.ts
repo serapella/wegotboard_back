@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { User } from "../models/UserModel";
 
-export const isAdminMiddleware = async (
+export const isAdmin = async (
   req: Request,
   res: Response,
   next: NextFunction
