@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLoginMutation } from "../store/userAPI";
 import styles from "../css_modules/LoginPage.module.css";
+import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const LoginPage = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.logoWgb}>
           <Link to="/">
-            <h1>WeGotBoard</h1>
+            <img src={WeGotBoardLogo} alt="logo" />
           </Link>
         </div>
 

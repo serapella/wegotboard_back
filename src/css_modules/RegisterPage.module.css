@@ -1,5 +1,7 @@
 .main {
   margin: 20rem 0;
+  display: flex;
+  justify-content: center;
 }
 
 .error {
@@ -27,9 +29,11 @@ form {
   text-align: center;
 }
 
-.logoWgb img {
-  height: 4rem;
-  width: auto;
+.logoWgb h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--navTop);
+  letter-spacing: 0.1rem;
 }
 
 .inputUserDetails {
