@@ -4,246 +4,215 @@
   display: flex;
   gap: 2rem;
   margin-top: 5rem;
-  .productContent {
-    .productGallery .mainImage {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .productGallery {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      .mainImage {
-        width: 471px;
-        height: 471px;
-        border: 1px solid var(--cardBorder);
-        padding: 0rem;
-        border-radius: 0.5rem;
-        background-color: var(--filter);
-        object-fit: contain;
-        object-position: center;
-        margin-bottom: 5rem;
-        justify-content: center;
-        margin: 0 auto;
-        transition: all 500ms;
-        cursor: pointer;
-        img {
-          width: 100%;
-          height: auto;
-          border-radius: 0.3rem;
-          transition: all 500ms;
-          cursor: pointer;
-        }
-      }
+  width: 100%;
+}
 
-      .thumbnailImages {
-        background-color: var(--filter);
-        display: flex;
-        gap: 1.2rem;
-        justify-content: center;
-        margin: 1rem auto;
+.productContent {
+  flex: 1;
+  min-width: 0;
+}
 
-        img {
-          width: 8.5rem;
-          height: 8.5rem;
-          object-fit: cover;
-          border: 1px solid var(--cardBorder);
-          border-radius: 0.5rem;
-          cursor: pointer;
-          transition: border-color 0.3s ease;
-          &:hover {
-            border-color: var(--navTop);
-          }
-        }
-      }
-    }
-  }
-  .productInfo {
-    width: 495px;
-    height: 592.25px;
-    margin: 0 auto;
-    .gameCategory {
-      color: var(--navTop);
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      line-height: 1.1;
-      color: var(--black-like);
-      letter-spacing: 0.3rem;
-    }
-    p {
-      font-size: 1.4rem;
-      color: var(--amountItemsFiltered);
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      border-bottom: 1px solid var(--cardBorder);
-      padding-bottom: 2rem;
-      letter-spacing: 0.1rem;
-      word-spacing: 0.1rem;
-    }
-    .rating {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      .stars {
-        color: orange;
-        font-size: 1.8rem;
-      }
-      span {
-        color: var(--amountItemsFiltered);
-        font-size: 1.4rem;
-      }
-    }
-    .productDetails {
-      padding: 2rem 0;
-      border-radius: 0.5rem;
+.productGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
 
-      .detailRow {
-        display: flex;
-        align-items: center;
-        margin-bottom: 2rem;
-        font-size: 1.4rem;
+.mainImage {
+  width: 100%;
+  max-width: 471px;
+  aspect-ratio: 1;
+  border: 1px solid var(--cardBorder);
+  padding: 0;
+  border-radius: 0.5rem;
+  background-color: var(--filter);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  transition: all 500ms;
+  cursor: pointer;
+}
 
-        .label {
-          width: 10rem;
-          font-weight: 700;
-          align-items: center;
-        }
+.mainImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.3rem;
+  transition: all 500ms;
+  cursor: pointer;
+}
 
-        .value {
-          color: var(--amountItemsFiltered);
-          &::before {
-            content: ":";
-            margin: 0 1rem;
-            color: var(--black-like);
-            font-size: 1.4rem;
-            font-weight: 700;
-          }
-        }
-      }
-    }
-    .priceSection {
-      margin: 2rem 0;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
+.thumbnailImages {
+  background-color: var(--filter);
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin: 1rem auto;
+  flex-wrap: wrap;
+}
 
-      .discountPrice {
-        font-size: 2.4rem;
-        font-weight: 900;
-        color: var(--navTop);
-      }
+.thumbnailImages img {
+  width: 8.5rem;
+  height: 8.5rem;
+  object-fit: cover;
+  border: 1px solid var(--cardBorder);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
 
-      .originalPrice {
-        font-size: 1.3rem;
-        text-decoration: line-through;
-        color: var(--amountItemsFiltered);
-      }
-    }
-    .purchaseOptions {
-      .addToCartSection {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        .quantity {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-        .qtyInput {
-          width: 4rem;
-          height: 4rem;
-          text-align: center;
-          padding: 0.5rem;
-          font-size: 1.5rem;
-          border: 1px solid var(--cardBorder);
-          border-radius: 0.5rem;
-          &::-webkit-outer-spin-button,
-          &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-        }
-        .qtyBtnContainer {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-        .qtyBtn {
-          width: 1.8rem;
-          height: 1.8rem;
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.6rem;
-          transition: all 0.3s ease;
-          border-radius: 0.3rem;
-          background-color: white;
-          border: 1px solid var(--cardBorder);
-        }
-        .qtyBtn:hover {
-          background-color: var(--amountItemsFiltered);
-          color: white;
-        }
-      }
-    }
-    .addToCart {
-      flex: 1;
-      background: var(--navTop);
-      color: white;
-      border: none;
-      padding: 1.2rem 2rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      font-size: 1.6rem;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-      &:hover {
-        background-color: var(--buttonHover);
-      }
-    }
-    .actionButtons {
-      display: flex;
-      gap: 1rem;
-      button {
-        width: 4rem;
-        height: 4rem;
-        border: 1px solid var(--cardBorder);
-        background-color: white;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        font-size: 2rem;
-        &:hover {
-          background-color: var(--tagHover);
-          border-color: var(--tagHover);
-          color: white;
-          img {
-            filter: brightness(0) invert(1);
-          }
-        }
-      }
-      .liked {
-        color: var(--navTop);
-        border-color: var(--navTop);
-        &:hover {
-          background-color: var(--buttonHover);
-          color: white;
-        }
-      }
-    }
-  }
+.thumbnailImages img:hover {
+  border-color: var(--navTop);
+}
+
+.productInfo {
+  width: 100%;
+  max-width: 495px;
+  margin: 0 auto;
+}
+
+.gameCategory {
+  color: var(--navTop);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.productInfo h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  color: var(--black-like);
+  letter-spacing: 0.3rem;
+}
+
+.productInfo p {
+  font-size: 1.4rem;
+  color: var(--amountItemsFiltered);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--cardBorder);
+  padding-bottom: 2rem;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.1rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+  font-size: 1.8rem;
+}
+
+.starFilled {
+  color: #ffa500;
+}
+
+.starEmpty {
+  color: #e4e4e4;
+}
+
+.rating span {
+  color: var(--amountItemsFiltered);
+  font-size: 1.4rem;
+}
+
+.productDetails {
+  padding: 2rem 0;
+  border-radius: 0.5rem;
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+}
+
+.label {
+  width: 10rem;
+  font-weight: 700;
+  align-items: center;
+}
+
+.value {
+  color: var(--amountItemsFiltered);
+}
+
+.value::before {
+  content: ":";
+  margin: 0 1rem;
+  color: var(--black-like);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.priceSection {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.discountPrice {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--navTop);
+}
+
+.originalPrice {
+  font-size: 1.3rem;
+  text-decoration: line-through;
+  color: var(--amountItemsFiltered);
+}
+
+.purchaseOptions .addToCartSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.actionButtons button {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid var(--cardBorder);
+  background-color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 2rem;
+}
+
+.actionButtons button:hover {
+  background-color: var(--tagHover);
+  border-color: var(--tagHover);
+  color: white;
+}
+
+.actionButtons .liked {
+  color: var(--navTop);
+  border-color: var(--navTop);
+}
+
+.actionButtons .liked:hover {
+  background-color: var(--buttonHover);
+  color: white;
 }
 
 :global(.Toastify__toast) {
@@ -254,6 +223,7 @@
   background-color: white;
   border: 1px solid var(--cardBorder);
 }
+
 :global(.Toastify__toast--success) {
   border-color: var(--navTop);
 }
@@ -277,8 +247,64 @@
   color: var(--black-like);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .productOverview {
     flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .productContent,
+  .productInfo {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .productOverview {
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+
+  .mainImage {
+    max-width: 100%;
+  }
+
+  .thumbnailImages img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .productInfo h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .productOverview {
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  .thumbnailImages img {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .productInfo h1 {
+    font-size: 1.6rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .actionButtons {
+    gap: 0.5rem;
+  }
+
+  .actionButtons button {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.6rem;
   }
 }

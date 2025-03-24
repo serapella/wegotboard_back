@@ -16,6 +16,7 @@ div.userNav {
     display: flex;
     gap: 3rem;
     li {
+      position: relative;
       a {
         text-decoration: none;
         color: var(--black-like);
@@ -24,6 +25,17 @@ div.userNav {
           width: 2.1rem;
           padding-right: 1rem;
         }
+      }
+      .quantity {
+        position: absolute;
+        left: 1rem;
+        bottom: -0.6rem;
+        color: red;
+        font-size: small;
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0.637);
+        padding: 0.2rem;
+        border-radius: 1rem;
       }
     }
   }

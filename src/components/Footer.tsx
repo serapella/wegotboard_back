@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import style from "../css_modules/footer.module.css";
 import footer_image from "../images/WeGotBoard_cut.png";
 import {
@@ -31,12 +32,19 @@ const Footer = () => {
         <div>
           <h4>Company</h4>
           <ul>
-            <li>About Us</li>
+            <li>
+              <Link to="/about">About Us</Link>
+            </li>
             <li>Delivery Information</li>
-            <li>Privacy Policy</li>
-            <li>Terms & Conditions</li>
-            <li>Contact Us</li>
-            <li>Support Center</li>
+            <li>
+              <Link to="/privacy">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link to="/terms">Terms & Conditions</Link>
+            </li>
+            <li>
+              <Link to={"/contact"}>Contact Us</Link>
+            </li>
           </ul>
         </div>
         <div>
