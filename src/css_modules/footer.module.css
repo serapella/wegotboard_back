@@ -15,12 +15,13 @@
 
   & > div:nth-of-type(1) {
     width: 100%;
+    max-width: 1380px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-    background-color: lightblue;
+
     /* justify-content: center; */
     /* gap: 7rem; */
-    padding: 10rem 20rem;
+    padding: 10rem 0;
     > div {
       display: flex;
       flex-direction: column;
