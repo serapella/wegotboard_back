@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import style from "../css_modules/searchbar.module.css";
 import { BsSearch } from "react-icons/bs";
 import { setCategories, setSearch } from "../store/filterSlice";
-import { redirect, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
