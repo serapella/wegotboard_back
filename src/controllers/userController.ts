@@ -67,14 +67,12 @@ export const createUser = async (req: Request, res: Response) => {
       sameSite: "none",
       maxAge: 60 * 60 * 1000,
     });
-
-    res
-      .status(201)
-      .json({
-        message: "User created succesfully",
-        token: verificationToken,
-        user: response,
-      });
+    const sendUser = User.findOne({ email }).select("-password");
+    res.status(201).json({
+      message: "User created succesfully",
+      token: verificationToken,
+      user: sendUser,
+    });
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -118,10 +116,14 @@ export const loginUser = async (req: Request, res: Response) => {
           sameSite: "none",
           maxAge: 60 * 60 * 1000,
         });
-
+        const sendUser = User.findOne({ email }).select("-password");
         res
           .status(200)
-          .json({ message: "User logged in successfully", token, user });
+          .json({
+            message: "User logged in successfully",
+            token,
+            user: sendUser,
+          });
       } else {
         res.status(401).json({
           message: "Password is incorrect",
