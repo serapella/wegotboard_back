@@ -1,36 +1,68 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { UserReview, CreateReviewDto } from "../types";
+import { Review, CreateReviewDto } from "../types";
 
 const reviewAPI = createApi({
   reducerPath: "reviewAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api",
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as any).auth?.token;
-      if (token) {
-        headers.set("authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
+    baseUrl: "http://localhost:3000/r",
   }),
   tagTypes: ["Review"],
   endpoints: (builder) => ({
-    getUserReviews: builder.query<UserReview[], void>({
-      query: () => "/users/reviews",
+    getProductReviews: builder.query<Review[], string>({
+      query: (productId) => ({
+        url: `/${productId}/reviews`,
+        method: "GET",
+      }),
       providesTags: ["Review"],
     }),
-    getUserReviewById: builder.query<UserReview[], string>({
-      query: (userId) => `/users/${userId}/reviews`,
+
+    getUserReviews: builder.query<Review[], void>({
+      query: () => ({
+        url: "/reviews",
+        method: "GET",
+      }),
       providesTags: ["Review"],
     }),
+
+    getUserReviewById: builder.query<Review[], string>({
+      query: (userId) => ({
+        url: `/${userId}/reviews`,
+        method: "GET",
+      }),
+      providesTags: ["Review"],
+    }),
+
     createReview: builder.mutation<
-      UserReview,
-      { userId: string; review: CreateReviewDto }
+      Review,
+      { productId: string; review: CreateReviewDto }
     >({
-      query: ({ userId, review }) => ({
-        url: `/users/${userId}/reviews`,
+      query: ({ productId, review }) => ({
+        url: `/${productId}/reviews`,
         method: "POST",
         body: review,
+      }),
+      invalidatesTags: ["Review"],
+    }),
+
+    updateReview: builder.mutation<
+      Review,
+      { productId: string; reviewId: string; review: Partial<CreateReviewDto> }
+    >({
+      query: ({ productId, reviewId, review }) => ({
+        url: `/${productId}/reviews/${reviewId}`,
+        method: "PATCH",
+        body: review,
+      }),
+      invalidatesTags: ["Review"],
+    }),
+
+    deleteReview: builder.mutation<
+      void,
+      { productId: string; reviewId: string }
+    >({
+      query: ({ productId, reviewId }) => ({
+        url: `/${productId}/reviews/${reviewId}`,
+        method: "DELETE",
       }),
       invalidatesTags: ["Review"],
     }),
@@ -38,9 +70,12 @@ const reviewAPI = createApi({
 });
 
 export const {
+  useGetProductReviewsQuery,
   useGetUserReviewsQuery,
   useGetUserReviewByIdQuery,
   useCreateReviewMutation,
+  useUpdateReviewMutation,
+  useDeleteReviewMutation,
 } = reviewAPI;
 
 export default reviewAPI;

@@ -30,13 +30,17 @@
   border-radius: 0.8rem;
   transition: all 0.3s ease;
   cursor: pointer;
-  text-decoration: none;
-  color: inherit;
+  outline: none;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
+.game-item:hover,
+.game-item:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.game-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--navTop);
 }
 
 .game-image {
@@ -76,6 +80,13 @@
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--navTop);
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--amountItemsFiltered);
+  font-size: 1.4rem;
 }
 
 @media (max-width: 1200px) {

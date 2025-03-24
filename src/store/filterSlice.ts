@@ -23,30 +23,30 @@ interface FilterState {
 
 const initialState: FilterState = {
   categories: {
-    "Board Games": false,
-    "Card Games": false,
-    "Dice Games": false,
+    "board-games": false,
+    "card-games": false,
+    "dice-games": false,
   },
   priceRange: {
-    min: 10,
+    min: 0,
     max: 200,
   },
   playerCount: {
-    Solo: false,
-    "2 Players": false,
-    "3-5 Players": false,
-    ">5 Players": false,
-    "Party Games": false,
+    players_1: false,
+    players_2: false,
+    "players_3-5": false,
+    "players_6+": false,
+    "players_10+": false,
   },
   duration: {
-    "Short (< 30min)": false,
-    "Medium (30-60min)": false,
-    "Long (> 60min)": false,
+    short: false,
+    medium: false,
+    long: false,
   },
   difficulty: {
-    Beginner: false,
-    Intermediate: false,
-    Expert: false,
+    easy: false,
+    medium: false,
+    hard: false,
   },
   age: "All Ages",
   isFilterVisible: false,
@@ -80,11 +80,6 @@ const filterSlice = createSlice({
     toggleFilterVisibility: (state) => {
       state.isFilterVisible = !state.isFilterVisible;
     },
-
-    //eventueel toevoegen.
-    // resetFilters: (state) => {
-    //   return initialState;
-    // },
   },
 });
 
@@ -96,7 +91,6 @@ export const {
   toggleDifficulty,
   setAge,
   toggleFilterVisibility,
-  // resetFilters,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

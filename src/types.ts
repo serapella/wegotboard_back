@@ -11,6 +11,8 @@ export interface ProductQuery {
   categories?: string;
   difficulty?: string;
   duration?: string;
+  ageMin?: number;
+  ageMax?: number;
   search?: string;
 }
 
@@ -20,6 +22,8 @@ export interface Product {
   name: string;
   description: string;
   price: number;
+  discount: number;
+  userRating: number[];
   playerCount: {
     min: number;
     max: number;
@@ -48,20 +52,50 @@ export interface Category {
   name: string;
 }
 
-export interface NewsItem {
-  id: string;
-  title: string;
-  content: string;
-  image: string;
-  date: string;
-  author: string;
+export interface User {
+  _id: string;
+  name: {
+    first: string;
+    last: string;
+  };
+  email: string;
+  avatar?: string;
+  role: "user" | "admin";
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface NewsFeed {
-  items: NewsItem[];
+export interface Review {
+  _id: string;
+  user: User;
+  product: string;
+  rating: number;
+  review: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateReviewDto {
+  rating: number;
+  review: string;
+}
+
+export interface ReviewResponse {
+  reviews: Review[];
   total: number;
   page: number;
   limit: number;
+}
+
+export interface Cart {
+  itemList: CartItem[];
+  totalQuantity: number;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+  totalPrice: number;
 }
 
 export interface PopularProductsProps {
@@ -79,37 +113,25 @@ export interface ProductCardProps {
   product?: Product;
 }
 
-export interface User {
-  _id: string;
-  name: string;
+// Authentication Types
+export interface LoginCredentials {
   email: string;
-  avatar?: string;
-  role: "user" | "admin";
-  createdAt: string;
-  updatedAt: string;
+  password: string;
 }
 
-export interface UserReview {
-  _id: string;
+export interface RegisterCredentials {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface UserResponse {
   user: User;
-  product: Product;
-  rating: number;
-  review?: string;
-  createdAt: string;
-  updatedAt: string;
+  token: string;
 }
 
-export interface CreateReviewDto {
-  product: string;
-  rating: number;
-  review?: string;
-}
-
-export interface ReviewQuery {
-  product?: string;
-  user?: string;
-  page?: number;
-  limit?: number;
-  sort?: string;
-  order?: string;
+export interface AuthState {
+  user: User | null;
+  token: string | null;
 }
