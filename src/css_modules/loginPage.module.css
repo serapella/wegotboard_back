@@ -1,5 +1,9 @@
 .main {
-  margin: 20rem 0;
+  display: flex; /* Add this */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove any unwanted margin */
 }
 
 .error {
@@ -114,7 +118,7 @@ form {
 }
 
 .btnSignUp a {
-  color: var(--amountItemsFiltered);
+  color: var(--amountItemsFiltered); /* Make sure color is defined */
   text-decoration: none;
   font-size: 1.6rem;
   letter-spacing: 0.12rem;
@@ -123,15 +127,4 @@ form {
 
 .btnSignUp a:hover {
   color: var(--fontForms);
-}
-
-@media (max-width: 768px) {
-  .main {
-    margin: 10rem 2rem;
-  }
-
-  form {
-    width: 100%;
-    padding: 2rem;
-  }
 }
