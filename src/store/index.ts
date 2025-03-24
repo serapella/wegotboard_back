@@ -39,18 +39,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
-    }).concat(
-      logger,
-      productAPI.middleware,
-      newsAPI.middleware,
-      reviewAPI.middleware,
-      userAPI.middleware
-    ),
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
-      },
-    }).concat(logger, productAPI.middleware, newsAPI.middleware, reviewAPI.middleware),
+    }).concat(logger, productAPI.middleware, newsAPI.middleware, reviewAPI.middleware, userAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
