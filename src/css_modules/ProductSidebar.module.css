@@ -4,6 +4,9 @@
   border-radius: 0.8rem;
   border: 1px solid var(--cardBorder);
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-sidebar h3 {
@@ -17,6 +20,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .game-item {

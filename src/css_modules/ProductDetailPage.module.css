@@ -1,7 +1,7 @@
 .productDetailPage {
-  max-width: 1440px;
+  max-width: 1380px;
   margin: 0 auto;
-  padding: clamp(2rem, 4vw, 4rem);
+  padding: clapm(2rem, 4vw, 4rem);
   overflow-x: hidden;
 }
 
@@ -24,17 +24,6 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
-}
-
-/* Large screens */
-@media (min-width: 1441px) {
-  .productDetailPage {
-    padding: 4rem 8rem;
-  }
-
-  .mainContent {
-    gap: 6rem;
-  }
 }
 
 /* Desktop and smaller */

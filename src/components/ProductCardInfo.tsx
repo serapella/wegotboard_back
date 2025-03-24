@@ -8,13 +8,16 @@ interface ProductCardInfoProps {
 }
 const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
   const { data: reviews } = useGetProductReviewsQuery(product._id);
+
   if (!product) {
     return null;
   }
-  const avgRating =
-    product.userRating.reduce((a, b) => a + b, 0) / product.userRating.length;
+  console.log(reviews);
+  const avgRating = reviews?.length
+    ? reviews.reduce((a, b) => a + b.rating, 0) / reviews.length
+    : 0;
   const fullStars = Math.floor(avgRating);
-  const halfStar = avgRating % 1 !== 0;
+  const halfStar = avgRating % 1 >= 0.5;
   const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
   const discountedPrice = (
