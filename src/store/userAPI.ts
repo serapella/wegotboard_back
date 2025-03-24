@@ -1,16 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "./index";
 import { User, Review } from "../types";
 
 export const userAPI = createApi({
   reducerPath: "userAPI",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api",
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.token;
-      if (token) {
-        headers.set("authorization", `Bearer ${token}`);
-      }
+    prepareHeaders: (headers) => {
+      // httponly
       return headers;
     },
   }),
@@ -39,6 +35,26 @@ export const userAPI = createApi({
       }),
       invalidatesTags: ["Review"],
     }),
+    register: builder.mutation<
+      User,
+      {
+        first: string;
+        last: string;
+        email: string;
+        pnumber: string;
+        address: string;
+        city: string;
+        pcode: string;
+        country: string;
+        region: string;
+      }
+    >({
+      query: (newUser) => ({
+        url: "/users/register",
+        method: "POST",
+        body: newUser,
+      }),
+    }),
   }),
 });
 
@@ -47,6 +63,7 @@ export const {
   useUpdateProfileMutation,
   useGetUserReviewsQuery,
   useDeleteReviewMutation,
+  useRegisterMutation,
 } = userAPI;
 
 export default userAPI;

@@ -3,7 +3,8 @@ import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
 import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/productDetailPage";
-import Login from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import LandingPage from "./pages/LandingPage";
 import ShoppingCart from "./components/ShoppingCart";
 import TermsAndConditions from "./pages/TermsAndConditions";
@@ -20,8 +21,8 @@ const App = () => {
           <Route path="/products" element={<ProductListPage />} />
           <Route path="/products/:id/:slug" element={<ProductDetailPage />} />
           <Route path="/categories" element={<></>} />
-          <Route path="/user/login" element={<Login />} />
-          <Route path="/user/register" element={<></>} />
+          <Route path="/user/login" element={<LoginPage />} />
+          <Route path="/user/register" element={<RegisterPage />} />
           <Route path="/user/logout" element={<></>} />
           <Route path="/user/wishlist" element={<></>} />
           <Route path="/cart" element={<ShoppingCart />} />

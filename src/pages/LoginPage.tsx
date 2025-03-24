@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { useLoginMutation } from "../store/authAPI";
-import styles from "../css_modules/login.module.css";
+import styles from "../css_modules/LoginPage.module.css";
 
-const LoginPage = () => {
+const Login = () => {
   const navigate = useNavigate();
-  const [login, { isLoading }] = useLoginMutation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     remember: false,
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -26,19 +24,34 @@ const LoginPage = () => {
     setError("");
 
     try {
-      await login({
-        email: formData.email,
-        password: formData.password,
-      }).unwrap();
+      const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Invalid email or password");
+      }
+
+      const data = await response.json();
+      // Assuming the backend sends the JWT token as part of the response
+      document.cookie = `token=${data.token}; path=/;`;
+
       navigate("/");
-    } catch (err) {
-      setError("Invalid email or password");
+    } catch (err: any) {
+      setError(err.message);
     }
   };
 
   return (
     <main className={styles.main}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit}>
         <div className={styles.logoWgb}>
           <h1>WeGotBoard</h1>
         </div>
@@ -57,7 +70,6 @@ const LoginPage = () => {
               onChange={handleChange}
               placeholder="Enter Your email"
               required
-              disabled={isLoading}
             />
           </div>
 
@@ -72,7 +84,6 @@ const LoginPage = () => {
               onChange={handleChange}
               placeholder="Enter Your password"
               required
-              disabled={isLoading}
             />
           </div>
 
@@ -84,7 +95,6 @@ const LoginPage = () => {
                 name="remember"
                 checked={formData.remember}
                 onChange={handleChange}
-                disabled={isLoading}
               />
               <label htmlFor="remember">Remember Me</label>
             </div>
@@ -95,14 +105,14 @@ const LoginPage = () => {
         </div>
 
         <div className={styles.btnSignUp}>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
+          <button type="submit" disabled={false}>
+            Login
           </button>
-          <Link to="/register">signup?</Link>
+          <Link to="/register">Sign up?</Link>
         </div>
       </form>
     </main>
   );
 };
 
-export default LoginPage;
+export default Login;

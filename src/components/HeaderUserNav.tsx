@@ -3,13 +3,17 @@ import { BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
 import styles from "../css_modules/HeaderUserNav.module.css";
 import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../store/authSlice";
+import { useGetProfileQuery } from "../store/userAPI";
 import { getTotalQuantity } from "../store/cartSlice";
 import SearchBar from "./SearchBar";
 
 const HeaderUserNav = () => {
-  const user = useSelector(selectCurrentUser);
+  const { data: user, isLoading, isError } = useGetProfileQuery();
   const total = useSelector(getTotalQuantity);
+
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>Error loading user profile</div>;
+
   return (
     <div className={styles.userNav}>
       <Link to="/">
