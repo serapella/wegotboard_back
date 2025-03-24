@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User, UserResponse, LoginCredentials, RegisterCredentials, ApiError } from "../types";
+import {
+  User,
+  UserResponse,
+  LoginCredentials,
+  RegisterCredentials,
+  ApiError,
+} from "../types";
 import { Product } from "../types";
 import { removeFromWishlist } from "./wishlistSlice";
 
@@ -57,13 +63,16 @@ export const userAPI = createApi({
         };
       },
     }),
-    getWishlist: builder.query<Product[], void>({
-      query: () => "/wishlist",
+    getWishlist: builder.query<Product[], { id: string; token: string }>({
+      query: ({ id, token }) => `/users/${id}/wishlist?token=${token}`,
       providesTags: ["Wishlist"],
     }),
-    removeFromWishlist: builder.mutation<void, string>({
-      query: (productId) => ({
-        url: `/wishlist/${productId}`,
+    removeFromWishlist: builder.mutation<
+      void,
+      { productId: string; userId: string }
+    >({
+      query: ({ productId, userId }) => ({
+        url: `/users/${userId}/wishlist/${productId}`,
         method: "DELETE",
       }),
     }),
