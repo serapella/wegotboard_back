@@ -1,6 +1,7 @@
 .gridPagination {
   padding: 2rem;
   display: flex;
+  justify-content: center;
   button {
     font-size: 1.4rem;
     display: inline-block;
