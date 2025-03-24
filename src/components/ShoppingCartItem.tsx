@@ -25,36 +25,13 @@ const ShoppingCartItem = ({ item }: { item: ProductWithQty }) => {
             <p>€ {item.product.price}</p>
           </td>
           <td className={style.productCartQty}>
-            <button
-              onClick={() => dispatch(addToCart({ product: item.product }))}
-            >
-              +
-            </button>
-            <input
-              type="number"
-              className="product-qty"
-              min="1"
-              max="10"
-              value={item.quantity}
-            />
-            <button
-              onClick={() =>
-                dispatch(removeFromCart({ product: item.product }))
-              }
-            >
-              -
-            </button>
+            <button onClick={() => dispatch(addToCart({ product: item.product }))}>+</button>
+            <input type="number" className="product-qty" min="1" max="10" value={item.quantity} />
+            <button onClick={() => dispatch(removeFromCart({ product: item.product }))}>-</button>
           </td>
-          <td className={style.productCartTotalQtyPrice}>
-            € {(item.product.price * item.quantity).toFixed(2)}
-          </td>
+          <td className={style.productCartTotalQtyPrice}>€ {(item.product.price * item.quantity).toFixed(2)}</td>
           <td className={style.productCartDelete}>
-            <a
-              href="#"
-              onClick={() =>
-                dispatch(deleteFromCart({ product: item.product }))
-              }
-            >
+            <a href="#" onClick={() => dispatch(deleteFromCart({ product: item.product }))}>
               🗑️
             </a>
           </td>
