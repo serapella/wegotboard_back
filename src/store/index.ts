@@ -9,6 +9,7 @@ import cartReducer from "./cartSlice";
 import filterReducer from "./filterSlice";
 import counterReducer from "./counterSlice";
 import authReducer from "./authSlice";
+import reviewReducer from "./reviewSlice";
 import userAPI from "./userAPI";
 
 const persistConfig = {
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
+  reviewSlice: reviewReducer,
   [productAPI.reducerPath]: productAPI.reducer,
   [newsAPI.reducerPath]: newsAPI.reducer,
   [reviewAPI.reducerPath]: reviewAPI.reducer,
