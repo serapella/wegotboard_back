@@ -1,5 +1,38 @@
 .wishlistPage {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2.4rem;
+  .productContent {
+    .mainContent {
+      .wishlistGrid {
+        margin-top: 2rem;
+        max-width: 1200px;
+        display: grid;
+        margin: 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2.4rem;
+        margin-bottom: 2rem;
+        .productCardWrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+          background-color: var(--card);
+          border-radius: 0.8rem;
+
+          .removeButton {
+            width: 100%;
+            height: 4rem;
+            background-color: var(--navTop);
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 200ms;
+
+            &:hover {
+              background-color: var(--buttonHover);
+            }
+          }
+        }
+      }
+    }
+  }
 }
