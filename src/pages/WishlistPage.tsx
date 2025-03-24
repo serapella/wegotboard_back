@@ -18,6 +18,10 @@ const WishlistPage: React.FC = () => {
 
   return (
     <div className={styles.wishlistPage}>
+      <div className={styles.wishlistHeader}>
+        <h3>Welcome to your wishlist!</h3>
+      </div>
+
       <section className={styles.productContent}>
         <div className={styles.mainContent}>
           <div className={styles.wishlistGrid}>

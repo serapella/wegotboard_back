@@ -1,5 +1,13 @@
 .wishlistPage {
+  .wishlistHeader {
+    margin: 5rem auto;
+    max-width: 1200px;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+  }
   .productContent {
+    margin-top: 3rem;
     .mainContent {
       .wishlistGrid {
         margin-top: 2rem;
