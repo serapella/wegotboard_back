@@ -1,0 +1,46 @@
+.container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 24.5px;
+  letter-spacing: 0.48px;
+  font-size: 14px;
+  text-align: center;
+  h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin: 2rem 0;
+    line-height: 46px;
+    color: var(--black-like);
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 33px;
+    margin: 2rem 0;
+  }
+  p {
+    margin: 2rem 0;
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    &:first-of-type {
+      list-style-type: "-  ";
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--navTop);
+    background-color: var(--card);
+    border: 1px solid var(--cardBorder);
+    padding: 1rem;
+    border-radius: 1rem;
+    &:hover {
+      background-color: var(--cardBorder);
+    }
+  }
+}
+.link {
+  margin: 10rem 0;
+}

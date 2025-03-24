@@ -2,31 +2,55 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
+import productAPI from "./productAPI";
+import newsAPI from "./newsAPI";
+import reviewAPI from "./reviewAPI";
 import cartReducer from "./cartSlice";
+import filterReducer from "./filterSlice";
+import counterReducer from "./counterSlice";
+import authReducer from "./authSlice";
+import userAPI from "./userAPI";
+import productGridReducer from "./paginationSlice";
+import sortReducer from "./sortSlice";
 
 const persistConfig = {
   key: "wgb_root",
   storage,
-  whitelist: ["cartSlice"],
+  whitelist: ["cartSlice", "counterSlice", "auth"],
 };
 
-//ADD NEW REDUCERS / APIS HERE
 const rootReducer = combineReducers({
+  auth: authReducer,
+  counterSlice: counterReducer,
   cartSlice: cartReducer,
+  filter: filterReducer,
+  productGrid: productGridReducer,
+  sort: sortReducer,
+  [productAPI.reducerPath]: productAPI.reducer,
+  [newsAPI.reducerPath]: newsAPI.reducer,
+  [reviewAPI.reducerPath]: reviewAPI.reducer,
+  [userAPI.reducerPath]: userAPI.reducer,
 });
-//this persist the shopping cart in localStorage in the browser
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const weGotBoard = configureStore({
-  reducer: persistedReducer, //add new reducers/APIs to combineReducer instead
+const store = configureStore({
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
-    }).concat(logger),
+    }).concat(
+      logger,
+      productAPI.middleware,
+      newsAPI.middleware,
+      reviewAPI.middleware,
+      userAPI.middleware
+    ),
 });
-export default weGotBoard;
-export type RootState = ReturnType<typeof weGotBoard.getState>;
-export type AppDispatch = typeof weGotBoard.dispatch;
-export const persistor = persistStore(weGotBoard);
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
+export const persistor = persistStore(store);
+export default store;

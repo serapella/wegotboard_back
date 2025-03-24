@@ -1,0 +1,124 @@
+.product-sidebar {
+  background-color: var(--filter);
+  padding: 2.5rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--cardBorder);
+  width: 100%;
+}
+
+.product-sidebar h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--black-like);
+  margin-bottom: 2rem;
+}
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.game-item {
+  display: flex;
+  gap: 1.6rem;
+  padding: 1.2rem;
+  background-color: white;
+  border: 1px solid var(--cardBorder);
+  border-radius: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.game-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.game-image {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 0.6rem;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.game-info h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--black-like);
+  line-height: 1.4;
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+  color: #e4e4e4;
+}
+
+.stars .filled {
+  color: var(--orange);
+}
+
+.player-count {
+  font-size: 1.2rem;
+  color: var(--amountItemsFiltered);
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--navTop);
+}
+
+@media (max-width: 1200px) {
+  .product-sidebar {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-sidebar {
+    padding: 2rem;
+  }
+
+  .game-item {
+    padding: 1rem;
+    gap: 1.2rem;
+  }
+
+  .game-image {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-sidebar {
+    padding: 1.5rem;
+  }
+
+  .game-item {
+    padding: 0.8rem;
+    gap: 1rem;
+  }
+
+  .game-image {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .game-info h4 {
+    font-size: 1.3rem;
+  }
+}
