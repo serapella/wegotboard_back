@@ -51,7 +51,7 @@
 .shoppingCartCrud {
   margin: 10rem auto;
   max-width: 1380px;
-  height: 100%;
+  height: 50vh;
   .crud {
     margin: 0 auto;
     height: auto;
