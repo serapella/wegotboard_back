@@ -19,7 +19,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
-      isVerified: false,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
     password: {
       type: String,
@@ -61,6 +64,7 @@ const UserSchema = new mongoose.Schema(
         trim: true,
       },
     },
+    verificationToken: { type: String },
   },
   {
     timestamps: true,

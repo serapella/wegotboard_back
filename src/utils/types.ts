@@ -27,5 +27,6 @@ declare global {
 export type EmailData = {
   email: string;
   name: string;
-  link: string;
+  link?: string;
+  type?: "verify" | "reset_password";
 };

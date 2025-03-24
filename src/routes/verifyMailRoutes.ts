@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import { sendEmail } from "../utils/verifyMail";
 import { Request, Response } from "express";
+import { verificationEmail } from "../controllers/userController";
 
 router.post("/mail", async (req: Request, res: Response) => {
   try {
@@ -13,5 +14,12 @@ router.post("/mail", async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to send email" });
   }
 });
-
+router.get("/mailTest", async (req: Request, res: Response) => {
+  await sendEmail({
+    email: "kevin.van.damme.pxl@protonmail.com",
+    name: "Kevin Van Damme",
+  });
+  res.end();
+});
+router.get("/verify/:token", verificationEmail);
 export default router;

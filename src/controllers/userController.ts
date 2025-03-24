@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { User } from "../models/UserModel";
 import { genSaltSync, hashSync, compareSync } from "bcrypt-ts";
 import jwt from "jsonwebtoken";
-const { JWT_SECRET } = process.env;
+import { sendEmail } from "../utils/verifyMail";
+const { JWT_SECRET, BASE_URL } = process.env;
 
 export const getUserById = async (req: Request, res: Response) => {
   try {
@@ -25,15 +26,7 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const {
-      name,
-      email,
-      password,
-      phoneNumber,
-      isAdmin,
-      isSubscribed,
-      location,
-    } = req.body;
+    const { name, email, password, phoneNumber, isAdmin, isSubscribed, location } = req.body;
 
     if (!name || !email || !password) {
       res.status(400).json({
@@ -45,6 +38,14 @@ export const createUser = async (req: Request, res: Response) => {
     const hash = hashSync(password, salt);
     const verificationToken = jwt.sign({ email }, JWT_SECRET as string, {
       expiresIn: "1h",
+    });
+    const verifcationLink = `${BASE_URL}/verify/${verificationToken}`;
+
+    await sendEmail({
+      email,
+      name,
+      link: verifcationLink,
+      type: "verify",
     });
 
     const response = await User.create({
@@ -68,9 +69,7 @@ export const createUser = async (req: Request, res: Response) => {
       maxAge: 60 * 60 * 1000,
     });
 
-    res
-      .status(201)
-      .json({ message: "User created succesfully", user: response });
+    res.status(201).json({ message: "User created succesfully", user: response });
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -165,8 +164,7 @@ export const updateUser = async (req: Request, res: Response) => {
       res.status(401).json({ message: "User is not logged in" });
       return;
     }
-    const { name, email, password, phoneNumber, isSubscribed, location } =
-      req.body;
+    const { name, email, password, phoneNumber, isSubscribed, location } = req.body;
 
     const _id = req.user ? req.user._id : "";
 
@@ -331,6 +329,42 @@ export const deleteWishlist = async (req: Request, res: Response) => {
     user.favorites = [];
     await user.save();
     res.status(200).json({ message: "Wishlist deleted successfully" });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "Something went wrong" });
+    }
+  }
+};
+
+export const verificationEmail = async (req: Request, res: Response) => {
+  try {
+    const { token } = req.params;
+    if (!token) {
+      res.status(400).json({ message: "Invalid token" });
+      return;
+    }
+    const decoded = jwt.verify(token, JWT_SECRET as string);
+    if (typeof decoded === "string" || !("email" in decoded)) {
+      res.status(400).json({ message: "Invalid verification link." });
+      return;
+    }
+    const user = await User.findOne({ email: decoded.email });
+    if (!user) {
+      res.status(400).json({ message: "No user found!" });
+      return;
+    }
+    if (user.isVerified === true) {
+      res.status(400).json({ message: "Is already verified!" });
+      return;
+    }
+    user.verificationToken = null;
+    user.isVerified = true;
+    await user.save();
+    res.status(200).json({
+      message: "Email is verified",
+    });
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });

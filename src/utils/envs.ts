@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-const { SMTP_HOST, SMTP_USER, SMTP_PASS, TEMPLATE_MAILSENDER } = process.env;
+const { SMTP_HOST, SMTP_USER, SMTP_PASS, TEMPLATE_MAILSENDER, BASE_URL, MAILERSEND_API_KEY } = process.env;
 
 console.log("SMTP_HOST:", process.env.SMTP_HOST);
 console.log("SMTP_USER:", process.env.SMTP_USER);
@@ -11,4 +11,4 @@ console.log("TEMPLATE_MAILSENDER:", process.env.TEMPLATE_MAILSENDER);
 //   throw new Error("SMTP_HOST, SMTP_USER, SMTP_PASS are required");
 // }
 
-export { SMTP_HOST, SMTP_USER, SMTP_PASS, TEMPLATE_MAILSENDER };
+export { SMTP_HOST, SMTP_USER, SMTP_PASS, TEMPLATE_MAILSENDER, BASE_URL, MAILERSEND_API_KEY };
