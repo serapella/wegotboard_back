@@ -1,107 +1,62 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
-import { useLoginMutation } from "../store/authAPI";
-import styles from "../css_modules/login.module.css";
+import { useState } from "react";
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const [login, { isLoading }] = useLoginMutation();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    remember: false,
-  });
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError(null);
 
     try {
-      await login({
-        email: formData.email,
-        password: formData.password,
-      }).unwrap();
-      navigate("/");
+      const response = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // Zorgt ervoor dat cookies (zoals een HttpOnly JWT) worden meegestuurd
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Login mislukt");
+      }
+
+      alert("Succesvol ingelogd!");
+      window.location.href = "/landingpage";
     } catch (err) {
-      setError("Invalid email or password");
+      setError((err as Error).message);
     }
   };
 
   return (
-    <main className={styles.main}>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.logoWgb}>
-          <h1>WeGotBoard</h1>
+    <div>
+      <h2>Login</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <form onSubmit={handleLogin}>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
-
-        {error && <div className={styles.error}>{error}</div>}
-
-        <div className={styles.inputUserDetails}>
-          <div className={styles.input}>
-            <label htmlFor="email">Email Address*</label>
-            <input
-              className={styles.inputMod}
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter Your email"
-              required
-              disabled={isLoading}
-            />
-          </div>
-
-          <div className={styles.input}>
-            <label htmlFor="password">Password*</label>
-            <input
-              className={styles.inputMod}
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter Your password"
-              required
-              disabled={isLoading}
-            />
-          </div>
-
-          <div className={styles.rememberForgot}>
-            <div className={styles.remember}>
-              <input
-                type="checkbox"
-                id="remember"
-                name="remember"
-                checked={formData.remember}
-                onChange={handleChange}
-                disabled={isLoading}
-              />
-              <label htmlFor="remember">Remember Me</label>
-            </div>
-            <Link to="/forgot-password" className={styles.forgot}>
-              Forgot Password?
-            </Link>
-          </div>
+        <div>
+          <label>Wachtwoord:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
-
-        <div className={styles.btnSignUp}>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
-          </button>
-          <Link to="/register">signup?</Link>
-        </div>
+        <button type="submit">Inloggen</button>
       </form>
-    </main>
+    </div>
   );
 };
 
