@@ -120,10 +120,10 @@ export interface LoginCredentials {
 }
 
 export interface RegisterCredentials {
+  first: string;
+  last: string;
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
   pnumber: string;
   address: string;
   city: string;
