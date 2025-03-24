@@ -59,7 +59,8 @@ const GreatWords: React.FC = () => {
               <h6>{review.role}</h6>
               <h5>{review.name}</h5>
               <p>"{review.quote}"</p>
-              <p>★★★★★</p>
+
+              <p className={styles.stars}>★★★★★</p>
             </div>
           </div>
         ))}
