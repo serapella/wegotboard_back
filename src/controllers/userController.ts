@@ -300,7 +300,7 @@ export const removeFromWishlist = async (req: Request, res: Response) => {
       return;
     }
     const _id = req.user._id;
-    const { productId } = req.body;
+    const { productId } = req.params;
     const user = await User.findById(_id);
     if (!user) {
       res.status(404).json({
@@ -308,14 +308,14 @@ export const removeFromWishlist = async (req: Request, res: Response) => {
       });
       return;
     }
+    //@ts-ignore
     if (!user.favorites.includes(productId)) {
       res.status(404).json({
         message: "Product not found in wishlist",
       });
       return;
     }
-    user.favorites = user.favorites.filter((item) => item !== productId);
-    await user.save();
+    await User.updateOne({ _id }, { $pull: { favorites: productId } });
     res.status(200).json({ message: "Product removed from wishlist" });
   } catch (error: unknown) {
     if (error instanceof Error) {
