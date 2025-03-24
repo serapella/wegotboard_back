@@ -32,9 +32,11 @@
     font-weight: 600;
     font-size: 1.9rem;
     letter-spacing: 1px;
+
     a {
       text-decoration: none;
       color: white;
+      transition: all 200ms;
       &:hover {
         color: var(--buttonHover);
       }
@@ -42,6 +44,7 @@
     div {
       font-size: 1.4rem;
       font-weight: 500;
+      color: white;
     }
   }
 }
@@ -162,11 +165,10 @@
     color: var(--amountItemsFiltered);
     font-size: 1.5rem;
     padding: 2rem;
-
     display: flex;
     justify-content: right;
     align-items: right;
-    margin-right: 23.5rem;
+    margin-right: 21.8rem;
   }
   .checkOut {
     display: flex;

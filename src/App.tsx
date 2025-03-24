@@ -6,6 +6,7 @@ import ProductDetailPage from "./pages/productDetailPage";
 import LandingPage from "./pages/LandingPage";
 import WishlistPage from "./pages/WishlistPage";
 import LoginPage from "./pages/LoginPage";
+import ShoppingCart from "./components/ShoppingCart";
 const App = () => {
   return (
     <>
@@ -26,7 +27,14 @@ const App = () => {
               </>
             }
           />
-          <Route path="/cart" element={<></>} />
+          <Route
+            path="/cart"
+            element={
+              <>
+                <ShoppingCart />
+              </>
+            }
+          />
         </Routes>
       </Layout>
     </>

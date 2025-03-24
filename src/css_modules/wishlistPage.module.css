@@ -44,3 +44,9 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .wishlistPage {
+    padding: 2rem;
+  }
+}
