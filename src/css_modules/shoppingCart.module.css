@@ -49,9 +49,9 @@
   }
 }
 .shoppingCartCrud {
-  margin: 0 auto;
+  margin: 10rem auto;
   max-width: 1380px;
-  height: 672px;
+  height: 100%;
   .crud {
     margin: 0 auto;
     height: auto;
