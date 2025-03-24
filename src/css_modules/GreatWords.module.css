@@ -1,50 +1,37 @@
 .people {
   text-align: center;
-  padding: 60px 20px;
   width: 100%;
   h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 20px;
     color: var(--black-like);
+    line-height: 38.4px;
   }
   p {
     font-size: 1.4rem;
     color: var(--amountItemsFiltered);
     max-width: 800px;
-    margin: 0 auto 30px;
+    margin: 20px auto 50px;
+    line-height: 22px;
   }
   .people_grid {
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(250px, 1fr)
-    ); /* Responsive grid */
-    gap: 1.5rem;
-    justify-content: center;
-    padding: 2rem;
-    /* margin-top: 6rem;
-    font-size: 14px;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    flex-wrap: wrap;
     gap: 5rem;
-    height: 325px; */
     .people_item {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      /* height: 100%; */
-      /* padding: 1.5rem; */
+      padding: 1rem;
       text-align: center;
       position: relative;
-      /* width: 410px; */
       background-color: var(--cardBorder);
-      /* padding: 20px; */
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      height: 278px;
       .img_container {
         display: block;
         position: absolute;
