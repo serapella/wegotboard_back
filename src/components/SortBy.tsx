@@ -5,20 +5,34 @@ import { useDispatch } from "react-redux";
 import { setSelectedSort } from "../store/sortSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+// import { useState } from "react";
 
-const SortBy = () => {
+interface SortByProps {
+  setViewMode: (mode: "grid" | "list") => void;
+  viewMode: "grid" | "list";
+}
+
+const SortBy: React.FC<SortByProps> = ({ setViewMode, viewMode }) => {
   const dispatch = useDispatch();
   const { products } = useSelector((state: RootState) => state.productGrid);
+
+  // const [activeView, setActiveView] = useState<"grid" | "list">("grid");
 
   return (
     <div className={styles.productSorting}>
       <div>
-        <button>
+        <button
+          className={viewMode === "grid" ? styles.active : ""}
+          onClick={() => setViewMode("grid")}
+        >
           <i>
             <BsGrid3X3 />
           </i>
         </button>
-        <button>
+        <button
+          className={viewMode === "list" ? styles.active : ""}
+          onClick={() => setViewMode("list")}
+        >
           <i>
             <BsListTask />
           </i>
@@ -33,10 +47,8 @@ const SortBy = () => {
           onChange={(e) => dispatch(setSelectedSort(e.target.value))}
         >
           <option value="default">Sort By : Featured</option>
-          {/* <option value="popularity">Popularity</option> */}
           <option value="ascending">Price - Ascending</option>
           <option value="descending">Price - Descending</option>
-          {/* <option value="new-arrivals">New Arrivals</option> */}
           <option value="rating">Best Rating</option>
         </select>
       </div>

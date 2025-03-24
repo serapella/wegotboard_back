@@ -11,10 +11,16 @@
   font-size: 1.5rem;
   color: var(--amountItemsFiltered);
   padding: 1rem;
-  #sortDropdown {
+
+  select {
     width: 19.2rem;
     padding: 0.4rem;
     text-align: center;
+    border: 1px solid var(--cardBorder);
+    border-radius: 0.5rem;
+    color: var(--amountItemsFiltered);
+    font-size: 1.5rem;
+    cursor: pointer;
   }
   :first-child {
     display: flex;
@@ -22,9 +28,21 @@
     gap: 1rem;
     font-size: 1.5rem;
     letter-spacing: 0.15rem;
+    .active {
+      background-color: var(--navTop);
+      color: white;
+    }
     button {
       width: 3.4rem;
       height: 3.4rem;
+      border: 1px solid var(--cardBorder);
+      background-color: white;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--navTop);
+        color: white;
+      }
     }
   }
 }
