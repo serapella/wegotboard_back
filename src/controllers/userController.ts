@@ -26,14 +26,21 @@ export const getUserById = async (req: Request, res: Response) => {
 export const createUser = async (req: Request, res: Response) => {
   try {
     const {
-      name,
+      first,
+      last,
       email,
       password,
-      phoneNumber,
+      pNumber,
       isAdmin,
       isSubscribed,
-      location,
+      country,
+      city,
+      pcode,
+      address,
     } = req.body;
+    let phoneNumber = pNumber;
+    let location = { country, city, postCode: pcode, address };
+    let name = { first, last };
 
     if (!name || !email || !password) {
       res.status(400).json({
@@ -67,7 +74,7 @@ export const createUser = async (req: Request, res: Response) => {
       sameSite: "none",
       maxAge: 60 * 60 * 1000,
     });
-    const sendUser = User.findOne({ email }).select("-password");
+    const sendUser = await User.findOne({ email }).select("-password");
     res.status(201).json({
       message: "User created succesfully",
       token: verificationToken,
@@ -116,14 +123,12 @@ export const loginUser = async (req: Request, res: Response) => {
           sameSite: "none",
           maxAge: 60 * 60 * 1000,
         });
-        const sendUser = User.findOne({ email }).select("-password");
-        res
-          .status(200)
-          .json({
-            message: "User logged in successfully",
-            token,
-            user: sendUser,
-          });
+        const sendUser = await User.findOne({ email }).select("-password");
+        res.status(200).json({
+          message: "User logged in successfully",
+          token,
+          user: sendUser,
+        });
       } else {
         res.status(401).json({
           message: "Password is incorrect",
