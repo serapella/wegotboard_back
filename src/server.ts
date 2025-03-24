@@ -7,6 +7,7 @@ import productRoutes from "./routes/productRoutes";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes";
 import userReviewRoutes from "./routes/userReviewRoutes";
+import verifyMailRoutes from "./routes/verifyMailRoutes";
 import viewRoutes from "./routes/viewRoutes";
 import cookieParser from "cookie-parser";
 import hbsHelpers from "./utils/hbsHelpers";
@@ -38,6 +39,7 @@ app.set("view engine", ".hbs");
 app.use("/p", productRoutes);
 app.use("/u", userRoutes);
 app.use("/r", userReviewRoutes);
+app.use("/m", verifyMailRoutes);
 app.use("/", viewRoutes);
 
 app.all("*", notFound);
