@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { setSelectedSort } from "../store/sortSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-// import { useState } from "react";
 
 interface SortByProps {
   setViewMode: (mode: "grid" | "list") => void;
@@ -15,8 +14,6 @@ interface SortByProps {
 const SortBy: React.FC<SortByProps> = ({ setViewMode, viewMode }) => {
   const dispatch = useDispatch();
   const { products } = useSelector((state: RootState) => state.productGrid);
-
-  // const [activeView, setActiveView] = useState<"grid" | "list">("grid");
 
   return (
     <div className={styles.productSorting}>
