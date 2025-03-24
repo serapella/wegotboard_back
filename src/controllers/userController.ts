@@ -39,12 +39,12 @@ export const createUser = async (req: Request, res: Response) => {
     const verificationToken = jwt.sign({ email }, JWT_SECRET as string, {
       expiresIn: "1h",
     });
-    const verifcationLink = `${BASE_URL}/verify/${verificationToken}`;
+    const verificationLink = `${BASE_URL}/verify/${verificationToken}`;
 
     await sendEmail({
       email,
       name,
-      link: verifcationLink,
+      link: verificationLink,
       type: "verify",
     });
 
