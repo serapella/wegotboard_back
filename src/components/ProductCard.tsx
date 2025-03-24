@@ -47,9 +47,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
           alt={product.name}
           onError={handleImageError}
         />
-        <div className={styles.category}>
-          {product.category?.name || "Board Game"}
-        </div>
       </div>
       <ProductCardInfo product={product} />
     </div>

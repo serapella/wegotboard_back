@@ -36,9 +36,7 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
 
   return (
     <div className={styles.content}>
-      <p className={styles.vendor}>
-        By <span>{product.category?.name}</span>
-      </p>
+      <p className={styles.category}>{product.category?.name}</p>
       <div className={styles.ratingContainer}>
         <div className={styles.stars}>{renderStars()}</div>
         <div className={styles.ratingValue}>
@@ -47,9 +45,10 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
         </div>
       </div>
       <h5>{product.name}</h5>
-      <div className={styles.popular_item_bottom}>
+      <div className={styles.cardinfo_bottom}>
         <div className={styles.price_container}>
           <span className={styles.current_price}>${discountedPrice}</span>
+          <span className={styles.old_price}>${product.price}</span>
         </div>
         <button className={styles.addToCart}>
           <BsCart3 />
