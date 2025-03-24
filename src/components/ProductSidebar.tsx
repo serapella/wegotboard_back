@@ -20,7 +20,7 @@ const ProductSidebar: React.FC<ProductSidebarProps> = ({
 
   const { data: products, isLoading } = useGetProductsQuery({
     categories: [categoryId],
-    limit: 10,
+    limit: 8,
   });
 
   const relatedProducts = products?.filter((p) => p._id !== currentProductId);
