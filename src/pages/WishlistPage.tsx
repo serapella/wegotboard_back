@@ -25,7 +25,10 @@ const WishlistPage: React.FC = () => {
               wishlist.map((product: Product) => (
                 <div key={product._id} className={styles.productCardWrapper}>
                   <ProductCard product={product} />
-                  <button className={styles.removeButton} onClick={() => removeFromWishlist({ productId: product._id, userId: user?._id as string })}>
+                  <button
+                    className={styles.removeButton}
+                    onClick={() => removeFromWishlist({ productId: product._id, userId: user?._id as string, token: token as string })}
+                  >
                     Remove from Wishlist
                   </button>
                 </div>
