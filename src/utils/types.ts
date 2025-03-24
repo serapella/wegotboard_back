@@ -28,5 +28,5 @@ export type EmailData = {
   email: string;
   name: string;
   link?: string;
-  type?: "verify" | "reset_password";
+  type?: "verify";
 };
