@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useRegisterMutation } from "../store/userAPI";
 import { RegisterCredentials } from "../types";
-import styles from "./css_modules/RegisterPage.module.css";
-import WeGotBoardLogo from "../../images/WeGotBoard_cut.png";
+import styles from "../css_modules/RegisterPage.module.css";
+import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 
 const RegisterPage = () => {
   const [register, { isLoading }] = useRegisterMutation();
