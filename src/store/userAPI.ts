@@ -35,6 +35,26 @@ export const userAPI = createApi({
       }),
       invalidatesTags: ["Review"],
     }),
+    register: builder.mutation<
+      User,
+      {
+        first: string;
+        last: string;
+        email: string;
+        pnumber: string;
+        address: string;
+        city: string;
+        pcode: string;
+        country: string;
+        region: string;
+      }
+    >({
+      query: (newUser) => ({
+        url: "/users/register",
+        method: "POST",
+        body: newUser,
+      }),
+    }),
   }),
 });
 
@@ -43,6 +63,7 @@ export const {
   useUpdateProfileMutation,
   useGetUserReviewsQuery,
   useDeleteReviewMutation,
+  useRegisterMutation,
 } = userAPI;
 
 export default userAPI;

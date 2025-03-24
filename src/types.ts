@@ -124,6 +124,12 @@ export interface RegisterCredentials {
   password: string;
   firstName: string;
   lastName: string;
+  pnumber: string;
+  address: string;
+  city: string;
+  pcode: string;
+  country: string;
+  region: string;
 }
 
 export interface UserResponse {

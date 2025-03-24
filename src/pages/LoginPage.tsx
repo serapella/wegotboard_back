@@ -15,7 +15,7 @@ const LoginPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Zorgt ervoor dat cookies (zoals een HttpOnly JWT) worden meegestuurd
+        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
