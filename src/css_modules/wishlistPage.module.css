@@ -1,7 +1,7 @@
 .wishlistPage {
   .wishlistHeader {
     margin: 5rem auto;
-    max-width: 1300px;
+    max-width: 1380px;
     text-align: center;
     font-size: 3rem;
     font-weight: bold;
@@ -11,7 +11,7 @@
     .mainContent {
       .wishlistGrid {
         margin-top: 2rem;
-        max-width: 1300px;
+        max-width: 1380px;
         display: grid;
         margin: 0 auto;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

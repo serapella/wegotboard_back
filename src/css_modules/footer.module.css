@@ -6,22 +6,21 @@
     text-decoration: none;
     color: inherit;
   }
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--filter);
   border: 1px solid var(--cardBorder);
-  padding-top: 20px;
+
   & > div:nth-of-type(1) {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    background-color: lightblue;
     /* justify-content: center; */
     /* gap: 7rem; */
     padding: 10rem 20rem;
-
     > div {
       display: flex;
       flex-direction: column;
