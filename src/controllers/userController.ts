@@ -3,7 +3,9 @@ import { User } from "../models/UserModel";
 import { genSaltSync, hashSync, compareSync } from "bcrypt-ts";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../utils/verifyMail";
+import { name } from "ejs";
 const { JWT_SECRET, BASE_URL } = process.env;
+import { ObjectId } from "mongodb";
 
 export const getUserById = async (req: Request, res: Response) => {
   try {
@@ -26,8 +28,10 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, phoneNumber, isAdmin, isSubscribed, location } = req.body;
-
+    const { first, last, email, password, pNumber, isAdmin, isSubscribed, country, city, pcode, address } = req.body;
+    let phoneNumber = pNumber;
+    let location = { country, city, postCode: pcode, address };
+    let name = { first: first as string, last: last as string };
     if (!name || !email || !password) {
       res.status(400).json({
         message: "Name, email, and password are required",
@@ -43,7 +47,7 @@ export const createUser = async (req: Request, res: Response) => {
 
     await sendEmail({
       email,
-      name,
+      name: name.first + " " + name.last,
       link: verificationLink,
       type: "verify",
     });
@@ -289,7 +293,7 @@ export const removeFromWishlist = async (req: Request, res: Response) => {
       return;
     }
     const _id = req.user._id;
-    const { productId } = req.body;
+    const { productId } = req.params;
     const user = await User.findById(_id);
     if (!user) {
       res.status(404).json({
@@ -297,13 +301,14 @@ export const removeFromWishlist = async (req: Request, res: Response) => {
       });
       return;
     }
-    if (!user.favorites.includes(productId)) {
+    console.log(user.favorites);
+    if (!user.favorites.includes(new ObjectId(productId))) {
       res.status(404).json({
         message: "Product not found in wishlist",
       });
       return;
     }
-    user.favorites = user.favorites.filter((item) => item !== productId);
+    user.favorites = user.favorites.filter((item) => item !== new ObjectId(productId));
     await user.save();
     res.status(200).json({ message: "Product removed from wishlist" });
   } catch (error: unknown) {
