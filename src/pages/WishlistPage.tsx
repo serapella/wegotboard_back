@@ -2,13 +2,19 @@ import styles from "../css_modules/wishlistPage.module.css";
 import ProductCard from "../components/ProductCard";
 import { Product } from "../types";
 import { useGetWishlistQuery, useRemoveFromWishlistMutation } from "../store/userAPI";
-import { selectCurrentUser } from "../store/authSlice";
+import { selectCurrentToken, selectCurrentUser } from "../store/authSlice";
 import { useSelector } from "react-redux";
 
 const WishlistPage: React.FC = () => {
-  const { data: wishlist } = useGetWishlistQuery();
-  const [removeFromWishlist] = useRemoveFromWishlistMutation();
   const user = useSelector(selectCurrentUser);
+  const token = useSelector(selectCurrentToken);
+  const { data: wishlist } = useGetWishlistQuery({
+    id: user?._id as string,
+    token: token as string,
+  });
+  const [removeFromWishlist] = useRemoveFromWishlistMutation();
+
+  console.log(token);
 
   return (
     <div className={styles.wishlistPage}>

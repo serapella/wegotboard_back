@@ -57,13 +57,13 @@ export const userAPI = createApi({
         };
       },
     }),
-    getWishlist: builder.query<Product[], void>({
-      query: () => "/wishlist",
+    getWishlist: builder.query<Product[], { id: string; token: string }>({
+      query: ({ id, token }) => `/users/${id}/wishlist?token=${token}`,
       providesTags: ["Wishlist"],
     }),
     removeFromWishlist: builder.mutation<void, { productId: string; userId: string }>({
       query: ({ productId, userId }) => ({
-        url: `user/${userId}/wishlist/${productId}`,
+        url: `/users/${userId}/wishlist/${productId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Wishlist"],
