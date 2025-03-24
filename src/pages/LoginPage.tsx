@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLoginMutation } from "../store/userAPI";
-import styles from "../css_modules/LoginPage.module.css";
+import styles from "./LoginPage.module.css";
 import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 
 const LoginPage = () => {
@@ -44,7 +44,7 @@ const LoginPage = () => {
 
   return (
     <main className={styles.main}>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.logoWgb}>
           <Link to="/">
             <img src={WeGotBoardLogo} alt="WeGotBoard Logo" />
