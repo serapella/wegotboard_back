@@ -16,11 +16,12 @@ const authCheck = async (req: Request, res: Response) => {
   if (!req.user) {
     res.redirect("/admin/login");
     return;
-  }
-  //@ts-ignore
-  if (!req.user.isAdmin) {
-    res.redirect("/");
-    return;
+  } else {
+    //@ts-ignore
+    if (!req.user.isAdmin) {
+      res.redirect("/admin/login?error=unauthorized");
+      return;
+    }
   }
 };
 export const showProducts = async (req: Request, res: Response) => {
@@ -37,7 +38,9 @@ export const showProducts = async (req: Request, res: Response) => {
         data: { products, count, categories, tags },
         layout: false,
       });
+      return;
     });
+  return;
 };
 
 export const deleteProduct = async (req: Request, res: Response) => {
@@ -46,6 +49,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
     const { id } = req.body;
     if (id) await Product.findByIdAndDelete(id);
     res.redirect("/admin/products");
+    return;
   } catch (error: unknown) {
     if (error instanceof ValidationError) {
       res.status(400).json({ message: error.message });
@@ -97,6 +101,7 @@ export const addProduct = async (req: Request, res: Response) => {
       images,
     });
     res.redirect("/admin/products");
+    return;
   } catch (error: unknown) {
     if (error instanceof ValidationError) {
       res.status(400).json({ message: error.message });
@@ -114,6 +119,7 @@ export const addTodo = async (req: Request, res: Response) => {
     const { task } = req.body;
     const todo = await Todo.create({ task });
     res.status(201).json(todo);
+    return;
   } catch (error: unknown) {
     if (error instanceof ValidationError) {
       res.status(400).json({ message: error.message });
@@ -142,6 +148,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
     if (!user) {
       res.redirect("/admin/login/?error=user");
+      return;
     } else {
       if (compareSync(password, user.password)) {
         await user.save();
@@ -158,8 +165,10 @@ export const loginUser = async (req: Request, res: Response) => {
         });
 
         res.redirect("/admin/products");
+        return;
       } else {
         res.redirect("/admin/login/?error=user");
+        return;
       }
     }
   } catch (error: unknown) {
@@ -176,11 +185,12 @@ export const loginPage = async (req: Request, res: Response) => {
   try {
     const { error } = req.query;
     const user = req.user;
-    if (user) authCheck(req, res);
+    // if (user) authCheck(req, res);
     res.render("login", {
       data: { error },
       layout: false,
     });
+    return;
   } catch (error: unknown) {
     if (error instanceof ValidationError) {
       res.status(400).json({ message: error.message });
