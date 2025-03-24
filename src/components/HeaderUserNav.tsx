@@ -11,8 +11,8 @@ const HeaderUserNav = () => {
   const { data: user, isLoading, isError } = useGetProfileQuery();
   const total = useSelector(getTotalQuantity);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading user profile</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>Error loading user profile</div>;
 
   return (
     <div className={styles.userNav}>

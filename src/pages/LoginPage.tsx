@@ -1,62 +1,120 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useLoginMutation } from "../store/userAPI";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../store/authSlice";
+import styles from "../css_modules/LoginPage.module.css";
+import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    remember: false,
+  });
+  const [error, setError] = useState("");
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
+    setError("");
 
     try {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // Zorgt ervoor dat cookies (zoals een HttpOnly JWT) worden meegestuurd
-        body: JSON.stringify({ email, password }),
-      });
+      const result = await login({
+        email: formData.email,
+        password: formData.password,
+      }).unwrap();
 
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || "Login mislukt");
+      if (result.user && result.token) {
+        dispatch(setCredentials(result));
+        navigate("/");
+      } else {
+        setError("Login failed. Please try again.");
       }
-
-      alert("Succesvol ingelogd!");
-      window.location.href = "/landingpage";
     } catch (err) {
-      setError((err as Error).message);
+      console.error("Login error:", err);
+      setError("Invalid email or password");
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <main className={styles.main}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.logoWgb}>
+          <Link to="/">
+            <img src={WeGotBoardLogo} alt="WeGotBoard Logo" />
+          </Link>
         </div>
-        <div>
-          <label>Wachtwoord:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+
+        {error && <div className={styles.error}>{error}</div>}
+
+        <div className={styles.inputUserDetails}>
+          <div className={styles.input}>
+            <label htmlFor="email">Email Address*</label>
+            <input
+              className={styles.inputMod}
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter Your email"
+              required
+              disabled={isLoading}
+            />
+          </div>
+
+          <div className={styles.input}>
+            <label htmlFor="password">Password*</label>
+            <input
+              className={styles.inputMod}
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter Your password"
+              required
+              disabled={isLoading}
+            />
+          </div>
+
+          <div className={styles.rememberForgot}>
+            <div className={styles.remember}>
+              <input
+                type="checkbox"
+                id="remember"
+                name="remember"
+                checked={formData.remember}
+                onChange={handleChange}
+                disabled={isLoading}
+              />
+              <label htmlFor="remember">Remember Me</label>
+            </div>
+            <Link to="/forgot-password" className={styles.forgot}>
+              Forgot Password?
+            </Link>
+          </div>
         </div>
-        <button type="submit">Inloggen</button>
+
+        <div className={styles.btnSignUp}>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
+          <Link to="/user/register">Don't have an account?</Link>
+        </div>
       </form>
-    </div>
+    </main>
   );
 };
 

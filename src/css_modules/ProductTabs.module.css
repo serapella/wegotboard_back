@@ -1,5 +1,5 @@
 .product-tabs {
-  grid-area: tabs;
+  width: 100%;
   margin-top: 2rem;
   border: 1px solid var(--cardBorder);
   border-radius: 0.8rem;
@@ -13,6 +13,8 @@
   border-bottom: 1px solid var(--cardBorder);
   margin-bottom: 2rem;
   padding-bottom: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tab-buttons button {
@@ -25,6 +27,7 @@
   color: var(--black-like);
   transition: all 0.3s ease;
   position: relative;
+  white-space: nowrap;
 }
 
 .tab-buttons button.active {
@@ -163,13 +166,81 @@
   color: var(--orange);
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pageButton {
+  padding: 0.8rem 1.6rem;
+  background-color: var(--filter);
+  border: 1px solid var(--cardBorder);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: var(--navTop);
+  color: white;
+}
+
+.pageButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 1.4rem;
+  color: var(--amountItemsFiltered);
+}
+
 @media (max-width: 768px) {
+  .product-tabs {
+    padding: 1.5rem;
+  }
+
   .tab-buttons {
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .tab-buttons button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .description h3 {
+    font-size: 1.6rem;
   }
 
   .reviews-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-tabs {
+    padding: 1rem;
+  }
+
+  .tab-buttons {
+    gap: 1rem;
+  }
+
+  .tab-buttons button {
+    padding: 0.6rem 1rem;
+    font-size: 1.3rem;
+  }
+
+  .description h3 {
+    font-size: 1.5rem;
+  }
+
+  .review-card {
+    padding: 1.5rem;
   }
 }
