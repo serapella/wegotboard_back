@@ -19,20 +19,18 @@ const ProductSidebar: React.FC<ProductSidebarProps> = ({
   const navigate = useNavigate();
 
   const { data: products, isLoading } = useGetProductsQuery({
-    categories: categoryId,
-    limit: 4,
+    categories: [categoryId],
+    limit: 10,
   });
 
-  const relatedProducts = products
-    ?.filter((p) => p._id !== currentProductId)
-    .slice(0, 3);
+  const relatedProducts = products?.filter((p) => p._id !== currentProductId);
 
   if (isLoading) {
     return (
       <aside className={styles["product-sidebar"]}>
         <h3>Related Products</h3>
         <div className="animate-pulse space-y-4">
-          {[1, 2, 3].map((n) => (
+          {[1, 2, 3, 4, 5].map((n) => (
             <div key={n} className="h-24 bg-gray-200 rounded"></div>
           ))}
         </div>

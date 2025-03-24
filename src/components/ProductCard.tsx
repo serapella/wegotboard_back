@@ -8,9 +8,10 @@ const FALLBACK_IMAGE =
 
 interface ProductCardProps {
   product: Product;
+  viewMode: "grid" | "list";
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
   const navigate = useNavigate();
 
   if (!product) {
@@ -28,7 +29,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div
-      className={styles.card}
+      className={
+        viewMode === "grid" ? styles.productCard : styles.productCardList
+      }
       onClick={handleClick}
       role="button"
       tabIndex={0}
@@ -44,9 +47,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={product.name}
           onError={handleImageError}
         />
-        <div className={styles.category}>
-          {product.category?.name || "Board Game"}
-        </div>
       </div>
       <ProductCardInfo product={product} />
     </div>

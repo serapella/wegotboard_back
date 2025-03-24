@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import style from "../css_modules/footer.module.css";
 import footer_image from "../images/WeGotBoard_cut.png";
 import {
@@ -7,7 +7,12 @@ import {
   BsInstagram,
   BsTwitterX,
 } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { setCategories } from "../store/filterSlice";
 const Footer = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   return (
     <div className={style.footer}>
       <div>
@@ -50,9 +55,33 @@ const Footer = () => {
         <div>
           <h4>Categories</h4>
           <ul>
-            <li>Board Games</li>
-            <li>Card Games</li>
-            <li>Dice Games</li>
+            <li
+              onClick={() => {
+                dispatch(setCategories("board-games"));
+                navigate("/products");
+              }}
+              className={style.navFilter}
+            >
+              Board Games
+            </li>
+            <li
+              onClick={() => {
+                dispatch(setCategories("card-games"));
+                navigate("/products");
+              }}
+              className={style.navFilter}
+            >
+              Card Games
+            </li>
+            <li
+              onClick={() => {
+                dispatch(setCategories("dice-games"));
+                navigate("/products");
+              }}
+              className={style.navFilter}
+            >
+              Dice Games
+            </li>
           </ul>
         </div>
         <div>

@@ -2,6 +2,7 @@ import style from "../css_modules/shoppingcart.module.css";
 import { clearCart, getCartItems } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartItem from "./ShoppingCartItem";
+import { Link } from "react-router";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(getCartItems);
@@ -10,17 +11,9 @@ const ShoppingCart = () => {
     <div>
       <section className={style.headerNav}>
         <nav>
-          <a href="#" id="shopLeft">
-            Cart
-          </a>
+          <Link to={"/cart"}>Cart</Link>
           <div>
-            <a href="#" id="homeRight">
-              Home
-            </a>
-            /
-            <a href="#" id="shopRight">
-              Shop
-            </a>
+            <Link to={"/"}>Home</Link>/<Link to={"/products"}>Shop</Link>
           </div>
         </nav>
       </section>
@@ -57,7 +50,8 @@ const ShoppingCart = () => {
           </div>
           <div className={style.checkOut}>
             <div className={style.linksCheckOut}>
-              <a href="#">Continue Shopping</a>
+              <Link to={"/products"}>Continue Shopping</Link>
+
               <a href="" onClick={() => dispatch(clearCart())}>
                 Empty Cart
               </a>

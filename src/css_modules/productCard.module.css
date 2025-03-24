@@ -1,4 +1,4 @@
-.card {
+.productCard {
   background: white;
   border: 1px solid var(--cardBorder);
   border-radius: 0.8rem;
@@ -8,10 +8,26 @@
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  max-width: 30rem;
+  width: 100%;
+  margin: 0 auto;
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.productCardList {
+  display: flex;
+  width: 50rem;
+  border: 1px solid var(--cardBorder);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  margin: 2rem 0;
+  @media screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+    width: 100%;
   }
 }
 

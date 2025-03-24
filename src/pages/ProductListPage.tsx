@@ -8,6 +8,8 @@ import { RootState } from "../store";
 import { setProducts, setTotalPages } from "../store/paginationSlice";
 import { useGetProductsQuery } from "../store/productAPI";
 import { ProductQuery } from "../types";
+import styles from "../css_modules/ProductListPage.module.css";
+import { useState } from "react";
 
 interface PlayerCount {
   min: number;
@@ -84,11 +86,20 @@ const ProductListPage = () => {
   );
   const { selectedSort } = useSelector((state: RootState) => state.sort);
 
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
 
-  const { categories, priceRange, playerCount, duration, difficulty, age } =
-    useSelector((state: RootState) => state.filter || {});
+  const {
+    categories,
+    priceRange,
+    playerCount,
+    duration,
+    difficulty,
+    age,
+    search,
+  } = useSelector((state: RootState) => state.filter || {});
 
   const filters: ProductQuery = {
     categories: Object.keys(categories).filter(
@@ -102,6 +113,7 @@ const ProductListPage = () => {
       Object.keys(difficulty).find((level) => difficulty[level]) || "",
     ageMin: getAgeMin(age),
     ageMax: undefined,
+    search: search,
   };
   const { data: fetchedProducts } = useGetProductsQuery(filters);
 
@@ -140,9 +152,16 @@ const ProductListPage = () => {
 
   return (
     <div>
-      <SortBy />
-      <ProductGrid products={products.slice(startIndex, endIndex)} />
-      <Filter />
+      <div className={styles.container}>
+        <Filter />
+        <div className={styles.right}>
+          <SortBy setViewMode={setViewMode} viewMode={viewMode} />
+          <ProductGrid
+            products={products.slice(startIndex, endIndex)}
+            viewMode={viewMode}
+          />
+        </div>
+      </div>
       <Pagination />
     </div>
   );

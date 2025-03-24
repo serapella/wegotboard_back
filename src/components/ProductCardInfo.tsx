@@ -8,13 +8,16 @@ interface ProductCardInfoProps {
 }
 const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
   const { data: reviews } = useGetProductReviewsQuery(product._id);
+
   if (!product) {
     return null;
   }
-  const avgRating =
-    product.userRating.reduce((a, b) => a + b, 0) / product.userRating.length;
+  console.log(reviews);
+  const avgRating = reviews?.length
+    ? reviews.reduce((a, b) => a + b.rating, 0) / reviews.length
+    : 0;
   const fullStars = Math.floor(avgRating);
-  const halfStar = avgRating % 1 !== 0;
+  const halfStar = avgRating % 1 >= 0.5;
   const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
   const discountedPrice = (
@@ -36,9 +39,7 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
 
   return (
     <div className={styles.content}>
-      <p className={styles.vendor}>
-        By <span>{product.category?.name}</span>
-      </p>
+      <p className={styles.category}>{product.category?.name}</p>
       <div className={styles.ratingContainer}>
         <div className={styles.stars}>{renderStars()}</div>
         <div className={styles.ratingValue}>
@@ -47,9 +48,10 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({ product }) => {
         </div>
       </div>
       <h5>{product.name}</h5>
-      <div className={styles.popular_item_bottom}>
+      <div className={styles.cardinfo_bottom}>
         <div className={styles.price_container}>
           <span className={styles.current_price}>${discountedPrice}</span>
+          <span className={styles.old_price}>${product.price}</span>
         </div>
         <button className={styles.addToCart}>
           <BsCart3 />

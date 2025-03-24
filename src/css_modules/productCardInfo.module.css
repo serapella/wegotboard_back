@@ -4,91 +4,91 @@
   flex-direction: column;
   gap: 1.2rem;
   flex-grow: 1;
-}
-
-.vendor {
-  font-size: 1.4rem;
-  color: var(--amountItemsFiltered);
-}
-
-.vendor span {
-  color: var(--greenSubmit);
-}
-
-.ratingContainer {
-  display: flex;
   align-items: center;
-  gap: 0.8rem;
-}
+  justify-content: center;
 
-.stars {
-  display: flex;
-  gap: 0.2rem;
-  font-size: 1.4rem;
-}
+  .category {
+    background-color: white;
+    padding: 0.4rem 0rem;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--amountItemsFiltered);
+    text-align: center;
+  }
+  .ratingContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    /* text-align: center; */
 
-.starFilled {
-  color: var(--orange);
-}
+    .stars {
+      display: flex;
+      gap: 0.2rem;
+      font-size: 1.4rem;
+    }
 
-.starHalf {
-  color: var(--orange);
-}
+    .starFilled {
+      color: var(--orange);
+    }
 
-.starEmpty {
-  color: #e4e4e4;
-}
+    .starHalf {
+      color: var(--orange);
+    }
 
-.ratingValue {
-  font-size: 1.4rem;
-  color: var(--amountItemsFiltered);
-}
+    .starEmpty {
+      color: #e4e4e4;
+    }
 
-h5 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--black-like);
-  line-height: 1.4;
-}
-
-.priceContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-}
-
-.price {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-}
-
-.currentPrice {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--navTop);
-}
-
-.addToCart {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1.6rem;
-  background-color: var(--navTop);
-  color: white;
-  border: none;
-  border-radius: 0.4rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.addToCart:hover {
-  background-color: var(--buttonHover);
-}
-
-.addToCart svg {
-  font-size: 1.6rem;
+    .ratingValue {
+      font-size: 1.4rem;
+      color: var(--amountItemsFiltered);
+    }
+  }
+  h5 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--black-like);
+    line-height: 1.4;
+  }
+  .cardinfo_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1.2rem;
+    .price_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      .current_price {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--navTop);
+      }
+      .old_price {
+        font-size: 1.4rem;
+        color: var(--amountItemsFiltered);
+        text-decoration: line-through;
+      }
+    }
+    .addToCart {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0.8rem 1.6rem;
+      background-color: var(--navTop);
+      color: white;
+      border: none;
+      border-radius: 0.4rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      &:hover {
+        background-color: var(--buttonHover);
+      }
+    }
+  }
 }
