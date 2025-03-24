@@ -2,10 +2,13 @@ import styles from "../css_modules/wishlistPage.module.css";
 import ProductCard from "../components/ProductCard";
 import { Product } from "../types";
 import { useGetWishlistQuery, useRemoveFromWishlistMutation } from "../store/userAPI";
+import { selectCurrentUser } from "../store/authSlice";
+import { useSelector } from "react-redux";
 
 const WishlistPage: React.FC = () => {
   const { data: wishlist } = useGetWishlistQuery();
   const [removeFromWishlist] = useRemoveFromWishlistMutation();
+  const user = useSelector(selectCurrentUser);
 
   return (
     <div className={styles.wishlistPage}>
@@ -16,7 +19,7 @@ const WishlistPage: React.FC = () => {
               wishlist.map((product: Product) => (
                 <div key={product._id} className={styles.productCardWrapper}>
                   <ProductCard product={product} />
-                  <button className={styles.removeButton} onClick={() => removeFromWishlist(product._id)}>
+                  <button className={styles.removeButton} onClick={() => removeFromWishlist({ productId: product._id, userId: user?._id as string })}>
                     Remove from Wishlist
                   </button>
                 </div>
