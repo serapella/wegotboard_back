@@ -1,41 +1,50 @@
-div.userNav {
+.userNav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 8.6rem;
   font-size: 1.5rem;
-  padding-top: 1.4rem;
+  padding: 2.2rem 0;
   border-bottom: var(--cardBorder) solid 1px;
-  a {
-    img {
-      height: 6.2rem;
-    }
-  }
-
-  ul {
+  .userNavContent {
     display: flex;
-    gap: 3rem;
-    li {
-      position: relative;
-      a {
-        text-decoration: none;
-        color: var(--black-like);
-        i {
-          height: 2.1rem;
-          width: 2.1rem;
-          padding-right: 1rem;
-        }
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: lightblue; */
+
+    a {
+      img {
+        height: 6.2rem;
       }
-      .quantity {
-        position: absolute;
-        left: 1rem;
-        bottom: -0.6rem;
-        color: red;
-        font-size: small;
-        padding: 0;
-        background-color: rgba(255, 255, 255, 0.637);
-        padding: 0.2rem;
-        border-radius: 1rem;
+    }
+
+    ul {
+      display: flex;
+      gap: 3rem;
+      li {
+        position: relative;
+        a {
+          text-decoration: none;
+          color: var(--black-like);
+          i {
+            height: 2.1rem;
+            width: 2.1rem;
+            padding-right: 1rem;
+          }
+        }
+        .quantity {
+          position: absolute;
+          left: 1rem;
+          bottom: -0.6rem;
+          color: red;
+          font-size: small;
+          padding: 0;
+          background-color: rgba(255, 255, 255, 0.637);
+          padding: 0.2rem;
+          border-radius: 1rem;
+        }
       }
     }
   }
