@@ -1,19 +1,23 @@
 .productDetailPage {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: clamp(2rem, 4vw, 4rem);
+  overflow-x: hidden;
 }
 
 .mainContent {
   display: grid;
-  grid-template-columns: 30rem 1fr;
-  gap: 4rem;
+  grid-template-columns: minmax(280px, 30rem) 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  margin-bottom: clamp(4rem, 6vw, 6rem);
+  width: 100%;
 }
 
 .sidebar {
   position: sticky;
   top: 2rem;
   height: fit-content;
+  display: block;
 }
 
 .content {
@@ -22,20 +26,24 @@
   gap: 4rem;
 }
 
-@media (max-width: 1200px) {
+/* Large screens */
+@media (min-width: 1441px) {
+  .productDetailPage {
+    padding: 4rem 8rem;
+  }
+
   .mainContent {
-    grid-template-columns: 25rem 1fr;
-    gap: 3rem;
+    gap: 6rem;
   }
 }
 
-@media (max-width: 992px) {
-  .productDetailPage {
-    padding: 3rem 1.5rem;
-  }
-
+/* Desktop and smaller */
+@media (max-width: 1200px) {
   .mainContent {
     grid-template-columns: 1fr;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .sidebar {
@@ -43,12 +51,42 @@
   }
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .productDetailPage {
+    padding: 3rem 2rem;
+  }
+
+  .mainContent {
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .productDetailPage {
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
   }
 
   .mainContent {
     gap: 2rem;
+    margin-bottom: 3rem;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .productDetailPage {
+    padding: 1.5rem 1rem;
+  }
+
+  .mainContent {
+    gap: 1.5rem;
   }
 }
