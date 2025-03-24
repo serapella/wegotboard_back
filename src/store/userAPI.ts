@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User, Review } from "../types";
+import { User, Review, RegisterCredentials } from "../types";
 
 export const userAPI = createApi({
   reducerPath: "userAPI",
@@ -35,24 +35,21 @@ export const userAPI = createApi({
       }),
       invalidatesTags: ["Review"],
     }),
-    register: builder.mutation<
-      User,
-      {
-        first: string;
-        last: string;
-        email: string;
-        pnumber: string;
-        address: string;
-        city: string;
-        pcode: string;
-        country: string;
-        region: string;
-      }
-    >({
-      query: (newUser) => ({
+    register: builder.mutation<User, RegisterCredentials>({
+      query: (credentials) => ({
         url: "/users/register",
         method: "POST",
-        body: newUser,
+        body: credentials,
+      }),
+    }),
+    login: builder.mutation<
+      { user: User; token: string },
+      { email: string; password: string }
+    >({
+      query: (credentials) => ({
+        url: "/users/login",
+        method: "POST",
+        body: credentials,
       }),
     }),
   }),
@@ -64,6 +61,7 @@ export const {
   useGetUserReviewsQuery,
   useDeleteReviewMutation,
   useRegisterMutation,
+  useLoginMutation,
 } = userAPI;
 
 export default userAPI;

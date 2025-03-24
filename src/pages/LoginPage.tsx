@@ -27,11 +27,16 @@ const LoginPage = () => {
     setError("");
 
     try {
-      await login({
+      const result = await login({
         email: formData.email,
         password: formData.password,
       }).unwrap();
-      navigate("/");
+
+      if (result.user) {
+        navigate("/");
+      } else {
+        setError("Login failed. Please try again.");
+      }
     } catch (err) {
       setError("Invalid email or password");
     }
@@ -42,7 +47,7 @@ const LoginPage = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.logoWgb}>
           <Link to="/">
-            <img src={WeGotBoardLogo} alt="logo" />
+            <img src={WeGotBoardLogo} alt="WeGotBoard Logo" />
           </Link>
         </div>
 
