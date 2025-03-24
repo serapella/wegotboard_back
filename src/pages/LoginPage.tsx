@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLoginMutation } from "../store/userAPI";
-import styles from "./LoginPage.module.css";
+import styles from "./css_modules/LoginPage.module.css";
 import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 
 const LoginPage = () => {
