@@ -37,20 +37,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-<<<<<<< HEAD
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
     }).concat(logger, productAPI.middleware, newsAPI.middleware, reviewAPI.middleware),
-=======
-    getDefaultMiddleware()
-      .concat(logger)
-      .concat(productAPI.middleware)
-      .concat(newsAPI.middleware)
-      .concat(reviewAPI.middleware)
-      .concat(userAPI.middleware),
->>>>>>> dev
 });
 
 export type RootState = ReturnType<typeof store.getState>;
