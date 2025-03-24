@@ -9,7 +9,7 @@
   font-size: 1.4rem;
 }
 
-.form {
+form {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
