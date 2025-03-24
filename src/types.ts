@@ -54,11 +54,19 @@ export interface Category {
 
 export interface User {
   _id: string;
+  email: string;
   name: {
     first: string;
     last: string;
   };
-  email: string;
+  address: {
+    street: string;
+    city: string;
+    postalCode: string;
+    country: string;
+    region: string;
+  };
+  phone: string;
   avatar?: string;
   role: "user" | "admin";
   createdAt: string;
@@ -140,4 +148,34 @@ export interface UserResponse {
 export interface AuthState {
   user: User | null;
   token: string | null;
+  isAuthenticated: boolean;
 }
+
+export interface ApiError {
+  status: number;
+  data: {
+    message: string;
+    error?: string;
+  };
+}
+
+// API Response Types
+export interface ApiResponse<T> {
+  data: T;
+  message: string;
+  status: number;
+}
+
+// User API Types
+export interface UserApiResponse extends ApiResponse<User> {}
+export interface UserListResponse extends ApiResponse<User[]> {}
+export interface AuthResponse extends ApiResponse<UserResponse> {}
+
+// Mutation Response Types
+export interface MutationResponse<T> {
+  data?: T;
+  error?: ApiError;
+}
+
+export interface UserMutationResponse extends MutationResponse<User> {}
+export interface AuthMutationResponse extends MutationResponse<UserResponse> {}

@@ -1,19 +1,29 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User, Review } from "../types";
+import {
+  User,
+  UserResponse,
+  LoginCredentials,
+  RegisterCredentials,
+  ApiError,
+} from "../types";
 
 export const userAPI = createApi({
   reducerPath: "userAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api",
-    prepareHeaders: (headers) => {
-      // httponly
-      return headers;
-    },
+    baseUrl: "http://localhost:3000/u",
+    // credentials: "include",
+    // prepareHeaders: (headers, { getState }) => {
+    //   const token = (getState() as any).auth?.token;
+    //   if (token) {
+    //     headers.set("authorization", `Bearer ${token}`);
+    //   }
+    //   return headers;
+    // },
   }),
-  tagTypes: ["User", "Review"],
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getProfile: builder.query<User, void>({
-      query: () => "/users/profile",
+      query: (id) => `/users/${id}`,
       providesTags: ["User"],
     }),
     updateProfile: builder.mutation<User, Partial<User>>({
@@ -24,36 +34,32 @@ export const userAPI = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    getUserReviews: builder.query<Review[], void>({
-      query: () => "/users/reviews",
-      providesTags: ["Review"],
-    }),
-    deleteReview: builder.mutation<void, string>({
-      query: (reviewId) => ({
-        url: `/reviews/${reviewId}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Review"],
-    }),
-    register: builder.mutation<
-      User,
-      {
-        first: string;
-        last: string;
-        email: string;
-        pnumber: string;
-        address: string;
-        city: string;
-        pcode: string;
-        country: string;
-        region: string;
-      }
-    >({
-      query: (newUser) => ({
-        url: "/users/register",
+    register: builder.mutation<UserResponse, RegisterCredentials>({
+      query: (credentials) => ({
+        url: "/user/create",
         method: "POST",
-        body: newUser,
+        body: credentials,
       }),
+      transformErrorResponse: (response: ApiError) => {
+        console.log(response);
+        return {
+          status: response.status,
+          message: response?.data?.message || "Registration failed",
+        };
+      },
+    }),
+    login: builder.mutation<UserResponse, LoginCredentials>({
+      query: (credentials) => ({
+        url: "/user/login",
+        method: "POST",
+        body: credentials,
+      }),
+      transformErrorResponse: (response: ApiError) => {
+        return {
+          status: response.status,
+          message: response?.data?.message || "Login failed",
+        };
+      },
     }),
   }),
 });
@@ -61,9 +67,8 @@ export const userAPI = createApi({
 export const {
   useGetProfileQuery,
   useUpdateProfileMutation,
-  useGetUserReviewsQuery,
-  useDeleteReviewMutation,
   useRegisterMutation,
+  useLoginMutation,
 } = userAPI;
 
 export default userAPI;

@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
+import { useLoginMutation } from "../store/userAPI";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../store/authSlice";
 import styles from "../css_modules/LoginPage.module.css";
+import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 
-const Login = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     remember: false,
   });
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -24,36 +30,30 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+      const result = await login({
+        email: formData.email,
+        password: formData.password,
+      }).unwrap();
 
-      if (!response.ok) {
-        throw new Error("Invalid email or password");
+      if (result.user && result.token) {
+        dispatch(setCredentials(result));
+        navigate("/");
+      } else {
+        setError("Login failed. Please try again.");
       }
-
-      const data = await response.json();
-      // Assuming the backend sends the JWT token as part of the response
-      document.cookie = `token=${data.token}; path=/;`;
-
-      navigate("/");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Invalid email or password");
     }
   };
 
   return (
     <main className={styles.main}>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.logoWgb}>
-          <h1>WeGotBoard</h1>
+          <Link to="/">
+            <img src={WeGotBoardLogo} alt="WeGotBoard Logo" />
+          </Link>
         </div>
 
         {error && <div className={styles.error}>{error}</div>}
@@ -70,6 +70,7 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Enter Your email"
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -84,6 +85,7 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Enter Your password"
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -95,6 +97,7 @@ const Login = () => {
                 name="remember"
                 checked={formData.remember}
                 onChange={handleChange}
+                disabled={isLoading}
               />
               <label htmlFor="remember">Remember Me</label>
             </div>
@@ -105,14 +108,14 @@ const Login = () => {
         </div>
 
         <div className={styles.btnSignUp}>
-          <button type="submit" disabled={false}>
-            Login
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
           </button>
-          <Link to="/register">Sign up?</Link>
+          <Link to="/user/register">Don't have an account?</Link>
         </div>
       </form>
     </main>
   );
 };
 
-export default Login;
+export default LoginPage;
