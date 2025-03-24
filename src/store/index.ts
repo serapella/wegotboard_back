@@ -11,6 +11,8 @@ import counterReducer from "./counterSlice";
 import authReducer from "./authSlice";
 import reviewReducer from "./reviewSlice";
 import userAPI from "./userAPI";
+import productGridReducer from "./paginationSlice";
+import sortReducer from "./sortSlice";
 
 const persistConfig = {
   key: "wgb_root",
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   cartSlice: cartReducer,
   filter: filterReducer,
   reviewSlice: reviewReducer,
+  productGrid: productGridReducer,
+  sort: sortReducer,
   [productAPI.reducerPath]: productAPI.reducer,
   [newsAPI.reducerPath]: newsAPI.reducer,
   [reviewAPI.reducerPath]: reviewAPI.reducer,

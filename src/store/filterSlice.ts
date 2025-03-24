@@ -19,6 +19,7 @@ interface FilterState {
   };
   age: string;
   isFilterVisible: boolean;
+  search: string | undefined;
 }
 
 const initialState: FilterState = {
@@ -50,6 +51,7 @@ const initialState: FilterState = {
   },
   age: "All Ages",
   isFilterVisible: false,
+  search: undefined,
 };
 
 const filterSlice = createSlice({
@@ -80,6 +82,13 @@ const filterSlice = createSlice({
     toggleFilterVisibility: (state) => {
       state.isFilterVisible = !state.isFilterVisible;
     },
+    setCategories: (state, action: PayloadAction<string>) => {
+      state.categories = { ...initialState.categories };
+      if (action.payload !== "all") state.categories[action.payload] = true;
+    },
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+    },
   },
 });
 
@@ -91,6 +100,8 @@ export const {
   toggleDifficulty,
   setAge,
   toggleFilterVisibility,
+  setCategories,
+  setSearch,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
