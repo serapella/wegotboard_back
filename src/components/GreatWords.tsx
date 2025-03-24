@@ -52,10 +52,10 @@ const GreatWords: React.FC = () => {
       <div className={styles.people_grid}>
         {reviews.map((review) => (
           <div key={review.id} className={styles.people_item}>
-            <div className={styles["img-container"]}>
+            <div className={styles.img_container}>
               <img src={review.image} alt={review.name} />
             </div>
-            <div className={styles["people-text-container"]}>
+            <div className={styles.people_text_container}>
               <h6>{review.role}</h6>
               <h5>{review.name}</h5>
               <p>"{review.quote}"</p>
