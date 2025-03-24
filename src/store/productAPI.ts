@@ -53,12 +53,8 @@ const productAPI = createApi({
       query: (id) => `/products/${id}`,
       providesTags: ["Product"],
     }),
-    getWishlist: builder.query<Product[], void>({
-      query: () => "/wishlist",
-      providesTags: ["Wishlist"],
-    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductByIdQuery, useGetWishlistQuery } = productAPI;
+export const { useGetProductsQuery, useGetProductByIdQuery } = productAPI;
 export default productAPI;

@@ -5,6 +5,7 @@ import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/productDetailPage";
 import LandingPage from "./pages/LandingPage";
 import WishlistPage from "./pages/WishlistPage";
+import LoginPage from "./pages/LoginPage";
 const App = () => {
   return (
     <>
@@ -14,7 +15,7 @@ const App = () => {
           <Route path="/products" element={<ProductListPage />} />
           <Route path="/products/:id/:slug" element={<ProductDetailPage />} />
           <Route path="/categories" element={<></>} />
-          <Route path="/user/login" element={<></>} />
+          <Route path="/user/login" element={<LoginPage />} />
           <Route path="/user/register" element={<></>} />
           <Route path="/user/logout" element={<></>} />
           <Route

@@ -1,35 +1,22 @@
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store/index";
-import { removeFromWishlist } from "../store/wishlistSlice";
-import ProductSidebar from "../components/ProductSidebar";
-import ProductTabs from "../components/ProductTabs";
-import PopularProducts from "../components/PopularProducts";
 import styles from "../css_modules/wishlistPage.module.css";
 import ProductCard from "../components/ProductCard";
 import { Product } from "../types";
+import { useGetWishlistQuery, useRemoveFromWishlistMutation } from "../store/userAPI";
 
 const WishlistPage: React.FC = () => {
-  const wishlist = useSelector((state: RootState) => {
-    console.log("Redux State:", state);
-    return state.wishlistSlice.items;
-  });
-  const dispatch = useDispatch();
-
-  const handleRemove = (id: string) => {
-    dispatch(removeFromWishlist(id));
-  };
+  const { data: wishlist } = useGetWishlistQuery();
+  const [removeFromWishlist] = useRemoveFromWishlistMutation();
 
   return (
     <div className={styles.wishlistPage}>
       <section className={styles.productContent}>
         <div className={styles.mainContent}>
-          <ProductSidebar products={wishlist.slice(0, 3)} />
           <div className={styles.wishlistGrid}>
-            {wishlist.length > 0 ? (
+            {wishlist && wishlist.length > 0 ? (
               wishlist.map((product: Product) => (
                 <div key={product._id} className={styles.productCardWrapper}>
                   <ProductCard product={product} />
-                  <button className={styles.removeButton} onClick={() => handleRemove(product._id)}>
+                  <button className={styles.removeButton} onClick={() => removeFromWishlist(product._id)}>
                     Remove from Wishlist
                   </button>
                 </div>
@@ -39,11 +26,8 @@ const WishlistPage: React.FC = () => {
             )}
           </div>
         </div>
-        {/* <ProductTabs product={wishlist[0]} /> */}
       </section>
-      <section className={styles.popularSection}>
-        <PopularProducts variant="detail" />
-      </section>
+      <section className={styles.popularSection}></section>
     </div>
   );
 };
