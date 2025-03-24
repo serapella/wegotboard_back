@@ -6,7 +6,9 @@ import { EmailData } from "./types";
 
 export const sendEmail = async (data: EmailData) => {
   try {
-    const mailersend = new MailerSend({ apiKey: process.env.MAILERSEND_API_KEY as string });
+    const mailersend = new MailerSend({
+      apiKey: process.env.MAILERSEND_API_KEY as string,
+    });
     const recipients = [new Recipient(data.email, data.name)];
     const personalization = [
       {
@@ -29,7 +31,9 @@ export const sendEmail = async (data: EmailData) => {
       emailParams.setTemplateId(TEMPLATE_MAILSENDER as string);
       emailParams.setPersonalization(personalization);
     } else {
-      emailParams.setText(`Hello ${data.name}, please verify your email using this link: ${data.link}`);
+      emailParams.setText(
+        `Hello ${data.name}, please verify your email using this link: ${data.link}`
+      );
     }
     const response = await mailersend.email.send(emailParams);
     console.log("Email sent successfully:", response);

@@ -8,7 +8,15 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes";
 import userReviewRoutes from "./routes/userReviewRoutes";
 import verifyMailRoutes from "./routes/verifyMailRoutes";
+import viewRoutes from "./routes/viewRoutes";
 import cookieParser from "cookie-parser";
+import hbsHelpers from "./utils/hbsHelpers";
+
+import { engine } from "express-handlebars";
+import path from "path";
+import { isAdmin } from "./middleware/adminMiddleware";
+import { authenticateUser } from "./middleware/authMiddleware";
+const __dirname = path.resolve();
 
 // Variables
 const app = express();
@@ -18,20 +26,28 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+// Views
+
+app.set("views", path.join(__dirname, "src/views"));
+app.engine(".hbs", engine({ extname: "hbs", helpers: hbsHelpers }));
+app.set("view engine", ".hbs");
 
 // Routes
 app.use("/p", productRoutes);
 app.use("/u", userRoutes);
 app.use("/r", userReviewRoutes);
 app.use("/m", verifyMailRoutes);
+app.use("/", viewRoutes);
+
 app.all("*", notFound);
 
 // Database connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://admin:PR2Tc3qmhHEzpSO3@wegotboard-01.rr0nz.mongodb.net/wegotboard?retryWrites=true&w=majority&appName=WeGotBoard-01"
-    );
+    await mongoose.connect(process.env.MONGO_URI as string);
     console.log("Database connection OK");
   } catch (err) {
     console.error(err);

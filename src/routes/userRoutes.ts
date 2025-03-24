@@ -21,8 +21,8 @@ router
   .post("/user/create", createUser)
   .post("/user/login", loginUser)
   .post("/user/logout", logoutUser)
-  .patch("/users/:id", updateUser)
-  .delete("/users/:id", deleteUser)
+  .patch("/users/:id", authenticateUser, updateUser)
+  .delete("/users/:id", authenticateUser, deleteUser)
   .post("/users/:id/wishlist", authenticateUser, addToWishlist)
   .get("/users/:id/wishlist", authenticateUser, getWishlist)
   .delete(

@@ -1,0 +1,324 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>WeGotBoard - Admin Panel</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    ></script>
+    <style>
+      body { color: #566787; background: #f5f5f5; font-family: 'Varela Round',
+      sans-serif; font-size: 13px; } .table-responsive { margin: 30px 0; }
+      .table-wrapper {display:table;position: absolute; background: #fff;
+      padding: 20px 25px; border-radius: 3px; width: 80vw; left: 10vw;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05); } .table-title { position:
+      absolute; padding-bottom: 15px; background: #435d7d; color: #fff; padding:
+      16px 30px; width: 80vw; margin: -20px -25px 10px; border-radius: 3px 3px 0
+      0; } .table-title h2 { margin: 5px 0 0; font-size: 24px; } .table-title
+      .btn-group { float: right; } .table-title .btn { color: #fff; float:
+      right; font-size: 13px; border: none; min-width: 50px; border-radius: 2px;
+      border: none; outline: none !important; margin-left: 10px; } .table-title
+      .btn i { float: left; font-size: 21px; margin-right: 5px; } .table-title
+      .btn span { float: left; margin-top: 2px; } table.table tr th, table.table
+      tr td { border-color: #e9e9e9; padding: 12px 15px; vertical-align: middle;
+      max-height: 300px; } table {margin-top: 80px; width: 80vw; overflow-x:
+      scroll !important;} table.table tr th:first-child { width: 60px; }
+      table.table tr th:last-child { width: 100px; } table.table-striped tbody
+      tr:nth-of-type(odd) { background-color: #fcfcfc; }
+      table.table-striped.table-hover tbody tr:hover { background: #f5f5f5; }
+      table.table th i { font-size: 13px; margin: 0 5px; cursor: pointer; }
+      table.table td:last-child i { opacity: 0.9; font-size: 22px; margin: 0
+      5px; } table.table td a { font-weight: bold; color: #566787; display:
+      inline-block; text-decoration: none; outline: none !important; }
+      table.table td a:hover { color: #2196F3; } table.table td a.edit { color:
+      #FFC107; } table.table td a.delete { color: #F44336; } table.table td i {
+      font-size: 19px; } table.table .avatar { border-radius: 50%;
+      vertical-align: middle; margin-right: 10px; } .pagination { float: right;
+      margin: 0 0 5px; } .pagination li a { border: none; font-size: 13px;
+      min-width: 30px; min-height: 30px; color: #999; margin: 0 2px;
+      line-height: 30px; border-radius: 2px !important; text-align: center;
+      padding: 0 6px; } .pagination li a:hover { color: #666; } .pagination
+      li.active a, .pagination li.active a.page-link { background: #03A9F4; }
+      .pagination li.active a:hover { background: #0397d6; } .pagination
+      li.disabled i { color: #ccc; } .pagination li i { font-size: 16px;
+      padding-top: 6px } .hint-text { float: left; margin-top: 10px; font-size:
+      13px; } /* Modal styles */ .modal .modal-dialog { max-width: 400px; }
+      .modal .modal-header, .modal .modal-body, .modal .modal-footer { padding:
+      20px 30px; } .modal .modal-content { border-radius: 3px; font-size: 14px;
+      } .modal .modal-footer { background: #ecf0f1; border-radius: 0 0 3px 3px;
+      } .modal .modal-title { display: inline-block; } .modal .form-control {
+      border-radius: 2px; box-shadow: none; border-color: #dddddd; } .modal
+      textarea.form-control { resize: vertical; } .modal .btn { border-radius:
+      2px; min-width: 100px; } .modal form label { font-weight: normal; }
+      .prevPrice{text-decoration: line-through;} .imagelinks{list-style:decimal;
+      inset: 0; padding: 5px;} .scrollableY{max-width: 150px; overflow-x:
+      hidden; overflow-y: scroll;} .scrollableX{max-width: 100px; overflow-x:
+      scroll;} tbody, tr, td, ul, li {max-height: 100px !important;}
+      thead{position: sticky; top: 0; z-index: 5; background-color: white; }
+      thead, th {box-shadow: inset 1px -1px gray;}
+
+    </style>
+
+  </head>
+  <body>
+    <div class="container-xl">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <div class="table-title">
+            <div class="row">
+              <div class="col-sm-6">
+                <h2>Manage <b>Products</b></h2>
+              </div>
+              <div class="col-sm-6">
+                <a
+                  href="#addProductModal"
+                  class="btn btn-success"
+                  data-toggle="modal"
+                ><i class="material-icons">&#xE147;</i>
+                  <span>Add New Product</span></a>
+                
+              </div>
+            </div>
+          </div>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+
+                <th>ID / name</th>
+                <th>category</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Images</th>
+                <th>Tags</th>
+                <th>Players</th>
+                <th>Difficulty</th>
+                <th>Duration</th>
+                <th>Age</th>
+                <th>WxHxD / Weight</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each data.products}}
+                <tr id={{this._id}}>
+
+                  <td>{{this._id}}<br />{{this.name}}</td>
+
+                  <td class="scrollableX">{{this.category}}</td>
+                  {{#if this.discount}}
+                    <td>€<span class="prevPrice">{{this.price}}</span><br
+                      />€{{discount this}}</td>
+                  {{else}}
+                    <td>€{{this.price}}</td>
+                  {{/if}}
+                  <td class="scrollableY">{{this.description}}</td>
+                  <td class="scrollableY"><ul class="imagelinks">{{#each
+                        this.images
+                      }}<li><a
+                            href={{this}}
+                            target="_blank"
+                          >{{this}}</a></li>{{/each}}</ul></td>
+                  <td class="scrollableX">{{#each this.tags}}{{this}}<br
+                      />{{/each}}</td>
+                  <td>{{this.playerCount.min}} - {{this.playerCount.max}}</td>
+                  <td>{{this.difficulty}}</td>
+                  <td>{{this.duration}}</td>
+                  <td>{{this.ageRating}}</td>
+                  <td
+                  >{{this.measurements.width}}x{{this.measurements.height}}x{{this.measurements.depth}}cm<br
+                    />{{this.measurements.weight}}kg</td>
+                  <td>
+                    <a
+                      href="#deleteProductModal{{this._id}}"
+                      class="delete"
+                      data-toggle="modal"
+                    ><i class="material-icons">&#xE872;</i></a>
+                  </td>
+                </tr>
+                <!-- Delete Modal HTML -->
+                <div id="deleteProductModal{{this._id}}" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <form
+                        action="/admin/products/delete/{{this._id}}"
+                        method="POST"
+                      >
+                        <div class="modal-header">
+                          <h4 class="modal-title">Delete Product</h4>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-hidden="true"
+                          >&times;</button>
+                        </div>
+                        <input type="hidden" value={{this._id}} name="id" />
+                        <div class="modal-body">
+                          <p>Are you sure you want to delete this Record?</p>
+                          <p class="text-warning"><small>This action cannot be
+                              undone.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                          <input
+                            type="button"
+                            class="btn btn-default"
+                            data-dismiss="modal"
+                            value="cancel"
+                          />
+                          <input
+                            type="submit"
+                            class="btn btn-danger"
+                            value="delete"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              {{/each}}
+            </tbody>
+          </table>
+          <div class="clearfix">
+            <div class="hint-text">Total:
+              <b>{{data.count}}</b>
+              entries</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Modal HTML -->
+    <div id="addProductModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form action="/admin/products/add" method="POST">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Product</h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" required name="name" />
+              </div>
+              <div class="form-group">
+                <label>Language</label>
+                <input type="text" class="form-control" name="language" value="english"/>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" required name="description"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Category</label>
+                <select class="form-control" required name="category" />
+                {{#each data.categories}}
+                <option value={{this._id}}>{{this.name}}</option>
+                {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Price</label>
+                <input type="number" class="form-control" required name="price" value="39.99" step="0.01"/>
+              </div>
+              <div class="form-group">
+                <label>Discount (percentage)</label>
+                <input type="number" class="form-control" name="discount" value="0" step="0.1"/>
+              </div>
+              <div class="form-group">
+                <label>Player Min</label>
+                <input type="number" class="form-control" required name="playerMin" value="1"/>
+                <label>Player Max</label>
+                <input type="number" class="form-control" required name="playerMax" value="4"/>
+              </div>
+              <div class="form-group">
+                <label>Difficulty</label>
+                <select class="form-control" required name="difficulty" />
+                
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Duration</label>
+                <select class="form-control" required name="duration" />
+                
+                <option value="short">Short</option>
+                <option value="medium">Medium</option>
+                <option value="long">Long</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tags (ctrl+click for multiple)</label>
+                <select class="form-control" multiple required name="tags" />
+                {{#each data.tags}}
+                <option value={{this._id}}>{{this.name}}</option>
+                {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Images (newline separated urls)</label>
+                <textarea class="form-control" required name="imageURLs"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Age Rating</label>
+                <input type="number" class="form-control" required name="ageRating" />
+              </div>
+              <div class="form-group">
+                <label>Width (cm)</label>
+                <input type="number" class="form-control"  name="width" />
+                <label>Height (cm)</label>
+                <input type="number" class="form-control"  name="height" />
+                <label>Depth (cm)</label>
+                <input type="number" class="form-control"  name="depth" />
+                <label>Weight (kg)</label>
+                <input type="number" class="form-control"  name="weight" step="0.01"/>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                value="Cancel"
+              />
+              <input type="submit" class="btn btn-success" value="Add" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+
+    </script>
+  </body>
+</html>
