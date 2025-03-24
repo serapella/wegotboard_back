@@ -1,16 +1,26 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User, Review, RegisterCredentials } from "../types";
+import {
+  User,
+  UserResponse,
+  LoginCredentials,
+  RegisterCredentials,
+  ApiError,
+} from "../types";
 
 export const userAPI = createApi({
   reducerPath: "userAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api",
-    prepareHeaders: (headers) => {
-      // httponly
+    baseUrl: "http://localhost:3000/u",
+    credentials: "include",
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as any).auth?.token;
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
       return headers;
     },
   }),
-  tagTypes: ["User", "Review"],
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getProfile: builder.query<User, void>({
       query: () => "/users/profile",
@@ -24,33 +34,31 @@ export const userAPI = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    getUserReviews: builder.query<Review[], void>({
-      query: () => "/users/reviews",
-      providesTags: ["Review"],
-    }),
-    deleteReview: builder.mutation<void, string>({
-      query: (reviewId) => ({
-        url: `/reviews/${reviewId}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Review"],
-    }),
-    register: builder.mutation<User, RegisterCredentials>({
+    register: builder.mutation<UserResponse, RegisterCredentials>({
       query: (credentials) => ({
         url: "/users/register",
         method: "POST",
         body: credentials,
       }),
+      transformErrorResponse: (response: ApiError) => {
+        return {
+          status: response.status,
+          message: response.data.message || "Registration failed",
+        };
+      },
     }),
-    login: builder.mutation<
-      { user: User; token: string },
-      { email: string; password: string }
-    >({
+    login: builder.mutation<UserResponse, LoginCredentials>({
       query: (credentials) => ({
         url: "/users/login",
         method: "POST",
         body: credentials,
       }),
+      transformErrorResponse: (response: ApiError) => {
+        return {
+          status: response.status,
+          message: response.data.message || "Login failed",
+        };
+      },
     }),
   }),
 });
@@ -58,8 +66,6 @@ export const userAPI = createApi({
 export const {
   useGetProfileQuery,
   useUpdateProfileMutation,
-  useGetUserReviewsQuery,
-  useDeleteReviewMutation,
   useRegisterMutation,
   useLoginMutation,
 } = userAPI;

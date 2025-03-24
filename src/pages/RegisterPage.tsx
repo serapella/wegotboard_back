@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useRegisterMutation } from "../store/userAPI";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../store/authSlice";
 import { RegisterCredentials } from "../types";
 import styles from "../css_modules/RegisterPage.module.css";
 import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
@@ -8,6 +10,7 @@ import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 const RegisterPage = () => {
   const [register, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [error, setError] = useState("");
 
   const [formData, setFormData] = useState<RegisterCredentials>({
@@ -36,11 +39,17 @@ const RegisterPage = () => {
     setError("");
 
     try {
-      await register(formData).unwrap();
-      navigate("/user/login");
-    } catch (err) {
-      setError("Registration failed. Please try again.");
+      const result = await register(formData).unwrap();
+
+      if (result.user && result.token) {
+        dispatch(setCredentials(result));
+        navigate("/");
+      } else {
+        setError("Registration failed. Please try again.");
+      }
+    } catch (err: any) {
       console.error("Registration error:", err);
+      setError(err.message || "Registration failed. Please try again.");
     }
   };
 

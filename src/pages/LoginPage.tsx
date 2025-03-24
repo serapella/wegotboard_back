@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLoginMutation } from "../store/userAPI";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../store/authSlice";
 import styles from "../css_modules/LoginPage.module.css";
 import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [login, { isLoading }] = useLoginMutation();
   const [formData, setFormData] = useState({
     email: "",
@@ -32,12 +35,14 @@ const LoginPage = () => {
         password: formData.password,
       }).unwrap();
 
-      if (result.user) {
+      if (result.user && result.token) {
+        dispatch(setCredentials(result));
         navigate("/");
       } else {
         setError("Login failed. Please try again.");
       }
     } catch (err) {
+      console.error("Login error:", err);
       setError("Invalid email or password");
     }
   };
