@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { useRegisterMutation } from "../store/userAPI";
 import { RegisterCredentials } from "../types";
 import styles from "../css_modules/RegisterPage.module.css";
-
 const RegisterPage = () => {
   const [register, { isLoading, error }] = useRegisterMutation();
   const navigate = useNavigate();
@@ -33,12 +32,16 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      const { data } = await register(formData).unwrap();
-      if (data) {
+      const result = await register(formData).unwrap();
+      if (result) {
         navigate("/user/login");
       }
-    } catch (err) {
-      console.error("Registration error: ", err);
+    } catch (err: unknown) {
+      if (err instanceof Error && err) {
+        console.error("Registration error: ", err.message);
+      } else {
+        console.error("Registration error: ", err);
+      }
     }
   };
 
@@ -149,7 +152,9 @@ const RegisterPage = () => {
           {isLoading ? "Signing Up..." : "Sign Up"}
         </button>
       </form>
-      {error && <p>{error.message}</p>}
+      {error && (
+        <p> {error instanceof Error ? error.message : "An error occurred"}</p>
+      )}
     </main>
   );
 };
