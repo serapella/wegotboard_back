@@ -8,7 +8,7 @@ export interface ProductQuery {
   playerMin?: number;
   playerMax?: number;
   tags?: string[];
-  categories?: string;
+  categories?: string[];
   difficulty?: string;
   duration?: string;
   ageMin?: number;

@@ -91,8 +91,15 @@ const ProductListPage = () => {
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
 
-  const { categories, priceRange, playerCount, duration, difficulty, age } =
-    useSelector((state: RootState) => state.filter || {});
+  const {
+    categories,
+    priceRange,
+    playerCount,
+    duration,
+    difficulty,
+    age,
+    search,
+  } = useSelector((state: RootState) => state.filter || {});
 
   const filters: ProductQuery = {
     categories: Object.keys(categories).filter(
@@ -106,6 +113,7 @@ const ProductListPage = () => {
       Object.keys(difficulty).find((level) => difficulty[level]) || "",
     ageMin: getAgeMin(age),
     ageMax: undefined,
+    search: search,
   };
   const { data: fetchedProducts } = useGetProductsQuery(filters);
 
