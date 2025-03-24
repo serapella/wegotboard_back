@@ -11,19 +11,19 @@ export const userAPI = createApi({
   reducerPath: "userAPI",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/u",
-    credentials: "include",
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as any).auth?.token;
-      if (token) {
-        headers.set("authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
+    // credentials: "include",
+    // prepareHeaders: (headers, { getState }) => {
+    //   const token = (getState() as any).auth?.token;
+    //   if (token) {
+    //     headers.set("authorization", `Bearer ${token}`);
+    //   }
+    //   return headers;
+    // },
   }),
   tagTypes: ["User"],
   endpoints: (builder) => ({
     getProfile: builder.query<User, void>({
-      query: () => "/users/profile",
+      query: (id) => `/users/${id}`,
       providesTags: ["User"],
     }),
     updateProfile: builder.mutation<User, Partial<User>>({
@@ -36,27 +36,28 @@ export const userAPI = createApi({
     }),
     register: builder.mutation<UserResponse, RegisterCredentials>({
       query: (credentials) => ({
-        url: "/users/register",
+        url: "/user/create",
         method: "POST",
         body: credentials,
       }),
       transformErrorResponse: (response: ApiError) => {
+        console.log(response);
         return {
           status: response.status,
-          message: response.data.message || "Registration failed",
+          message: response?.data?.message || "Registration failed",
         };
       },
     }),
     login: builder.mutation<UserResponse, LoginCredentials>({
       query: (credentials) => ({
-        url: "/users/login",
+        url: "/user/login",
         method: "POST",
         body: credentials,
       }),
       transformErrorResponse: (response: ApiError) => {
         return {
           status: response.status,
-          message: response.data.message || "Login failed",
+          message: response?.data?.message || "Login failed",
         };
       },
     }),

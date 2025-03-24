@@ -34,7 +34,7 @@ const LoginPage = () => {
         email: formData.email,
         password: formData.password,
       }).unwrap();
-
+      console.log(result);
       if (result.user && result.token) {
         dispatch(setCredentials(result));
         navigate("/");
