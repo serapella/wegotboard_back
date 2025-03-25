@@ -76,7 +76,6 @@ const HeaderMainNav = () => {
                 <option value="/cart">Cart</option>
                 <option value="/about">About Us</option>
                 <option value="/contact">Contact</option>
-                <option value="/faq">FAQ</option>
                 <option value="/terms">Terms & Conditions</option>
                 <option value="/privacy">Privacy Policy</option>
               </select>

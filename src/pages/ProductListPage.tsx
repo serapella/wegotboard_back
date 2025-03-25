@@ -35,7 +35,9 @@ const getPlayerCountMin = (playerCount: object) => {
     }
   }
 
-  return playercount_min > 0 && playercount_min < 999 ? playercount_min : undefined;
+  return playercount_min > 0 && playercount_min < 999
+    ? playercount_min
+    : undefined;
 };
 
 const getPlayerCountMax = (playerCount: object) => {
@@ -49,7 +51,9 @@ const getPlayerCountMax = (playerCount: object) => {
     }
   }
 
-  return playercount_max > 0 && playercount_max < 999 ? playercount_max : undefined;
+  return playercount_max > 0 && playercount_max < 999
+    ? playercount_max
+    : undefined;
 };
 
 const getAgeMin = (age: string) => {
@@ -77,7 +81,9 @@ const getAgeMin = (age: string) => {
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
-  const { currentPage, productsPerPage, products } = useSelector((state: RootState) => state.productGrid);
+  const { currentPage, productsPerPage, products } = useSelector(
+    (state: RootState) => state.productGrid
+  );
   const { selectedSort } = useSelector((state: RootState) => state.sort);
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -85,15 +91,26 @@ const ProductListPage = () => {
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
 
-  const { categories, priceRange, playerCount, duration, difficulty, age, search } = useSelector((state: RootState) => state.filter || {});
+  const {
+    categories,
+    priceRange,
+    playerCount,
+    duration,
+    difficulty,
+    age,
+    search,
+  } = useSelector((state: RootState) => state.filter || {});
 
   const filters: ProductQuery = {
-    categories: Object.keys(categories).filter((category) => categories[category]),
+    categories: Object.keys(categories).filter(
+      (category) => categories[category]
+    ),
     priceMax: priceRange.max,
     playerMin: getPlayerCountMin(playerCount),
     playerMax: getPlayerCountMax(playerCount),
     duration: Object.keys(duration).find((time) => duration[time]) || "",
-    difficulty: Object.keys(difficulty).find((level) => difficulty[level]) || "",
+    difficulty:
+      Object.keys(difficulty).find((level) => difficulty[level]) || "",
     ageMin: getAgeMin(age),
     ageMax: undefined,
     search: search,
@@ -103,7 +120,9 @@ const ProductListPage = () => {
   useEffect(() => {
     if (fetchedProducts) {
       dispatch(setProducts(fetchedProducts));
-      dispatch(setTotalPages(Math.ceil(fetchedProducts.length / productsPerPage)));
+      dispatch(
+        setTotalPages(Math.ceil(fetchedProducts.length / productsPerPage))
+      );
     }
   }, [fetchedProducts, productsPerPage]);
 
@@ -120,8 +139,10 @@ const ProductListPage = () => {
       dispatch(
         setProducts(
           [...products].sort((a, b) => {
-            const avgA = a.userRating.reduce((a, b) => a + b, 0) / a.userRating.length;
-            const avgB = b.userRating.reduce((a, b) => a + b, 0) / b.userRating.length;
+            const avgA =
+              a.userRating.reduce((a, b) => a + b, 0) / a.userRating.length;
+            const avgB =
+              b.userRating.reduce((a, b) => a + b, 0) / b.userRating.length;
             return avgB - avgA;
           })
         )
@@ -135,7 +156,10 @@ const ProductListPage = () => {
         <Filter />
         <div className={styles.right}>
           <SortBy setViewMode={setViewMode} viewMode={viewMode} />
-          <ProductGrid products={products.slice(startIndex, endIndex)} viewMode={viewMode} />
+          <ProductGrid
+            products={products.slice(startIndex, endIndex)}
+            viewMode={viewMode}
+          />
         </div>
       </div>
       <Pagination />

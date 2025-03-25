@@ -62,7 +62,8 @@ nav {
   background: transparent;
   font-family: inherit;
   appearance: none;
-  padding: 0;
+  margin: 2rem;
+  gap: 4rem;
   transition: color 0.2s ease;
   width: 100%;
   text-align: center;
@@ -154,7 +155,7 @@ nav {
 }
 
 .sidebarContent {
-  padding: 2rem;
+  /* padding: 2rem; */
 }
 
 .sidebarNav {
@@ -167,7 +168,7 @@ nav {
   text-decoration: none;
   color: var(--black-like);
   font-size: 1.6rem;
-  padding: 1rem;
+  /* padding: 1rem; */
   border-radius: 0.5rem;
   transition: all 0.2s ease;
 }
