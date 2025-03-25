@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../css_modules/headerNav.module.css";
 import { LuPhone } from "react-icons/lu";
-import { BsX } from "react-icons/bs";
+import { BsX, BsList } from "react-icons/bs";
 import { NavLink, useNavigate } from "react-router";
 
 const HeaderMainNav = () => {
@@ -38,7 +38,9 @@ const HeaderMainNav = () => {
               className={styles.menuButton}
               onClick={toggleSidebar}
               aria-label="Toggle menu"
-            ></button>
+            >
+              <BsList />
+            </button>
           </div>
           <ul className={styles.mainNav}>
             <li>
