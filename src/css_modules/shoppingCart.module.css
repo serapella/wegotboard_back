@@ -27,14 +27,16 @@
     margin: 0 auto;
     align-items: center;
     height: 100%;
-    max-width: 1300px;
+    max-width: 1380px;
     font-family: "Manrope", serif;
     font-weight: 600;
     font-size: 1.9rem;
     letter-spacing: 1px;
+
     a {
       text-decoration: none;
       color: white;
+      transition: all 200ms;
       &:hover {
         color: var(--buttonHover);
       }
@@ -42,17 +44,16 @@
     div {
       font-size: 1.4rem;
       font-weight: 500;
+      color: white;
     }
   }
 }
 .shoppingCartCrud {
-  margin: 0 auto;
-
-  width: 1320px;
-  height: 672px;
+  margin: 10rem auto;
+  max-width: 1380px;
+  height: 50vh;
   .crud {
     margin: 0 auto;
-    width: 1296px;
     height: auto;
     border-radius: 0.5rem;
     border: 1px solid var(--cardBorder);
@@ -162,11 +163,10 @@
     color: var(--amountItemsFiltered);
     font-size: 1.5rem;
     padding: 2rem;
-
     display: flex;
     justify-content: right;
     align-items: right;
-    margin-right: 23.5rem;
+    margin-right: 21.8rem;
   }
   .checkOut {
     display: flex;

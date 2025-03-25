@@ -1,12 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import style from "../css_modules/footer.module.css";
 import footer_image from "../images/WeGotBoard_cut.png";
-import {
-  BsFillSendFill,
-  BsFacebook,
-  BsInstagram,
-  BsTwitterX,
-} from "react-icons/bs";
+import { BsFillSendFill, BsFacebook, BsInstagram, BsTwitterX } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { setCategories } from "../store/filterSlice";
 const Footer = () => {
@@ -48,7 +43,7 @@ const Footer = () => {
               <Link to="/terms">Terms & Conditions</Link>
             </li>
             <li>
-              <Link to={"/contact"}>Contact Us</Link>
+              <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -113,8 +108,7 @@ const Footer = () => {
       </div>
       <div>
         <p>
-          © {new Date().getFullYear()} <span>WeGotBoard</span>, All rights
-          reserved.
+          © {new Date().getFullYear()} <span>WeGotBoard</span>, All rights reserved.
         </p>
       </div>
     </div>

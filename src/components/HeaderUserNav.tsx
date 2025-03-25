@@ -16,38 +16,39 @@ const HeaderUserNav = () => {
 
   return (
     <div className={styles.userNav}>
-      <Link to="/">
-        <img src={WeGotBoardLogo} alt="logo" />
-      </Link>
-      <SearchBar />
-      <ul>
-        <li>
-          <Link to={user ? "/user/profile" : "/user/login"}>
-            <i>
-              <BsPerson />
-            </i>
-            {user ? `${user.name.first}` : "Account"}
-          </Link>
-        </li>
-        <li>
-          <Link to="/user/wishlist">
-            <i>
-              <BsHeart />
-            </i>
-            Wishlist
-          </Link>
-        </li>
-        <li>
-          <Link to="/cart">
-            <i>
-              {" "}
-              <BsCart3 />
-            </i>
-            {total !== 0 && <span className={styles.quantity}>{total}</span>}
-            Cart
-          </Link>
-        </li>
-      </ul>
+      <div className={styles.userNavContent}>
+        <Link to="/">
+          <img src={WeGotBoardLogo} alt="logo" />
+        </Link>
+        <SearchBar />
+        <ul>
+          <li>
+            <Link to={user ? "/user/profile" : "/user/login"}>
+              <i>
+                <BsPerson />
+              </i>
+              {user ? `${user.name.first}` : "Account"}
+            </Link>
+          </li>
+          <li>
+            <Link to="/user/wishlist">
+              <i>
+                <BsHeart />
+              </i>
+              Wishlist
+            </Link>
+          </li>
+          <li>
+            <Link to="/cart">
+              <i>
+                <BsCart3 />
+              </i>
+              {total !== 0 && <span className={styles.quantity}>{total}</span>}
+              Cart
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
