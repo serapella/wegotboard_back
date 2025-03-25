@@ -1,16 +1,9 @@
 .dealsOfTheDay {
   width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   .deals {
     width: 100%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    /* background-color: lightblue; */
     .deals_header {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -31,20 +24,28 @@
         &:hover {
           color: var(--tagHover);
         }
-        span.iconDeals {
-          position: absolute;
-          top: 0.8rem;
-          font-size: 1.3rem;
-          padding-left: 0.3rem;
+        .iconDeals {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 1rem;
+          .iconRight {
+            top: 0rem;
+            right: 0;
+          }
         }
       }
     }
     .deals_grid {
-      display: grid;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
       gap: 2.3rem;
       margin-top: 5rem;
-      grid-template-columns: repeat(auto-fill, minmax(379px, 1fr));
+      justify-content: space-between;
       .deals_item {
+        max-width: 1380px;
         border-radius: 1.5rem;
         position: relative;
         height: 45rem;
@@ -55,7 +56,6 @@
           width: 37.85rem;
           height: 33.517rem;
           border-radius: 1.5rem;
-          /* border: solid 1px black; */
         }
         .deals_item_text {
           position: absolute;

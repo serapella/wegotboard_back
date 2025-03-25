@@ -14,9 +14,9 @@ const DealsOfTheDay = () => {
         <div className={styles.deals_header}>
           <h2>Deals of the day</h2>
           <a href="" className={styles.linkAllDeals}>
-            All Deals
             <span className={styles.iconDeals}>
-              <BsChevronRight />
+              <p>All Deals</p>
+              <BsChevronRight className={styles.iconRight} />
             </span>
           </a>
         </div>

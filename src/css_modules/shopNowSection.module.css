@@ -1,13 +1,18 @@
 .shopNowSection {
-  width: fit-content;
-  /* margin: 0 auto; */
+  width: 100%;
+  box-sizing: border-box;
   .shopNowCards {
-    position: relative;
     display: flex;
-    justify-content: space-evenly;
-    gap: 2.4rem;
-    margin-top: 6.1rem;
+    justify-content: space-between;
     div {
+      width: 32%;
+      height: 30rem;
+      border-radius: 1rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 1.2rem;
       &:nth-of-type(1) {
         background-color: #827877;
       }
@@ -17,22 +22,15 @@
       &:nth-of-type(3) {
         background-color: #b4df84;
       }
-      width: 51.3rem;
-      height: 30rem;
-      border-radius: 1rem;
-      position: relative;
       img {
         display: block;
-        object-fit: cover;
-        width: 200px;
-        width: 200px;
-        position: absolute;
-        top: 4rem;
-        left: 3rem;
+        width: 150px;
+        height: 150px;
+        position: relative;
       }
       h3 {
-        width: 25rem;
-        text-align: center;
+        width: 50%;
+        max-width: 25rem;
         position: absolute;
         top: 25%;
         left: 48%;
@@ -43,7 +41,7 @@
       button {
         position: absolute;
         bottom: 18%;
-        right: 13%;
+        left: 48%;
         color: white;
         width: 15rem;
         height: 5rem;

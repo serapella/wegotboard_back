@@ -10,6 +10,7 @@ import cartReducer from "./cartSlice";
 import filterReducer from "./filterSlice";
 import counterReducer from "./counterSlice";
 import authReducer from "./authSlice";
+import reviewReducer from "./reviewSlice";
 import userAPI from "./userAPI";
 import productGridReducer from "./paginationSlice";
 import sortReducer from "./sortSlice";
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   counterSlice: counterReducer,
   cartSlice: cartReducer,
   filter: filterReducer,
+  reviewSlice: reviewReducer,
   productGrid: productGridReducer,
   sort: sortReducer,
   [productAPI.reducerPath]: productAPI.reducer,
