@@ -3,9 +3,12 @@ import styles from "../css_modules/headerNav.module.css";
 import { LuPhone } from "react-icons/lu";
 import { BsX, BsList } from "react-icons/bs";
 import { NavLink, useNavigate } from "react-router";
+import { setCategories } from "../store/filterSlice";
+import { useDispatch } from "react-redux";
 
 const HeaderMainNav = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -15,7 +18,8 @@ const HeaderMainNav = () => {
   const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     if (value) {
-      navigate(`/products?category=${value}`);
+      dispatch(setCategories(value));
+      navigate(`/products`);
       setIsSidebarOpen(false);
     }
   };
