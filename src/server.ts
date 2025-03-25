@@ -11,7 +11,7 @@ import verifyMailRoutes from "./routes/verifyMailRoutes";
 import viewRoutes from "./routes/viewRoutes";
 import cookieParser from "cookie-parser";
 import hbsHelpers from "./utils/hbsHelpers";
-
+import newsRoutes from "./routes/newsRoutes";
 import { engine } from "express-handlebars";
 import path from "path";
 import { isAdmin } from "./middleware/adminMiddleware";
@@ -41,6 +41,7 @@ app.use("/u", userRoutes);
 app.use("/r", userReviewRoutes);
 app.use("/m", verifyMailRoutes);
 app.use("/", viewRoutes);
+app.use("/api/news", newsRoutes);
 
 app.all("*", notFound);
 
