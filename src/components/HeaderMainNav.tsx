@@ -2,17 +2,18 @@ import styles from "../css_modules/headerNav.module.css";
 import { LuPhone } from "react-icons/lu";
 import { BsList } from "react-icons/bs";
 import { NavLink } from "react-router";
+
 const HeaderMainNav = () => {
   return (
     <header>
       <nav>
         <div className={styles.headerMainNavContent}>
           <div className={styles.menuIcon}>
-            <a href="#">
+            <button type="button" className={styles.menuButton}>
               <BsList size={25} />
-            </a>
+            </button>
           </div>
-          <ul>
+          <ul className={styles.mainNav}>
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -42,4 +43,5 @@ const HeaderMainNav = () => {
     </header>
   );
 };
+
 export default HeaderMainNav;

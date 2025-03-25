@@ -1,27 +1,112 @@
-.benefitsSection {
+header {
+  background-color: #ffffff;
+}
+
+nav {
   display: flex;
-  gap: 0.1rem;
-  .benefitsCard {
-    width: 32.1rem;
-    height: 10.7rem;
-    background-color: var(--filter);
-    border-radius: 1rem;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    font-family: "Quicksand", sans-serif;
-    .benefitIcon {
-    }
-    .description {
-      line-height: 2.4rem;
-      h3 {
-        font-size: 1.9rem;
-        font-weight: 500;
-      }
-      h4 {
-        font-size: 1.6rem;
-        color: var(--amountItemsFiltered);
-      }
-    }
+  align-items: center;
+  height: 5.5rem;
+  box-shadow: 0px 0px 3px 1px rgba(43, 43, 45, 0.15);
+}
+
+.headerMainNavContent {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1380px;
+  padding: 0 2rem;
+  font-size: 1.5rem;
+  font-family: "Quicksand", sans-serif;
+}
+
+.menuButton {
+  text-decoration: none;
+  color: var(--black-like);
+  border: 1px solid rgba(233, 233, 233, 1);
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover {
+  background-color: var(--filter);
+}
+
+.mainNav {
+  display: flex;
+  line-height: 21px;
+  gap: 4rem;
+}
+
+.mainNav li select {
+  border: none;
+  font-size: 1.5rem;
+  color: var(--black-like);
+  cursor: pointer;
+  background: transparent;
+  font-family: inherit;
+  appearance: none;
+  padding: 0;
+}
+
+.mainNav li a {
+  text-decoration: none;
+  color: var(--black-like);
+  font-size: 1.5rem;
+}
+
+.phone {
+  height: 2rem;
+}
+
+.phone a {
+  text-decoration: none;
+  color: var(--black-like);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .headerMainNavContent {
+    padding: 0 1.5rem;
+  }
+
+  .mainNav {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerMainNavContent {
+    padding: 0 1rem;
+  }
+
+  .mainNav {
+    gap: 2rem;
+  }
+
+  .phone {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainNav {
+    gap: 1.5rem;
+  }
+
+  .mainNav li select,
+  .mainNav li a {
+    font-size: 1.4rem;
   }
 }
