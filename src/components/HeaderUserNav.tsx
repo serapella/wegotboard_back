@@ -1,21 +1,22 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { BsPerson, BsHeart, BsCart3 } from "react-icons/bs";
 import { LuLogOut } from "react-icons/lu";
 import styles from "../css_modules/HeaderUserNav.module.css";
 import WeGotBoardLogo from "../images/WeGotBoard_cut.png";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetProfileQuery } from "../store/userAPI";
 import { getTotalQuantity } from "../store/cartSlice";
-import { logout } from "../store/authSlice";
+import { selectCurrentUser, logout } from "../store/authSlice";
 import SearchBar from "./SearchBar";
 
 const HeaderUserNav = () => {
-  const { data: user } = useGetProfileQuery();
+  const user = useSelector(selectCurrentUser);
   const total = useSelector(getTotalQuantity);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/");
   };
 
   return (
