@@ -79,7 +79,7 @@ const LoginPage = () => {
 
       if (result.user && result.token) {
         dispatch(setCredentials(result));
-        navigate("/user/profile");
+        navigate("/");
       } else {
         setErrors((prev) => ({
           ...prev,
