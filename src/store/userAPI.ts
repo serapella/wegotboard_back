@@ -71,7 +71,7 @@ export const userAPI = createApi({
       { userId: string; token: string; productId: string }
     >({
       query: ({ userId, token, productId }) => ({
-        url: `/users/${userId}/wishlist/${productId}?token=${token}`,
+        url: `/users/${userId}/wishlist?token=${token}`,
         method: "POST",
         body: { productId },
       }),
