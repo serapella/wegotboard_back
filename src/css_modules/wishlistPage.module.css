@@ -1,4 +1,5 @@
 .wishlistPage {
+  height: 60vh;
   .wishlistHeader {
     margin: 5rem auto;
     max-width: 1380px;
