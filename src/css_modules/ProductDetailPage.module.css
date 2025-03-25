@@ -1,7 +1,45 @@
-.productDetailPage {
-  max-width: 1380px;
+.headerNav {
+  height: 70px;
+  background-color: var(--navTop);
+  margin-bottom: 10rem;
+}
+
+.headerNav nav {
+  display: flex;
+  justify-content: space-between;
   margin: 0 auto;
-  padding: clapm(2rem, 4vw, 4rem);
+  align-items: center;
+  height: 100%;
+  max-width: 1300px;
+  padding: 0 2rem;
+  font-family: "Manrope", serif;
+  font-weight: 600;
+  font-size: 1.9rem;
+  letter-spacing: 1px;
+}
+
+.headerNav nav a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s ease;
+}
+
+.headerNav nav a:hover {
+  color: var(--buttonHover);
+}
+
+.headerNav nav div {
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.productDetailPage {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(1rem, 4vw, 4rem);
   overflow-x: hidden;
 }
 
@@ -17,13 +55,23 @@
   position: sticky;
   top: 2rem;
   height: fit-content;
-  display: block;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   gap: 4rem;
+}
+
+/* Large screens */
+@media (min-width: 1441px) {
+  .productDetailPage {
+    padding: 4rem 8rem;
+  }
+
+  .mainContent {
+    gap: 6rem;
+  }
 }
 
 /* Desktop and smaller */
@@ -43,7 +91,7 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .productDetailPage {
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
   }
 
   .mainContent {
@@ -54,6 +102,16 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+  .headerNav {
+    height: 60px;
+    margin-bottom: 6rem;
+  }
+
+  .headerNav nav {
+    font-size: 1.6rem;
+    padding: 0 1.5rem;
+  }
+
   .productDetailPage {
     padding: 2rem 1.5rem;
   }
@@ -61,16 +119,21 @@
   .mainContent {
     gap: 2rem;
     margin-bottom: 3rem;
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    display: none;
   }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
+  .headerNav {
+    height: 50px;
+    margin-bottom: 4rem;
+  }
+
+  .headerNav nav {
+    font-size: 1.4rem;
+    padding: 0 1rem;
+  }
+
   .productDetailPage {
     padding: 1.5rem 1rem;
   }
