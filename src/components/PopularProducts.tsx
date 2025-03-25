@@ -56,7 +56,7 @@ const PopularProducts = () => {
           <li>Theme games</li>
         </ul>
       </div>
-      <ProductGrid products={products} maxItems={8} />
+      <ProductGrid products={products} maxItems={8} viewMode="grid" />
     </div>
   );
 };
