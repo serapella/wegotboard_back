@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import PurchaseOptions from "../components/PurchaseOptions";
 import ProductSidebar from "../components/ProductSidebar";
 import ProductTabs from "../components/ProductTabs";
@@ -29,20 +29,31 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className={styles.productDetailPage}>
-      <div className={styles.mainContent}>
-        <aside className={styles.sidebar}>
-          <ProductSidebar
-            currentProductId={product._id}
-            categoryId={product.category._id}
-          />
-        </aside>
-        <div className={styles.content}>
-          <PurchaseOptions product={product} />
-          <ProductTabs product={product} />
+    <>
+      <section className={styles.headerNav}>
+        <nav>
+          <Link to="/cart">Cart</Link>
+          <div>
+            <Link to="/">Home</Link>/<Link to="/products">Shop</Link>
+          </div>
+        </nav>
+      </section>
+
+      <div className={styles.productDetailPage}>
+        <div className={styles.mainContent}>
+          <aside className={styles.sidebar}>
+            <ProductSidebar
+              currentProductId={product._id}
+              categoryId={product.category._id}
+            />
+          </aside>
+          <div className={styles.content}>
+            <PurchaseOptions product={product} />
+            <ProductTabs product={product} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
