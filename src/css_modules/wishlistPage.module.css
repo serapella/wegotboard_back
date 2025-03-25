@@ -7,21 +7,19 @@
     font-weight: bold;
   }
   .productContent {
-    margin-top: 3rem;
     .mainContent {
       max-width: 1380px;
       margin: 0 auto;
       .wishlistGrid {
-        margin-top: 2rem;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
         gap: 2.4rem;
-        margin-bottom: 2rem;
+        margin-bottom: 10rem;
         .productCardWrapper {
           width: 100%;
-          /* display: flex;
+          display: flex;
           flex-direction: column;
-          gap: 0.8rem; */
+          gap: 0.8rem;
           background-color: var(--card);
           border-radius: 0.8rem;
           .removeButton {

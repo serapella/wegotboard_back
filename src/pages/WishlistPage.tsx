@@ -21,14 +21,13 @@ const WishlistPage: React.FC = () => {
       <div className={styles.wishlistHeader}>
         <h3>Welcome to your wishlist!</h3>
       </div>
-
       <section className={styles.productContent}>
         <div className={styles.mainContent}>
           <div className={styles.wishlistGrid}>
             {wishlist && wishlist.length > 0 ? (
               wishlist.map((product: Product) => (
                 <div key={product._id} className={styles.productCardWrapper}>
-                  <ProductCard product={product} />
+                  <ProductCard product={product} viewMode="grid" />
                   <button
                     className={styles.removeButton}
                     onClick={() => removeFromWishlist({ productId: product._id, userId: user?._id as string, token: token as string })}
@@ -43,7 +42,6 @@ const WishlistPage: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className={styles.popularSection}></section>
     </div>
   );
 };
