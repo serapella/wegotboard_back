@@ -8,11 +8,7 @@ const HeaderMainNav = () => {
     <header>
       <nav>
         <div className={styles.headerMainNavContent}>
-          <div className={styles.menuIcon}>
-            <button type="button" className={styles.menuButton}>
-              <BsList size={25} />
-            </button>
-          </div>
+          <div className={styles.menuIcon}></div>
           <ul className={styles.mainNav}>
             <li>
               <NavLink to="/">Home</NavLink>
