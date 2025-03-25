@@ -1,14 +1,21 @@
 import { useParams, Link } from "react-router";
+import { useState } from "react";
 import PurchaseOptions from "../components/PurchaseOptions";
 import ProductSidebar from "../components/ProductSidebar";
 import ProductTabs from "../components/ProductTabs";
 import { useGetProductByIdQuery } from "../store/productAPI";
 import styles from "../css_modules/ProductDetailPage.module.css";
+import { BsList, BsX } from "react-icons/bs";
 
 const ProductDetailPage = () => {
   const { id } = useParams<{ id: string; slug: string }>();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const { data: product, isLoading } = useGetProductByIdQuery(id || "");
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   if (isLoading) {
     return (
@@ -40,8 +47,28 @@ const ProductDetailPage = () => {
       </section>
 
       <div className={styles.productDetailPage}>
+        <button
+          className={styles.sidebarToggle}
+          onClick={toggleSidebar}
+          aria-label="Toggle sidebar"
+        >
+          {isSidebarOpen ? <BsX size={24} /> : <BsList size={24} />}
+        </button>
+
         <div className={styles.mainContent}>
-          <aside className={styles.sidebar}>
+          <aside
+            className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ""}`}
+          >
+            <div className={styles.sidebarHeader}>
+              <h2>Related Products</h2>
+              <button
+                onClick={toggleSidebar}
+                className={styles.closeButton}
+                aria-label="Close sidebar"
+              >
+                <BsX size={24} />
+              </button>
+            </div>
             <ProductSidebar
               currentProductId={product._id}
               categoryId={product.category._id}
@@ -52,6 +79,15 @@ const ProductDetailPage = () => {
             <ProductTabs product={product} />
           </div>
         </div>
+
+        {/* Overlay */}
+        {isSidebarOpen && (
+          <div
+            className={styles.overlay}
+            onClick={toggleSidebar}
+            aria-hidden="true"
+          />
+        )}
       </div>
     </>
   );

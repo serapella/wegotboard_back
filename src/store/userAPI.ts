@@ -1,7 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User, UserResponse, LoginCredentials, RegisterCredentials, ApiError } from "../types";
-import { Product } from "../types";
-import { removeFromWishlist } from "./wishlistSlice";
+import {
+  User,
+  UserResponse,
+  LoginCredentials,
+  RegisterCredentials,
+  ApiError,
+  Product,
+} from "../types";
 
 export const userAPI = createApi({
   reducerPath: "userAPI",
@@ -19,7 +24,7 @@ export const userAPI = createApi({
   tagTypes: ["User", "Wishlist"],
   endpoints: (builder) => ({
     getProfile: builder.query<User, void>({
-      query: (id) => `/users/${id}`,
+      query: () => "/users/profile",
       providesTags: ["User"],
     }),
     updateProfile: builder.mutation<User, Partial<User>>({
@@ -57,13 +62,20 @@ export const userAPI = createApi({
         };
       },
     }),
-    getWishlist: builder.query<Product[], { id: string; token: string }>({
-      query: ({ id, token }) => `/users/${id}/wishlist?token=${token}`,
+    getWishlist: builder.query<Product[], void>({
+      query: () => "/users/wishlist",
       providesTags: ["Wishlist"],
     }),
-    removeFromWishlist: builder.mutation<void, { productId: string; userId: string; token: string }>({
-      query: ({ productId, userId, token }) => ({
-        url: `/users/${userId}/wishlist/${productId}?token=${token}`,
+    addToWishlist: builder.mutation<void, string>({
+      query: (productId) => ({
+        url: `/users/wishlist/${productId}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["Wishlist"],
+    }),
+    removeFromWishlist: builder.mutation<void, string>({
+      query: (productId) => ({
+        url: `/users/wishlist/${productId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Wishlist"],
@@ -77,6 +89,7 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useGetWishlistQuery,
+  useAddToWishlistMutation,
   useRemoveFromWishlistMutation,
 } = userAPI;
 
