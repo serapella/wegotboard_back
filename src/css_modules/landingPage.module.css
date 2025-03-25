@@ -1,20 +1,19 @@
 .landingPage {
+  overflow: hidden;
+  margin: 0 auto;
   width: 100%;
+  max-width: 1380px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
   align-items: center;
   justify-content: center;
   > div {
+    padding: 2.5rem;
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
-    & > :last-of-type {
-      margin-bottom: 2rem;
-    }
   }
 }

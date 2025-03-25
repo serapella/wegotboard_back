@@ -9,29 +9,33 @@ import styles from "../css_modules/landingPage.module.css";
 
 const LandingPage = () => {
   return (
-    <div className={styles.landingPage}>
-      <div>
-        <ShopNowSlider />
+    <>
+      <div className={styles.slider}>
+        <div>
+          <ShopNowSlider />
+        </div>
       </div>
-      <div>
-        <ShopNowSection />
+      <div className={styles.landingPage}>
+        <div>
+          <ShopNowSection />
+        </div>
+        <div>
+          <PopularProducts />
+        </div>
+        <div>
+          <DealsOfTheDay />
+        </div>
+        <div>
+          <GreatWords />
+        </div>
+        <div>
+          <NewsSection />
+        </div>
+        <div>
+          <KeyBenefitsSection />
+        </div>
       </div>
-      <div>
-        <PopularProducts />
-      </div>
-      <div>
-        <DealsOfTheDay />
-      </div>
-      <div>
-        <GreatWords />
-      </div>
-      <div>
-        <NewsSection />
-      </div>
-      <div>
-        <KeyBenefitsSection />
-      </div>
-    </div>
+    </>
   );
 };
 export default LandingPage;
