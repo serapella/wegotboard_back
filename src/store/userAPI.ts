@@ -5,6 +5,7 @@ import {
   LoginCredentials,
   RegisterCredentials,
   ApiError,
+  Product,
 } from "../types";
 
 export const userAPI = createApi({
@@ -20,10 +21,10 @@ export const userAPI = createApi({
     //   return headers;
     // },
   }),
-  tagTypes: ["User"],
+  tagTypes: ["User", "Wishlist"],
   endpoints: (builder) => ({
     getProfile: builder.query<User, void>({
-      query: (id) => `/users/${id}`,
+      query: () => "/users/profile",
       providesTags: ["User"],
     }),
     updateProfile: builder.mutation<User, Partial<User>>({
@@ -61,6 +62,24 @@ export const userAPI = createApi({
         };
       },
     }),
+    getWishlist: builder.query<Product[], void>({
+      query: () => "/users/wishlist",
+      providesTags: ["Wishlist"],
+    }),
+    addToWishlist: builder.mutation<void, string>({
+      query: (productId) => ({
+        url: `/users/wishlist/${productId}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["Wishlist"],
+    }),
+    removeFromWishlist: builder.mutation<void, string>({
+      query: (productId) => ({
+        url: `/users/wishlist/${productId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Wishlist"],
+    }),
   }),
 });
 
@@ -69,6 +88,9 @@ export const {
   useUpdateProfileMutation,
   useRegisterMutation,
   useLoginMutation,
+  useGetWishlistQuery,
+  useAddToWishlistMutation,
+  useRemoveFromWishlistMutation,
 } = userAPI;
 
 export default userAPI;
