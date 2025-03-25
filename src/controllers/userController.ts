@@ -308,8 +308,7 @@ export const removeFromWishlist = async (req: Request, res: Response) => {
       });
       return;
     }
-    user.favorites = user.favorites.filter((item) => item !== new ObjectId(productId));
-    await user.save();
+    await User.updateOne({ _id }, { $pull: { favorites: productId } });
     res.status(200).json({ message: "Product removed from wishlist" });
   } catch (error: unknown) {
     if (error instanceof Error) {
