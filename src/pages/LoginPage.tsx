@@ -37,84 +37,95 @@ const LoginPage = () => {
 
       if (result.user && result.token) {
         dispatch(setCredentials(result));
-        navigate("/");
+        navigate("/user/profile");
       } else {
         setError("Login failed. Please try again.");
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Login error:", err);
-      setError("Invalid email or password");
+      setError(err?.data?.message || "Invalid email or password");
     }
   };
 
   return (
-    <main className={styles.main}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.logoWgb}>
-          <Link to="/">
-            <img src={WeGotBoardLogo} alt="WeGotBoard Logo" />
-          </Link>
-        </div>
-
-        {error && <div className={styles.error}>{error}</div>}
-
-        <div className={styles.inputUserDetails}>
-          <div className={styles.input}>
-            <label htmlFor="email">Email Address*</label>
-            <input
-              className={styles.inputMod}
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter Your email"
-              required
-              disabled={isLoading}
-            />
+    <>
+      <section className={styles.headerNav}>
+        <nav>
+          <Link to="/cart">Cart</Link>
+          <div>
+            <Link to="/">Home</Link>/<Link to="/user/register">Register</Link>
           </div>
+        </nav>
+      </section>
 
-          <div className={styles.input}>
-            <label htmlFor="password">Password*</label>
-            <input
-              className={styles.inputMod}
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter Your password"
-              required
-              disabled={isLoading}
-            />
-          </div>
-
-          <div className={styles.rememberForgot}>
-            <div className={styles.remember}>
-              <input
-                type="checkbox"
-                id="remember"
-                name="remember"
-                checked={formData.remember}
-                onChange={handleChange}
-                disabled={isLoading}
-              />
-              <label htmlFor="remember">Remember Me</label>
-            </div>
-            <Link to="/forgot-password" className={styles.forgot}>
-              Forgot Password?
+      <main className={styles.main}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.logoWgb}>
+            <Link to="/">
+              <img src={WeGotBoardLogo} alt="WeGotBoard Logo" />
             </Link>
           </div>
-        </div>
 
-        <div className={styles.btnSignUp}>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
-          </button>
-          <Link to="/user/register">Don't have an account?</Link>
-        </div>
-      </form>
-    </main>
+          {error && <div className={styles.error}>{error}</div>}
+
+          <div className={styles.inputUserDetails}>
+            <div className={styles.input}>
+              <label htmlFor="email">Email Address*</label>
+              <input
+                className={styles.inputMod}
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter Your email"
+                required
+                disabled={isLoading}
+              />
+            </div>
+
+            <div className={styles.input}>
+              <label htmlFor="password">Password*</label>
+              <input
+                className={styles.inputMod}
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter Your password"
+                required
+                disabled={isLoading}
+              />
+            </div>
+
+            <div className={styles.rememberForgot}>
+              <div className={styles.remember}>
+                <input
+                  type="checkbox"
+                  id="remember"
+                  name="remember"
+                  checked={formData.remember}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+                <label htmlFor="remember">Remember Me</label>
+              </div>
+              <Link to="/forgot-password" className={styles.forgot}>
+                Forgot Password?
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.btnSignUp}>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "Logging in..." : "Login"}
+            </button>
+            <Link to="/user/register">Don't have an account?</Link>
+          </div>
+        </form>
+      </main>
+    </>
   );
 };
 

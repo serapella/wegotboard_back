@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import WishlistPage from "./pages/WishlistPage";
 import LoginPage from "./pages/LoginPage";
 import ShoppingCart from "./components/ShoppingCart";
+import RegisterPage from "./pages/RegisterPage";
 const App = () => {
   return (
     <>
@@ -17,7 +18,7 @@ const App = () => {
           <Route path="/products/:id/:slug" element={<ProductDetailPage />} />
           <Route path="/categories" element={<></>} />
           <Route path="/user/login" element={<LoginPage />} />
-          <Route path="/user/register" element={<></>} />
+          <Route path="/user/register" element={<RegisterPage />} />
           <Route path="/user/logout" element={<></>} />
           <Route
             path="/user/wishlist"
