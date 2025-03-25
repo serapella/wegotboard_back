@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Product } from "../types";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
+import { useAddToWishlistMutation } from "../store/userAPI";
 
 interface PurchaseOptionsProps {
   product: Product;
@@ -26,7 +27,7 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
     product.images[0] || FALLBACK_IMAGE
   );
   const [isLiked, setIsLiked] = useState(false);
-
+  const [addToWishlist] = useAddToWishlistMutation();
   const { data: reviews } = useGetProductReviewsQuery(product._id);
 
   const averageRating = reviews?.length
