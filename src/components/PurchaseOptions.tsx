@@ -14,6 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Product } from "../types";
 import { useGetProductReviewsQuery } from "../store/reviewAPI";
 import { useAddToWishlistMutation } from "../store/userAPI";
+import { useSelector } from "react-redux";
+import { selectCurrentToken, selectCurrentUser } from "../store/authSlice";
 
 interface PurchaseOptionsProps {
   product: Product;
@@ -29,6 +31,8 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [addToWishlist] = useAddToWishlistMutation();
   const { data: reviews } = useGetProductReviewsQuery(product._id);
+  const user = useSelector(selectCurrentUser);
+  const token = useSelector(selectCurrentToken);
 
   const averageRating = reviews?.length
     ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
@@ -130,7 +134,14 @@ const PurchaseOptions: React.FC<PurchaseOptionsProps> = ({ product }) => {
             <div className={styles.actionButtons}>
               <button
                 className={`${isLiked ? styles.liked : ""}`}
-                onClick={() => setIsLiked(!isLiked)}
+                onClick={() => {
+                  setIsLiked(!isLiked);
+                  addToWishlist({
+                    userId: user?._id as string,
+                    token: token as string,
+                    productId: product._id,
+                  });
+                }}
               >
                 {isLiked ? <BsHeartFill /> : <BsHeart />}
               </button>
