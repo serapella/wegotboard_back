@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 import { useGetProductsQuery } from "../store/productAPI";
 import styles from "../css_modules/ProductSidebar.module.css";
-import { Product } from "../types";
 import { BsStarFill, BsStar } from "react-icons/bs";
 
 const FALLBACK_IMAGE =

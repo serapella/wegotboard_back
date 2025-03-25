@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import style from "../css_modules/shoppingcart.module.css";
-import { ProductWithQty } from "../types";
+import { CartItem } from "../types";
 import { useGetProductByIdQuery } from "../store/productAPI";
 import { addToCart, deleteFromCart, removeFromCart } from "../store/cartSlice";
 
-const ShoppingCartItem = ({ item }: { item: ProductWithQty }) => {
+const ShoppingCartItem = ({ item }: { item: CartItem }) => {
   const dispatch = useDispatch();
 
   const { data } = useGetProductByIdQuery(item.product._id);
@@ -25,13 +25,36 @@ const ShoppingCartItem = ({ item }: { item: ProductWithQty }) => {
             <p>€ {item.product.price}</p>
           </td>
           <td className={style.productCartQty}>
-            <button onClick={() => dispatch(addToCart({ product: item.product }))}>+</button>
-            <input type="number" className="product-qty" min="1" max="10" value={item.quantity} />
-            <button onClick={() => dispatch(removeFromCart({ product: item.product }))}>-</button>
+            <button
+              onClick={() => dispatch(addToCart({ product: item.product }))}
+            >
+              +
+            </button>
+            <input
+              type="number"
+              className="product-qty"
+              min="1"
+              max="10"
+              value={item.quantity}
+            />
+            <button
+              onClick={() =>
+                dispatch(removeFromCart({ product: item.product }))
+              }
+            >
+              -
+            </button>
           </td>
-          <td className={style.productCartTotalQtyPrice}>€ {(item.product.price * item.quantity).toFixed(2)}</td>
+          <td className={style.productCartTotalQtyPrice}>
+            € {(item.product.price * item.quantity).toFixed(2)}
+          </td>
           <td className={style.productCartDelete}>
-            <a href="#" onClick={() => dispatch(deleteFromCart({ product: item.product }))}>
+            <a
+              href="#"
+              onClick={() =>
+                dispatch(deleteFromCart({ product: item.product }))
+              }
+            >
               🗑️
             </a>
           </td>

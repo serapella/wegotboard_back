@@ -4,7 +4,7 @@ import { Review, CreateReviewDto } from "../types";
 const reviewAPI = createApi({
   reducerPath: "reviewAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/r",
+    baseUrl: "https://wegotboard-back-j6lv.onrender.com/r",
   }),
   tagTypes: ["Review"],
   endpoints: (builder) => ({

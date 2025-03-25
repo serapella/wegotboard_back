@@ -11,7 +11,7 @@ import {
 export const userAPI = createApi({
   reducerPath: "userAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/u",
+    baseUrl: "https://wegotboard-back-j6lv.onrender.com/u",
     // credentials: "include",
     // prepareHeaders: (headers, { getState }) => {
     //   const token = (getState() as any).auth?.token;

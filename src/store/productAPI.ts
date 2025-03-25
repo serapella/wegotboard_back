@@ -5,7 +5,7 @@ const productAPI = createApi({
   tagTypes: ["Product", "Wishlist"],
   reducerPath: "productAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/p",
+    baseUrl: "https://wegotboard-back-j6lv.onrender.com/p",
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], ProductQuery>({

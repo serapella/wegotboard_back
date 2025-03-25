@@ -13,7 +13,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
   currentProductId,
 }) => {
   const { data: products, isLoading } = useGetProductsQuery({
-    categories: categoryId,
+    categories: [categoryId],
     limit: 4,
     page: 0,
   });

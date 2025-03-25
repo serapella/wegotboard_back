@@ -4,7 +4,7 @@ import { NewsFeed } from "../types";
 const newsAPI = createApi({
   reducerPath: "newsAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api/news",
+    baseUrl: "https://wegotboard-back-j6lv.onrender.com/api/news",
   }),
   endpoints: (builder) => ({
     getNews: builder.query<NewsFeed, void>({
