@@ -201,35 +201,34 @@ nav {
   }
 
   .mainNav {
-    gap: 4rem;
+    gap: 5rem;
   }
-}
+  @media (max-width: 768px) {
+    .headerMainNavContent {
+      padding: 0 1rem;
+    }
 
-@media (max-width: 768px) {
-  .headerMainNavContent {
-    padding: 0 1rem;
-  }
+    .mainNav {
+      gap: 3rem;
+    }
 
-  .mainNav {
-    gap: 3rem;
-  }
+    .phone {
+      display: none;
+    }
 
-  .phone {
-    display: none;
-  }
-
-  .sidebar {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .mainNav {
-    gap: 2rem;
+    .sidebar {
+      width: 100%;
+    }
   }
 
-  .mainNav li select,
-  .mainNav li a {
-    font-size: 1.4rem;
+  @media (max-width: 480px) {
+    .mainNav {
+      gap: 2rem;
+    }
+
+    .mainNav li select,
+    .mainNav li a {
+      font-size: 1.4rem;
+    }
   }
 }
