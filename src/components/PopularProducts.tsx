@@ -10,6 +10,10 @@ const PopularProducts = () => {
     order: "desc",
   });
 
+  if (!products?.length) {
+    return null;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.nav}>
@@ -21,7 +25,7 @@ const PopularProducts = () => {
           <li>Dice games</li>
         </ul>
       </div>
-      <ProductGrid products={products ?? []} maxItems={8} viewMode="grid" />
+      <ProductGrid products={products} maxItems={8} viewMode="grid" />
     </div>
   );
 };
