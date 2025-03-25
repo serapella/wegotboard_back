@@ -58,7 +58,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({
           occasion.
         </p>
       </div>
-      <ProductGrid products={relatedProducts} maxItems={4} />
+      <ProductGrid viewMode="list" products={relatedProducts} maxItems={4} />
     </div>
   );
 };
