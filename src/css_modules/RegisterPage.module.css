@@ -52,6 +52,16 @@
   font-size: 1.4rem;
 }
 
+.errorMessage {
+  color: var(--navTop);
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.inputError {
+  border-color: var(--navTop) !important;
+}
+
 .form {
   display: flex;
   flex-direction: column;
