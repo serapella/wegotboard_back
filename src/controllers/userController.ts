@@ -28,7 +28,19 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { first, last, email, password, pNumber, isAdmin, isSubscribed, country, city, pcode, address } = req.body;
+    const {
+      first,
+      last,
+      email,
+      password,
+      pNumber,
+      isAdmin,
+      isSubscribed,
+      country,
+      city,
+      pcode,
+      address,
+    } = req.body;
     let phoneNumber = pNumber;
     let location = { country, city, postCode: pcode, address };
     let name = { first: first as string, last: last as string };
@@ -73,7 +85,9 @@ export const createUser = async (req: Request, res: Response) => {
       maxAge: 60 * 60 * 1000,
     });
 
-    res.status(201).json({ message: "User created succesfully", user: response });
+    res
+      .status(201)
+      .json({ message: "User created succesfully", user: response });
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
@@ -172,7 +186,8 @@ export const updateUser = async (req: Request, res: Response) => {
       res.status(401).json({ message: "User is not logged in" });
       return;
     }
-    const { name, email, password, phoneNumber, isSubscribed, location } = req.body;
+    const { name, email, password, phoneNumber, isSubscribed, location } =
+      req.body;
 
     const _id = req.user ? req.user._id : "";
 
@@ -245,8 +260,8 @@ export const addToWishlist = async (req: Request, res: Response) => {
       return;
     }
     if (!user.favorites.includes(productId)) {
-      user.favorites.push(productId);
-      await user.save();
+      await User.updateOne({ _id }, { $push: { favorites: productId } });
+
       res.status(200).json(user);
       return;
     } else {
