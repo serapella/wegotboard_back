@@ -1,0 +1,138 @@
+.userNav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 2.2rem 0;
+  border-bottom: var(--cardBorder) solid 1px;
+}
+
+.userNavContent {
+  display: flex;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logo img {
+  height: 6.2rem;
+  width: auto;
+}
+
+.userNavContent ul {
+  display: flex;
+  gap: 3rem;
+}
+
+.userNavContent ul li {
+  position: relative;
+}
+
+.userNavContent ul li a,
+.logoutButton {
+  text-decoration: none;
+  color: var(--black-like);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: none;
+  border: none;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logoutButton {
+  color: var(--navTop);
+  transition: color 0.2s ease;
+}
+
+.logoutButton:hover {
+  color: var(--buttonHover);
+}
+
+.userNavContent ul li a i,
+.logoutButton i {
+  height: 2.1rem;
+  width: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartIcon {
+  position: relative;
+}
+
+.quantity {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--navTop);
+  color: white;
+  font-size: 1.2rem;
+  min-width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+}
+
+@media (max-width: 1024px) {
+  .userNavContent {
+    padding: 0 1.5rem;
+  }
+
+  .logo img {
+    height: 5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .userNav {
+    padding: 1.5rem 0;
+  }
+
+  .userNavContent {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .userNavContent ul {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .userNavContent ul li a span,
+  .logoutButton span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .userNav {
+    padding: 1rem 0;
+  }
+
+  .userNavContent {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .logo img {
+    height: 4rem;
+  }
+
+  .userNavContent ul {
+    gap: 2rem;
+  }
+}

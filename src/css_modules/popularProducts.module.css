@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    & > h2 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--black-like);
+      margin-bottom: 1.6rem;
+    }
+
+    & ul {
+      display: flex;
+      gap: 2.4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      & li {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--amountItemsFiltered);
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: rgba(59, 183, 126, 1);
+        }
+
+        &.active {
+          color: rgba(59, 183, 126, 1);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .nav {
+    & > h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.2rem;
+    }
+  }
+}

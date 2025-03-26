@@ -1,0 +1,234 @@
+header {
+  background-color: #ffffff;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  height: 5.5rem;
+  box-shadow: 0px 0px 3px 1px rgba(43, 43, 45, 0.15);
+  position: relative;
+}
+
+.headerMainNavContent {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1380px;
+  padding: 0 2rem;
+  font-size: 1.5rem;
+  font-family: "Quicksand", sans-serif;
+}
+
+.menuButton {
+  text-decoration: none;
+  color: var(--black-like);
+  border: 1px solid rgba(233, 233, 233, 1);
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover {
+  background-color: var(--filter);
+}
+
+.mainNav {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  margin: 0 auto;
+}
+
+.mainNav li {
+  padding: 0;
+  margin: 0;
+}
+
+.mainNav li select {
+  border: none;
+  font-size: 1.5rem;
+  color: var(--black-like);
+  cursor: pointer;
+  background: transparent;
+  font-family: inherit;
+  appearance: none;
+  margin: 2rem;
+  gap: 4rem;
+  transition: color 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.mainNav li select:hover {
+  color: var(--navTop);
+}
+
+.mainNav li a {
+  text-decoration: none;
+  color: var(--black-like);
+  font-size: 1.5rem;
+  transition: color 0.2s ease;
+  display: block;
+  text-align: center;
+}
+
+.mainNav li a:hover {
+  color: var(--navTop);
+}
+
+.mainNav li a.active {
+  color: var(--navTop);
+  font-weight: 600;
+}
+
+.phone {
+  height: 2rem;
+}
+
+.phone a {
+  text-decoration: none;
+  color: var(--black-like);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.phone a:hover {
+  color: var(--navTop);
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 30rem;
+  background-color: white;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid var(--cardBorder);
+}
+
+.sidebarHeader h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--black-like);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--black-like);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: var(--navTop);
+}
+
+.sidebarContent {
+  /* padding: 2rem; */
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebarNav a {
+  text-decoration: none;
+  color: var(--black-like);
+  font-size: 1.6rem;
+  /* padding: 1rem; */
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.sidebarNav a:hover {
+  background-color: var(--filter);
+  color: var(--navTop);
+}
+
+.sidebarNav a.active {
+  color: var(--navTop);
+  font-weight: 600;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .headerMainNavContent {
+    padding: 0 1.5rem;
+  }
+
+  .mainNav {
+    gap: 5rem;
+  }
+  @media (max-width: 768px) {
+    .headerMainNavContent {
+      padding: 0 1rem;
+    }
+
+    .mainNav {
+      gap: 3rem;
+    }
+
+    .phone {
+      display: none;
+    }
+
+    .sidebar {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mainNav {
+      gap: 2rem;
+    }
+
+    .mainNav li select,
+    .mainNav li a {
+      font-size: 1.4rem;
+    }
+  }
+}

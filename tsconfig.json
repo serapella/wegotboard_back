@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "compilerOptions": {
     "target": "ES2022",
     "module": "Preserve",
@@ -12,4 +13,11 @@
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
+=======
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+>>>>>>> bdb7b56610be5a5a40c48323cfe541cda3b996cf
 }
